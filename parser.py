@@ -10,7 +10,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, WebDriverException
 from webdriver_manager.chrome import ChromeDriverManager
-from proxy_manager import ProxyManager
+
+import aiohttp
+from aiohttp_socks import ProxyConnector
+import asyncio
 
 # Настройка логирования
 logging.basicConfig(
@@ -25,15 +28,16 @@ logger = logging.getLogger(__name__)
 
 class SportscheckerParser:
     """
-    Парсер для сайта Sportschecker.net с постоянной сессией и "человеческим" поведением.
+    Парсер для сайта Sportschecker.net с поддержкой прокси и постоянной сессией.
     """
-    def __init__(self, login, password):
+    def __init__(self, login, password, proxy_url=None):
         self.login = login
         self.password = password
+        self.proxy_url = proxy_url
         self.driver = None
+        self.session = None
         self.login_url = "https://ru.sportschecker.net/users/sign_in"
         self.valuebets_url = "https://ru.sportschecker.net/valuebets"
-        self.proxy_manager = ProxyManager()
         self.user_agents = [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
@@ -43,8 +47,45 @@ class SportscheckerParser:
         ]
         self.cookies_file = "cookies.json"
         self.last_login_fail_time = 0
-        self.first_session = not os.path.exists(self.cookies_file)  # Check if it's first session
-        self.session_ip = None  # Для отслеживания IP сессии
+        self.first_session = not os.path.exists(self.cookies_file)
+        self.session_ip = None
+
+    async def _create_session(self):
+        """Создает асинхронную сессию с прокси"""
+        try:
+            if self.proxy_url:
+                connector = ProxyConnector.from_url(self.proxy_url)
+                logger.info(f"Using proxy: {self.proxy_url}")
+            else:
+                connector = aiohttp.TCPConnector()
+            
+            self.session = aiohttp.ClientSession(
+                connector=connector,
+                headers={
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
+                    'Accept-Encoding': 'gzip, deflate',
+                    'Connection': 'keep-alive',
+                },
+                timeout=aiohttp.ClientTimeout(total=30)
+            )
+            
+        except Exception as e:
+            logger.error(f"Error creating session: {e}")
+            raise
+
+    async def get_current_ip(self):
+        """Проверка текущего IP через прокси"""
+        try:
+            if not self.session:
+                await self._create_session()
+                
+            async with self.session.get('http://httpbin.org/ip', timeout=10) as response:
+                data = await response.json()
+                return data.get('origin', 'Unknown')
+        except Exception as e:
+            return f"Error: {str(e)}"
 
     def _random_delay(self, min_seconds=5, max_seconds=7):
         """Создает случайную задержку."""
@@ -188,6 +229,12 @@ class SportscheckerParser:
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
             options.add_argument(f"user-agent={random.choice(self.user_agents)}")
+            
+            # Добавляем прокси если указан
+            if self.proxy_url:
+                options.add_argument(f'--proxy-server={self.proxy_url}')
+                logger.info(f"Using proxy for browser: {self.proxy_url}")
+                
             service = Service(ChromeDriverManager().install())
             self.driver = webdriver.Chrome(service=service, options=options)
         except Exception as e:
@@ -254,10 +301,16 @@ class SportscheckerParser:
                 options.add_argument("--disable-dev-shm-usage")
                 options.add_argument("--window-size=1920,1080")
                 options.add_argument(f"user-agent={random.choice(self.user_agents)}")
+                
+                # Добавляем прокси если указан
+                if self.proxy_url:
+                    options.add_argument(f'--proxy-server={self.proxy_url}')
+                    logger.info(f"Using proxy for browser: {self.proxy_url}")
+                    
                 service = Service(ChromeDriverManager().install())
                 self.driver = webdriver.Chrome(service=service, options=options)
             except Exception as e:
-                logger.error(f"Не удалось запустить драйвер: {e}", exc_info=True)
+                logger.error(f"Не удалось запустить драйver: {e}", exc_info=True)
                 return False
 
         try:
@@ -412,7 +465,6 @@ class SportscheckerParser:
                     value = value_element.text.strip()
 
                     if coeff % 0.5 == 0:
-
                         predictions.append({
                             'bookmaker': bookmaker, 'sport': sport, 'date': date,
                             'tournament': tournament, 'teams': teams, 'prediction': prediction,
@@ -424,7 +476,6 @@ class SportscheckerParser:
                     continue
             
             logger.info(f"Успешно спарсено {len(predictions)} прогнозов.")
-
             return predictions
 
         except Exception as e:
@@ -433,29 +484,33 @@ class SportscheckerParser:
             self.close()
             return []
 
-    def close(self):
-        """Закрывает драйвер, если он активен."""
+    async def close(self):
+        """Закрывает драйвер и сессию"""
+        # Закрываем браузер
         if self.driver:
             try:
-                # Перед закрытием пытаемся выйти из системы
-                try:
-                    self.driver.get("https://ru.sportschecker.net/users/sign_out")
-                    self._random_delay(2, 3)
-                    logger.info("Выполнен выход из системы перед закрытием драйвера.")
-                except:
-                    pass
-                    
                 self.driver.quit()
                 logger.info("WebDriver сессия успешно закрыта.")
             except Exception as e:
                 logger.error(f"Ошибка при закрытии WebDriver: {e}")
             finally:
                 self.driver = None
+        
+        # Закрываем асинхронную сессию
+        if self.session:
+            try:
+                await self.session.close()
+                logger.info("Асинхронная сессия успешно закрыта.")
+            except Exception as e:
+                logger.error(f"Ошибка при закрытии асинхронной сессии: {e}")
+            finally:
+                self.session = None
 
 # Пример использования
 if __name__ == "__main__":
-    # Инициализация парсера с вашими учетными данными
-    parser = SportscheckerParser('kosyakovsn@gmail.com', 'SC22332233')
+    # Инициализация парсера с прокси
+    proxy_url = "socks5://username:password@proxy.proxyseller.ru:10000"  # Замените на ваш прокси
+    parser = SportscheckerParser('kosyakovsn@gmail.com', 'SC22332233', proxy_url)
     
     try:
         # Получение прогнозов
@@ -471,4 +526,5 @@ if __name__ == "__main__":
     
     finally:
         # Закрытие парсера
-        parser.close()
+        import asyncio
+        asyncio.run(parser.close())

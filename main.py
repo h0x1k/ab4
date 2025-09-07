@@ -123,19 +123,22 @@ class BKManagementStates(StatesGroup):
     managing_user_bks = State()
     managing_channel_bks = State()
 
-async def initialize_parser():
+async def initialize_parser(proxy_url=None):
     global sportschecker_parser
     login = database.get_setting('sportschecker_login')
     password = database.get_setting('sportschecker_password')
+    
     if login and password:
         if sportschecker_parser:
-            sportschecker_parser.close()
-        sportschecker_parser = SportscheckerParser(login, password)
-        logger.info("Новый экземпляр парсера успешно создан/обновлен.")
+            await sportschecker_parser.close()
+        
+        # Создаем парсер с прокси
+        sportschecker_parser = SportscheckerParser(login, password, proxy_url)
+        logger.info(f"Новый экземпляр парсера успешно создан/обновлен. {'С прокси' if proxy_url else 'Без прокси'}")
     else:
         logger.error("Логин/пароль для парсера не найдены в настройки.")
         if sportschecker_parser:
-            sportschecker_parser.close()
+            await sportschecker_parser.close()
         sportschecker_parser = None
 
 async def send_admin_panel(chat_id):
@@ -230,11 +233,15 @@ async def send_predictions_to_subscribed_users():
     global sportschecker_parser
     try:
         if sportschecker_parser is None:
-            await initialize_parser()
-            if sportschecker_parser is None: return
+            # Получаем прокси из конфига для второго бота
+            proxy_url = config.get('PROXY_URL')
+            await initialize_parser(proxy_url)
+            if sportschecker_parser is None: 
+                return
 
-        predictions = sportschecker_parser.get_predictions()
-        if not predictions: return
+        predictions = await sportschecker_parser.get_predictions()
+        if not predictions: 
+            return
 
         new_predictions_to_send = []
         for p in predictions:
@@ -256,7 +263,7 @@ async def send_predictions_to_subscribed_users():
         await schedule_next_run()
     finally:
         if sportschecker_parser:
-            sportschecker_parser.close()
+            await sportschecker_parser.close()
             sportschecker_parser = None
 
 async def schedule_next_run():
@@ -1273,10 +1280,12 @@ async def my_chat_member_handler(my_chat_member: types.ChatMemberUpdated):
         if ADMIN_ID:
             await bot.send_message(ADMIN_ID, f"✅ Бот добавлен в канал {channel_title} ({channel_id})")
 
-# --- Startup and main ---
 async def on_startup():
     database.create_tables()
-    await initialize_parser()
+    
+    # Инициализируем парсер с прокси (если указан в конфиге)
+    proxy_url = config.get('PROXY_URL')
+    await initialize_parser(proxy_url)
     
     channels = database.get_all_channels()
     bookmakers = database.get_all_bookmakers()

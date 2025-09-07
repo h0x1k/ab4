@@ -7,5 +7,6 @@
     "work_start_hour": 6,
     "work_end_hour": 23,
     "timezone": "Europe/Moscow",
-    "CHANNEL_ID": -1003013389684
-}``
+    "CHANNEL_ID": -1003013389684,
+    "PROXY_URL": "p13332.ltespace.net:13332:5abusy18:eeqmeqw5"
+}
