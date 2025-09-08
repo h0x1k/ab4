@@ -18249,3 +18249,804 @@ TypeError: update_subscription() takes 2 positional arguments but 3 were given
 2025-09-08 19:07:05,260 - aiogram.event - INFO - Update id=951930157 is handled. Duration 304 ms by bot id=8068867993
 2025-09-08 19:07:07,979 - apscheduler.scheduler - INFO - Removed job send_predictions_job
 2025-09-08 19:07:08,338 - aiogram.event - INFO - Update id=951930158 is handled. Duration 373 ms by bot id=8068867993
+2025-09-08 19:13:33,649 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:13:33,650 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
+2025-09-08 19:13:38,743 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:13:38,743 - aiogram.dispatcher - WARNING - Sleep for 1.460913 seconds and try again... (tryings = 1, bot id = 8068867993)
+2025-09-08 19:13:44,444 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:13:44,444 - aiogram.dispatcher - WARNING - Sleep for 1.797375 seconds and try again... (tryings = 2, bot id = 8068867993)
+2025-09-08 19:13:50,994 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:13:50,994 - aiogram.dispatcher - WARNING - Sleep for 2.174297 seconds and try again... (tryings = 3, bot id = 8068867993)
+2025-09-08 19:14:00,292 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:14:00,292 - aiogram.dispatcher - WARNING - Sleep for 2.759986 seconds and try again... (tryings = 4, bot id = 8068867993)
+2025-09-08 19:14:09,607 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:14:09,607 - aiogram.dispatcher - WARNING - Sleep for 3.544217 seconds and try again... (tryings = 5, bot id = 8068867993)
+2025-09-08 19:14:17,502 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:14:17,502 - aiogram.dispatcher - WARNING - Sleep for 4.621947 seconds and try again... (tryings = 6, bot id = 8068867993)
+2025-09-08 19:14:27,305 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:14:27,305 - aiogram.dispatcher - WARNING - Sleep for 5.000685 seconds and try again... (tryings = 7, bot id = 8068867993)
+2025-09-08 19:14:37,617 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:14:37,617 - aiogram.dispatcher - WARNING - Sleep for 5.018028 seconds and try again... (tryings = 8, bot id = 8068867993)
+2025-09-08 19:14:47,749 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:14:47,749 - aiogram.dispatcher - WARNING - Sleep for 4.940160 seconds and try again... (tryings = 9, bot id = 8068867993)
+2025-09-08 19:14:57,869 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:14:57,869 - aiogram.dispatcher - WARNING - Sleep for 5.166614 seconds and try again... (tryings = 10, bot id = 8068867993)
+2025-09-08 19:15:08,197 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:15:08,197 - aiogram.dispatcher - WARNING - Sleep for 5.055612 seconds and try again... (tryings = 11, bot id = 8068867993)
+2025-09-08 19:15:18,219 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:15:18,220 - aiogram.dispatcher - WARNING - Sleep for 5.044451 seconds and try again... (tryings = 12, bot id = 8068867993)
+2025-09-08 19:15:28,372 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:15:28,372 - aiogram.dispatcher - WARNING - Sleep for 4.892316 seconds and try again... (tryings = 13, bot id = 8068867993)
+2025-09-08 19:15:38,334 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:15:38,335 - aiogram.dispatcher - WARNING - Sleep for 4.860258 seconds and try again... (tryings = 14, bot id = 8068867993)
+2025-09-08 19:15:48,283 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:15:48,284 - aiogram.dispatcher - WARNING - Sleep for 4.957125 seconds and try again... (tryings = 15, bot id = 8068867993)
+2025-09-08 19:15:58,315 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:15:58,316 - aiogram.dispatcher - WARNING - Sleep for 5.100465 seconds and try again... (tryings = 16, bot id = 8068867993)
+2025-09-08 19:16:08,835 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:16:08,835 - aiogram.dispatcher - WARNING - Sleep for 5.173052 seconds and try again... (tryings = 17, bot id = 8068867993)
+2025-09-08 19:16:19,440 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:16:19,440 - aiogram.dispatcher - WARNING - Sleep for 5.049709 seconds and try again... (tryings = 18, bot id = 8068867993)
+2025-09-08 19:16:29,577 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:16:29,577 - aiogram.dispatcher - WARNING - Sleep for 5.017501 seconds and try again... (tryings = 19, bot id = 8068867993)
+2025-09-08 19:16:40,187 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:16:40,188 - aiogram.dispatcher - WARNING - Sleep for 5.033400 seconds and try again... (tryings = 20, bot id = 8068867993)
+2025-09-08 19:16:50,131 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:16:50,132 - aiogram.dispatcher - WARNING - Sleep for 4.866957 seconds and try again... (tryings = 21, bot id = 8068867993)
+2025-09-08 19:17:00,115 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:17:00,116 - aiogram.dispatcher - WARNING - Sleep for 4.805648 seconds and try again... (tryings = 22, bot id = 8068867993)
+2025-09-08 19:17:11,289 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:17:11,289 - aiogram.dispatcher - WARNING - Sleep for 5.184467 seconds and try again... (tryings = 23, bot id = 8068867993)
+2025-09-08 19:17:21,408 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:17:21,408 - aiogram.dispatcher - WARNING - Sleep for 5.039108 seconds and try again... (tryings = 24, bot id = 8068867993)
+2025-09-08 19:17:31,542 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 19:17:31,542 - aiogram.dispatcher - WARNING - Sleep for 5.223200 seconds and try again... (tryings = 25, bot id = 8068867993)
+2025-09-08 19:17:46,822 - aiogram.dispatcher - INFO - Connection established (tryings = 26, bot id = 8068867993)
+2025-09-08 20:57:17,414 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 20:57:17,415 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
+2025-09-08 20:57:22,492 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 20:57:22,492 - aiogram.dispatcher - WARNING - Sleep for 1.189926 seconds and try again... (tryings = 1, bot id = 8068867993)
+2025-09-08 20:57:28,127 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2025-09-08 20:57:28,127 - aiogram.dispatcher - WARNING - Sleep for 1.564467 seconds and try again... (tryings = 2, bot id = 8068867993)
+2025-09-08 20:57:33,553 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-08 20:57:33,554 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-08 20:57:33,555 - aiogram.dispatcher - INFO - Polling stopped
+2025-09-08 23:23:03,719 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен. С прокси
+2025-09-08 23:23:03,721 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:23:03,721 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:23:03,722 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:23:03,759 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:23:03,759 - __main__ - INFO - Следующий запуск: 2025-09-08 23:23:18
+2025-09-08 23:23:03,760 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-08 23:23:03,760 - apscheduler.scheduler - INFO - Scheduler started
+2025-09-08 23:23:03,760 - aiogram.dispatcher - INFO - Start polling
+2025-09-08 23:23:03,970 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-08 23:23:12,564 - aiogram.event - INFO - Update id=951930159 is handled. Duration 283 ms by bot id=8068867993
+2025-09-08 23:23:14,164 - aiogram.event - INFO - Update id=951930160 is handled. Duration 196 ms by bot id=8068867993
+2025-09-08 23:23:15,384 - aiogram.event - INFO - Update id=951930161 is handled. Duration 139 ms by bot id=8068867993
+2025-09-08 23:23:18,760 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-08 23:23:18,761 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:23:18 MSK], next run at: 2025-09-08 23:23:18 MSK)" (scheduled at 2025-09-08 23:23:18.759352+03:00)
+2025-09-08 23:23:18,761 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:23:19,175 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:23:19,376 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:23:19,544 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:23:22,572 - parser - INFO - Куки успешно загружены.
+2025-09-08 23:23:32,613 - parser - WARNING - Проверка авторизации: пользователь не в системе (кнопка 'Выйти' не найдена).
+2025-09-08 23:23:32,614 - parser - WARNING - Куки устарели или недействительны. Требуется повторный вход.
+2025-09-08 23:23:32,614 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-08 23:23:32,614 - parser - INFO - Выполняется полный цикл входа...
+2025-09-08 23:23:32,618 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:23:32,941 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:23:33,118 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:23:33,291 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:23:38,804 - parser - INFO - Ввод логина...
+2025-09-08 23:23:40,100 - parser - INFO - Ввод пароля...
+2025-09-08 23:23:41,570 - parser - INFO - Нажатие кнопки 'Войти'...
+2025-09-08 23:23:44,816 - parser - INFO - Ожидание подтверждения входа (до 30 секунд)...
+2025-09-08 23:24:14,947 - parser - ERROR - Ошибка во время полного цикла входа: Message: 
+Stacktrace:
+0   chromedriver                        0x000000010b4d5668 chromedriver + 5928552
+1   chromedriver                        0x000000010b4ccc0a chromedriver + 5893130
+2   chromedriver                        0x000000010af96e00 chromedriver + 429568
+3   chromedriver                        0x000000010afe8ff4 chromedriver + 765940
+4   chromedriver                        0x000000010afe9211 chromedriver + 766481
+5   chromedriver                        0x000000010b038e94 chromedriver + 1093268
+6   chromedriver                        0x000000010b00f08d chromedriver + 921741
+7   chromedriver                        0x000000010b0361d4 chromedriver + 1081812
+8   chromedriver                        0x000000010b00ee33 chromedriver + 921139
+9   chromedriver                        0x000000010afdb37b chromedriver + 709499
+10  chromedriver                        0x000000010afdc061 chromedriver + 712801
+11  chromedriver                        0x000000010b4930e0 chromedriver + 5656800
+12  chromedriver                        0x000000010b496fa4 chromedriver + 5672868
+13  chromedriver                        0x000000010b46e052 chromedriver + 5505106
+14  chromedriver                        0x000000010b497a4f chromedriver + 5675599
+15  chromedriver                        0x000000010b45d004 chromedriver + 5435396
+16  chromedriver                        0x000000010b4b9d88 chromedriver + 5815688
+17  chromedriver                        0x000000010b4b9f50 chromedriver + 5816144
+18  chromedriver                        0x000000010b4cc7e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 276, in _perform_full_login
+    WebDriverWait(self.driver, 30).until(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located(logout_link_selector)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x000000010b4d5668 chromedriver + 5928552
+1   chromedriver                        0x000000010b4ccc0a chromedriver + 5893130
+2   chromedriver                        0x000000010af96e00 chromedriver + 429568
+3   chromedriver                        0x000000010afe8ff4 chromedriver + 765940
+4   chromedriver                        0x000000010afe9211 chromedriver + 766481
+5   chromedriver                        0x000000010b038e94 chromedriver + 1093268
+6   chromedriver                        0x000000010b00f08d chromedriver + 921741
+7   chromedriver                        0x000000010b0361d4 chromedriver + 1081812
+8   chromedriver                        0x000000010b00ee33 chromedriver + 921139
+9   chromedriver                        0x000000010afdb37b chromedriver + 709499
+10  chromedriver                        0x000000010afdc061 chromedriver + 712801
+11  chromedriver                        0x000000010b4930e0 chromedriver + 5656800
+12  chromedriver                        0x000000010b496fa4 chromedriver + 5672868
+13  chromedriver                        0x000000010b46e052 chromedriver + 5505106
+14  chromedriver                        0x000000010b497a4f chromedriver + 5675599
+15  chromedriver                        0x000000010b45d004 chromedriver + 5435396
+16  chromedriver                        0x000000010b4b9d88 chromedriver + 5815688
+17  chromedriver                        0x000000010b4b9f50 chromedriver + 5816144
+18  chromedriver                        0x000000010b4cc7e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+
+2025-09-08 23:24:15,078 - parser - INFO - Скриншот сохранен: screenshots/full_login_error.png
+2025-09-08 23:24:15,079 - parser - WARNING - Не удалось войти. Прерывание парсинга.
+2025-09-08 23:24:15,079 - __main__ - ERROR - Критическая ошибка: object list can't be used in 'await' expression
+2025-09-08 23:24:15,081 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-08 23:24:15,082 - __main__ - INFO - Следующий запуск: 2025-09-08 23:24:37
+2025-09-08 23:24:15,187 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-08 23:24:15,187 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:23:18 MSK], next run at: 2025-09-08 23:23:18 MSK)" executed successfully
+2025-09-08 23:24:15,198 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
+2025-09-08 23:24:15,198 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
+2025-09-08 23:24:26,363 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8068867993)
+2025-09-08 23:24:37,082 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-08 23:24:37,082 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:24:37 MSK], next run at: 2025-09-08 23:24:37 MSK)" (scheduled at 2025-09-08 23:24:37.081464+03:00)
+2025-09-08 23:24:37,083 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен. С прокси
+2025-09-08 23:24:37,084 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:24:37,572 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:24:37,835 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:24:38,049 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:24:40,934 - parser - INFO - Куки успешно загружены.
+2025-09-08 23:24:50,452 - parser - WARNING - Проверка авторизации: пользователь не в системе (кнопка 'Выйти' не найдена).
+2025-09-08 23:24:50,452 - parser - WARNING - Куки устарели или недействительны. Требуется повторный вход.
+2025-09-08 23:24:50,452 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-08 23:24:50,452 - parser - INFO - Выполняется полный цикл входа...
+2025-09-08 23:24:50,452 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:24:50,818 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:24:51,045 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:24:51,249 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:24:57,322 - parser - INFO - Ввод логина...
+2025-09-08 23:24:59,136 - parser - INFO - Ввод пароля...
+2025-09-08 23:25:00,471 - parser - INFO - Нажатие кнопки 'Войти'...
+2025-09-08 23:25:04,735 - parser - INFO - Ожидание подтверждения входа (до 30 секунд)...
+2025-09-08 23:25:34,966 - parser - ERROR - Ошибка во время полного цикла входа: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000104633668 chromedriver + 5928552
+1   chromedriver                        0x000000010462ac0a chromedriver + 5893130
+2   chromedriver                        0x00000001040f4e00 chromedriver + 429568
+3   chromedriver                        0x0000000104146ff4 chromedriver + 765940
+4   chromedriver                        0x0000000104147211 chromedriver + 766481
+5   chromedriver                        0x0000000104196e94 chromedriver + 1093268
+6   chromedriver                        0x000000010416d08d chromedriver + 921741
+7   chromedriver                        0x00000001041941d4 chromedriver + 1081812
+8   chromedriver                        0x000000010416ce33 chromedriver + 921139
+9   chromedriver                        0x000000010413937b chromedriver + 709499
+10  chromedriver                        0x000000010413a061 chromedriver + 712801
+11  chromedriver                        0x00000001045f10e0 chromedriver + 5656800
+12  chromedriver                        0x00000001045f4fa4 chromedriver + 5672868
+13  chromedriver                        0x00000001045cc052 chromedriver + 5505106
+14  chromedriver                        0x00000001045f5a4f chromedriver + 5675599
+15  chromedriver                        0x00000001045bb004 chromedriver + 5435396
+16  chromedriver                        0x0000000104617d88 chromedriver + 5815688
+17  chromedriver                        0x0000000104617f50 chromedriver + 5816144
+18  chromedriver                        0x000000010462a7e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 276, in _perform_full_login
+    WebDriverWait(self.driver, 30).until(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located(logout_link_selector)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000104633668 chromedriver + 5928552
+1   chromedriver                        0x000000010462ac0a chromedriver + 5893130
+2   chromedriver                        0x00000001040f4e00 chromedriver + 429568
+3   chromedriver                        0x0000000104146ff4 chromedriver + 765940
+4   chromedriver                        0x0000000104147211 chromedriver + 766481
+5   chromedriver                        0x0000000104196e94 chromedriver + 1093268
+6   chromedriver                        0x000000010416d08d chromedriver + 921741
+7   chromedriver                        0x00000001041941d4 chromedriver + 1081812
+8   chromedriver                        0x000000010416ce33 chromedriver + 921139
+9   chromedriver                        0x000000010413937b chromedriver + 709499
+10  chromedriver                        0x000000010413a061 chromedriver + 712801
+11  chromedriver                        0x00000001045f10e0 chromedriver + 5656800
+12  chromedriver                        0x00000001045f4fa4 chromedriver + 5672868
+13  chromedriver                        0x00000001045cc052 chromedriver + 5505106
+14  chromedriver                        0x00000001045f5a4f chromedriver + 5675599
+15  chromedriver                        0x00000001045bb004 chromedriver + 5435396
+16  chromedriver                        0x0000000104617d88 chromedriver + 5815688
+17  chromedriver                        0x0000000104617f50 chromedriver + 5816144
+18  chromedriver                        0x000000010462a7e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+
+2025-09-08 23:25:35,093 - parser - INFO - Скриншот сохранен: screenshots/full_login_error.png
+2025-09-08 23:25:35,093 - parser - WARNING - Не удалось войти. Прерывание парсинга.
+2025-09-08 23:25:35,093 - __main__ - ERROR - Критическая ошибка: object list can't be used in 'await' expression
+2025-09-08 23:25:35,096 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-08 23:25:35,096 - __main__ - INFO - Следующий запуск: 2025-09-08 23:26:13
+2025-09-08 23:25:35,207 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-08 23:25:35,207 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:24:37 MSK], next run at: 2025-09-08 23:24:37 MSK)" executed successfully
+2025-09-08 23:25:35,485 - aiogram.event - INFO - Update id=951930162 is handled. Duration 216 ms by bot id=8068867993
+2025-09-08 23:25:58,488 - aiogram.event - INFO - Update id=951930163 is handled. Duration 165 ms by bot id=8068867993
+2025-09-08 23:26:13,096 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-08 23:26:13,096 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:26:13 MSK], next run at: 2025-09-08 23:26:13 MSK)" (scheduled at 2025-09-08 23:26:13.096189+03:00)
+2025-09-08 23:26:13,098 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен. С прокси
+2025-09-08 23:26:13,098 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:26:13,504 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:26:13,701 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:26:13,885 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:26:16,421 - parser - INFO - Куки успешно загружены.
+2025-09-08 23:26:20,845 - parser - ERROR - Ошибка при восстановлении сессии: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000106395668 chromedriver + 5928552
+1   chromedriver                        0x000000010638cc0a chromedriver + 5893130
+2   chromedriver                        0x0000000105e56c43 chromedriver + 429123
+3   chromedriver                        0x0000000105e9a5af chromedriver + 705967
+4   chromedriver                        0x0000000105ecef66 chromedriver + 921446
+5   chromedriver                        0x0000000105ec9b0d chromedriver + 899853
+6   chromedriver                        0x0000000105ec8ca7 chromedriver + 896167
+7   chromedriver                        0x0000000105e1f17f chromedriver + 201087
+8   chromedriver                        0x00000001063530e0 chromedriver + 5656800
+9   chromedriver                        0x0000000106356fa4 chromedriver + 5672868
+10  chromedriver                        0x000000010632e052 chromedriver + 5505106
+11  chromedriver                        0x0000000106357a4f chromedriver + 5675599
+12  chromedriver                        0x000000010631d004 chromedriver + 5435396
+13  chromedriver                        0x0000000105e1d311 chromedriver + 193297
+14  dyld                                0x00007ff80e891530 start + 3056
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 329, in _restore_session_with_cookies
+    if self._is_logged_in():
+       ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 126, in _is_logged_in
+    WebDriverWait(self.driver, 5).until(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located(logout_link_selector)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 129, in until
+    value = method(self._driver)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/expected_conditions.py", line 104, in _predicate
+    return driver.find_element(*locator)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 926, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 458, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSessionIdException: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000106395668 chromedriver + 5928552
+1   chromedriver                        0x000000010638cc0a chromedriver + 5893130
+2   chromedriver                        0x0000000105e56c43 chromedriver + 429123
+3   chromedriver                        0x0000000105e9a5af chromedriver + 705967
+4   chromedriver                        0x0000000105ecef66 chromedriver + 921446
+5   chromedriver                        0x0000000105ec9b0d chromedriver + 899853
+6   chromedriver                        0x0000000105ec8ca7 chromedriver + 896167
+7   chromedriver                        0x0000000105e1f17f chromedriver + 201087
+8   chromedriver                        0x00000001063530e0 chromedriver + 5656800
+9   chromedriver                        0x0000000106356fa4 chromedriver + 5672868
+10  chromedriver                        0x000000010632e052 chromedriver + 5505106
+11  chromedriver                        0x0000000106357a4f chromedriver + 5675599
+12  chromedriver                        0x000000010631d004 chromedriver + 5435396
+13  chromedriver                        0x0000000105e1d311 chromedriver + 193297
+14  dyld                                0x00007ff80e891530 start + 3056
+
+2025-09-08 23:26:20,850 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-08 23:26:20,850 - parser - INFO - Выполняется полный цикл входа...
+2025-09-08 23:26:20,851 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:26:21,191 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:26:21,377 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:26:21,556 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:26:27,306 - parser - INFO - Ввод логина...
+2025-09-08 23:26:28,609 - parser - INFO - Ввод пароля...
+2025-09-08 23:26:30,768 - parser - INFO - Нажатие кнопки 'Войти'...
+2025-09-08 23:26:33,897 - parser - INFO - Ожидание подтверждения входа (до 30 секунд)...
+2025-09-08 23:27:04,191 - parser - ERROR - Ошибка во время полного цикла входа: Message: 
+Stacktrace:
+0   chromedriver                        0x00000001024df668 chromedriver + 5928552
+1   chromedriver                        0x00000001024d6c0a chromedriver + 5893130
+2   chromedriver                        0x0000000101fa0e00 chromedriver + 429568
+3   chromedriver                        0x0000000101ff2ff4 chromedriver + 765940
+4   chromedriver                        0x0000000101ff3211 chromedriver + 766481
+5   chromedriver                        0x0000000102042e94 chromedriver + 1093268
+6   chromedriver                        0x000000010201908d chromedriver + 921741
+7   chromedriver                        0x00000001020401d4 chromedriver + 1081812
+8   chromedriver                        0x0000000102018e33 chromedriver + 921139
+9   chromedriver                        0x0000000101fe537b chromedriver + 709499
+10  chromedriver                        0x0000000101fe6061 chromedriver + 712801
+11  chromedriver                        0x000000010249d0e0 chromedriver + 5656800
+12  chromedriver                        0x00000001024a0fa4 chromedriver + 5672868
+13  chromedriver                        0x0000000102478052 chromedriver + 5505106
+14  chromedriver                        0x00000001024a1a4f chromedriver + 5675599
+15  chromedriver                        0x0000000102467004 chromedriver + 5435396
+16  chromedriver                        0x00000001024c3d88 chromedriver + 5815688
+17  chromedriver                        0x00000001024c3f50 chromedriver + 5816144
+18  chromedriver                        0x00000001024d67e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 276, in _perform_full_login
+    WebDriverWait(self.driver, 30).until(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located(logout_link_selector)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x00000001024df668 chromedriver + 5928552
+1   chromedriver                        0x00000001024d6c0a chromedriver + 5893130
+2   chromedriver                        0x0000000101fa0e00 chromedriver + 429568
+3   chromedriver                        0x0000000101ff2ff4 chromedriver + 765940
+4   chromedriver                        0x0000000101ff3211 chromedriver + 766481
+5   chromedriver                        0x0000000102042e94 chromedriver + 1093268
+6   chromedriver                        0x000000010201908d chromedriver + 921741
+7   chromedriver                        0x00000001020401d4 chromedriver + 1081812
+8   chromedriver                        0x0000000102018e33 chromedriver + 921139
+9   chromedriver                        0x0000000101fe537b chromedriver + 709499
+10  chromedriver                        0x0000000101fe6061 chromedriver + 712801
+11  chromedriver                        0x000000010249d0e0 chromedriver + 5656800
+12  chromedriver                        0x00000001024a0fa4 chromedriver + 5672868
+13  chromedriver                        0x0000000102478052 chromedriver + 5505106
+14  chromedriver                        0x00000001024a1a4f chromedriver + 5675599
+15  chromedriver                        0x0000000102467004 chromedriver + 5435396
+16  chromedriver                        0x00000001024c3d88 chromedriver + 5815688
+17  chromedriver                        0x00000001024c3f50 chromedriver + 5816144
+18  chromedriver                        0x00000001024d67e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+
+2025-09-08 23:27:04,346 - parser - INFO - Скриншот сохранен: screenshots/full_login_error.png
+2025-09-08 23:27:04,346 - parser - WARNING - Не удалось войти. Прерывание парсинга.
+2025-09-08 23:27:04,346 - __main__ - ERROR - Критическая ошибка: object list can't be used in 'await' expression
+2025-09-08 23:27:04,349 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-08 23:27:04,350 - __main__ - INFO - Следующий запуск: 2025-09-08 23:27:36
+2025-09-08 23:27:04,484 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-08 23:27:04,484 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:26:13 MSK], next run at: 2025-09-08 23:26:13 MSK)" executed successfully
+2025-09-08 23:27:04,554 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-08 23:27:05,031 - aiogram.event - INFO - Update id=951930164 is not handled. Duration 491 ms by bot id=8068867993
+2025-09-08 23:27:05,031 - aiogram.event - ERROR - Cause exception while process update id=951930164 by bot id=8068867993
+TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/main.py", line 1699, in toggle_parsing_handler
+    await message.answer(
+        ^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/methods/base.py", line 84, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/bot.py", line 485, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/aiohttp.py", line 185, in make_request
+    response = self.check_response(
+        bot=bot, method=method, status_code=resp.status, content=raw_result
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+2025-09-08 23:30:53,952 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-09-08 23:30:53,956 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
+2025-09-08 23:32:19,572 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-09-08 23:32:19,578 - aiogram.dispatcher - WARNING - Sleep for 1.339197 seconds and try again... (tryings = 1, bot id = 8068867993)
+2025-09-08 23:32:27,115 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-08 23:32:27,130 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-08 23:32:27,132 - aiogram.dispatcher - INFO - Polling stopped
+2025-09-08 23:32:34,236 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен. С прокси
+2025-09-08 23:32:34,238 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:32:34,239 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:32:34,239 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:32:34,276 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-08 23:32:34,276 - __main__ - INFO - Следующий запуск: 2025-09-08 23:33:06
+2025-09-08 23:32:34,277 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-08 23:32:34,277 - apscheduler.scheduler - INFO - Scheduler started
+2025-09-08 23:32:34,277 - aiogram.dispatcher - INFO - Start polling
+2025-09-08 23:32:34,480 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-08 23:32:38,362 - aiogram.event - INFO - Update id=951930165 is handled. Duration 171 ms by bot id=8068867993
+2025-09-08 23:33:06,278 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-08 23:33:06,279 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:33:06 MSK], next run at: 2025-09-08 23:33:06 MSK)" (scheduled at 2025-09-08 23:33:06.276309+03:00)
+2025-09-08 23:33:06,279 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:33:06,696 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:33:06,878 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:33:06,985 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:33:10,301 - parser - INFO - Куки успешно загружены.
+2025-09-08 23:33:15,795 - parser - ERROR - Ошибка при восстановлении сессии: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=139.0.7258.155); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x00000001090f1668 chromedriver + 5928552
+1   chromedriver                        0x00000001090e8c0a chromedriver + 5893130
+2   chromedriver                        0x0000000108bb2e00 chromedriver + 429568
+3   chromedriver                        0x0000000108b998bd chromedriver + 325821
+4   chromedriver                        0x0000000108bc1b1d chromedriver + 490269
+5   chromedriver                        0x0000000108c333ff chromedriver + 955391
+6   chromedriver                        0x0000000108c51bdc chromedriver + 1080284
+7   chromedriver                        0x0000000108c2ae33 chromedriver + 921139
+8   chromedriver                        0x0000000108bf737b chromedriver + 709499
+9   chromedriver                        0x0000000108bf8061 chromedriver + 712801
+10  chromedriver                        0x00000001090af0e0 chromedriver + 5656800
+11  chromedriver                        0x00000001090b2fa4 chromedriver + 5672868
+12  chromedriver                        0x000000010908a052 chromedriver + 5505106
+13  chromedriver                        0x00000001090b3a4f chromedriver + 5675599
+14  chromedriver                        0x0000000109079004 chromedriver + 5435396
+15  chromedriver                        0x00000001090d5d88 chromedriver + 5815688
+16  chromedriver                        0x00000001090d5f50 chromedriver + 5816144
+17  chromedriver                        0x00000001090e87e1 chromedriver + 5892065
+18  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+19  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 329, in _restore_session_with_cookies
+    if self._is_logged_in():
+       ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 126, in _is_logged_in
+    WebDriverWait(self.driver, 5).until(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located(logout_link_selector)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 129, in until
+    value = method(self._driver)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/expected_conditions.py", line 104, in _predicate
+    return driver.find_element(*locator)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 926, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 458, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSessionIdException: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=139.0.7258.155); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x00000001090f1668 chromedriver + 5928552
+1   chromedriver                        0x00000001090e8c0a chromedriver + 5893130
+2   chromedriver                        0x0000000108bb2e00 chromedriver + 429568
+3   chromedriver                        0x0000000108b998bd chromedriver + 325821
+4   chromedriver                        0x0000000108bc1b1d chromedriver + 490269
+5   chromedriver                        0x0000000108c333ff chromedriver + 955391
+6   chromedriver                        0x0000000108c51bdc chromedriver + 1080284
+7   chromedriver                        0x0000000108c2ae33 chromedriver + 921139
+8   chromedriver                        0x0000000108bf737b chromedriver + 709499
+9   chromedriver                        0x0000000108bf8061 chromedriver + 712801
+10  chromedriver                        0x00000001090af0e0 chromedriver + 5656800
+11  chromedriver                        0x00000001090b2fa4 chromedriver + 5672868
+12  chromedriver                        0x000000010908a052 chromedriver + 5505106
+13  chromedriver                        0x00000001090b3a4f chromedriver + 5675599
+14  chromedriver                        0x0000000109079004 chromedriver + 5435396
+15  chromedriver                        0x00000001090d5d88 chromedriver + 5815688
+16  chromedriver                        0x00000001090d5f50 chromedriver + 5816144
+17  chromedriver                        0x00000001090e87e1 chromedriver + 5892065
+18  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+19  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+
+2025-09-08 23:33:15,806 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-08 23:33:15,807 - parser - INFO - Выполняется полный цикл входа...
+2025-09-08 23:33:15,810 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:33:16,120 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:33:16,240 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:33:16,352 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:33:21,507 - parser - INFO - Ввод логина...
+2025-09-08 23:33:23,167 - parser - INFO - Ввод пароля...
+2025-09-08 23:33:24,438 - parser - INFO - Нажатие кнопки 'Войти'...
+2025-09-08 23:33:29,492 - parser - INFO - Ожидание подтверждения входа (до 30 секунд)...
+2025-09-08 23:33:59,631 - parser - ERROR - Ошибка во время полного цикла входа: Message: 
+Stacktrace:
+0   chromedriver                        0x000000010df6d668 chromedriver + 5928552
+1   chromedriver                        0x000000010df64c0a chromedriver + 5893130
+2   chromedriver                        0x000000010da2ee00 chromedriver + 429568
+3   chromedriver                        0x000000010da80ff4 chromedriver + 765940
+4   chromedriver                        0x000000010da81211 chromedriver + 766481
+5   chromedriver                        0x000000010dad0e94 chromedriver + 1093268
+6   chromedriver                        0x000000010daa708d chromedriver + 921741
+7   chromedriver                        0x000000010dace1d4 chromedriver + 1081812
+8   chromedriver                        0x000000010daa6e33 chromedriver + 921139
+9   chromedriver                        0x000000010da7337b chromedriver + 709499
+10  chromedriver                        0x000000010da74061 chromedriver + 712801
+11  chromedriver                        0x000000010df2b0e0 chromedriver + 5656800
+12  chromedriver                        0x000000010df2efa4 chromedriver + 5672868
+13  chromedriver                        0x000000010df06052 chromedriver + 5505106
+14  chromedriver                        0x000000010df2fa4f chromedriver + 5675599
+15  chromedriver                        0x000000010def5004 chromedriver + 5435396
+16  chromedriver                        0x000000010df51d88 chromedriver + 5815688
+17  chromedriver                        0x000000010df51f50 chromedriver + 5816144
+18  chromedriver                        0x000000010df647e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 276, in _perform_full_login
+    WebDriverWait(self.driver, 30).until(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located(logout_link_selector)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x000000010df6d668 chromedriver + 5928552
+1   chromedriver                        0x000000010df64c0a chromedriver + 5893130
+2   chromedriver                        0x000000010da2ee00 chromedriver + 429568
+3   chromedriver                        0x000000010da80ff4 chromedriver + 765940
+4   chromedriver                        0x000000010da81211 chromedriver + 766481
+5   chromedriver                        0x000000010dad0e94 chromedriver + 1093268
+6   chromedriver                        0x000000010daa708d chromedriver + 921741
+7   chromedriver                        0x000000010dace1d4 chromedriver + 1081812
+8   chromedriver                        0x000000010daa6e33 chromedriver + 921139
+9   chromedriver                        0x000000010da7337b chromedriver + 709499
+10  chromedriver                        0x000000010da74061 chromedriver + 712801
+11  chromedriver                        0x000000010df2b0e0 chromedriver + 5656800
+12  chromedriver                        0x000000010df2efa4 chromedriver + 5672868
+13  chromedriver                        0x000000010df06052 chromedriver + 5505106
+14  chromedriver                        0x000000010df2fa4f chromedriver + 5675599
+15  chromedriver                        0x000000010def5004 chromedriver + 5435396
+16  chromedriver                        0x000000010df51d88 chromedriver + 5815688
+17  chromedriver                        0x000000010df51f50 chromedriver + 5816144
+18  chromedriver                        0x000000010df647e1 chromedriver + 5892065
+19  libsystem_pthread.dylib             0x00007ff80ec36e59 _pthread_start + 115
+20  libsystem_pthread.dylib             0x00007ff80ec32857 thread_start + 15
+
+2025-09-08 23:33:59,730 - parser - INFO - Скриншот сохранен: screenshots/full_login_error.png
+2025-09-08 23:33:59,730 - parser - WARNING - Не удалось войти. Прерывание парсинга.
+2025-09-08 23:33:59,730 - __main__ - ERROR - Критическая ошибка: object list can't be used in 'await' expression
+2025-09-08 23:33:59,732 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-08 23:33:59,732 - __main__ - INFO - Следующий запуск: 2025-09-08 23:34:17
+2025-09-08 23:33:59,829 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-08 23:33:59,829 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:33:06 MSK], next run at: 2025-09-08 23:33:06 MSK)" executed successfully
+2025-09-08 23:33:59,904 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-08 23:34:00,110 - aiogram.event - INFO - Update id=951930167 is not handled. Duration 219 ms by bot id=8068867993
+2025-09-08 23:34:00,111 - aiogram.event - ERROR - Cause exception while process update id=951930167 by bot id=8068867993
+TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/main.py", line 1767, in toggle_parsing_handler
+    await callback.answer("Парсинг приостановлен!")
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/methods/base.py", line 84, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/bot.py", line 485, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/aiohttp.py", line 185, in make_request
+    response = self.check_response(
+        bot=bot, method=method, status_code=resp.status, content=raw_result
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+2025-09-08 23:34:00,128 - aiogram.event - INFO - Update id=951930166 is not handled. Duration 237 ms by bot id=8068867993
+2025-09-08 23:34:00,128 - aiogram.event - ERROR - Cause exception while process update id=951930166 by bot id=8068867993
+TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        observer=observer, update_type=update_type, event=telegram_event, **data
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/main.py", line 1769, in toggle_parsing_handler
+    await callback.answer("Задача парсинга не найдена. Запускаю заново.")
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/methods/base.py", line 84, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/bot.py", line 485, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/base.py", line 254, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/aiohttp.py", line 185, in make_request
+    response = self.check_response(
+        bot=bot, method=method, status_code=resp.status, content=raw_result
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/client/session/base.py", line 120, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: query is too old and response timeout expired or query ID is invalid
+2025-09-08 23:34:04,055 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-08 23:34:04,055 - __main__ - INFO - Следующий запуск: 2025-09-08 23:34:24
+2025-09-08 23:34:04,239 - aiogram.event - INFO - Update id=951930168 is handled. Duration 308 ms by bot id=8068867993
+2025-09-08 23:34:07,370 - aiogram.event - INFO - Update id=951930169 is handled. Duration 134 ms by bot id=8068867993
+2025-09-08 23:34:08,562 - aiogram.event - INFO - Update id=951930170 is handled. Duration 123 ms by bot id=8068867993
+2025-09-08 23:34:09,444 - aiogram.event - INFO - Update id=951930171 is handled. Duration 127 ms by bot id=8068867993
+2025-09-08 23:34:10,519 - aiogram.event - INFO - Update id=951930172 is handled. Duration 135 ms by bot id=8068867993
+2025-09-08 23:34:12,570 - aiogram.event - INFO - Update id=951930173 is handled. Duration 757 ms by bot id=8068867993
+2025-09-08 23:34:13,251 - aiogram.event - INFO - Update id=951930174 is handled. Duration 311 ms by bot id=8068867993
+2025-09-08 23:34:15,224 - aiogram.event - INFO - Update id=951930175 is handled. Duration 154 ms by bot id=8068867993
+2025-09-08 23:34:16,200 - aiogram.event - INFO - Update id=951930176 is handled. Duration 176 ms by bot id=8068867993
+2025-09-08 23:34:17,647 - aiogram.event - INFO - Update id=951930177 is handled. Duration 238 ms by bot id=8068867993
+2025-09-08 23:34:18,475 - aiogram.event - INFO - Update id=951930178 is handled. Duration 135 ms by bot id=8068867993
+2025-09-08 23:34:19,249 - aiogram.event - INFO - Update id=951930179 is handled. Duration 155 ms by bot id=8068867993
+2025-09-08 23:34:24,057 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-08 23:34:24,057 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-08 23:34:24 MSK], next run at: 2025-09-08 23:34:24 MSK)" (scheduled at 2025-09-08 23:34:24.055601+03:00)
+2025-09-08 23:34:24,059 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен. С прокси
+2025-09-08 23:34:24,059 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:34:24,390 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:34:24,507 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:34:24,628 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:34:26,802 - parser - INFO - Куки успешно загружены.
+2025-09-08 23:34:36,523 - parser - WARNING - Проверка авторизации: пользователь не в системе (кнопка 'Выйти' не найдена).
+2025-09-08 23:34:36,523 - parser - WARNING - Куки устарели или недействительны. Требуется повторный вход.
+2025-09-08 23:34:36,523 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-08 23:34:36,523 - parser - INFO - Выполняется полный цикл входа...
+2025-09-08 23:34:36,523 - WDM - INFO - ====== WebDriver manager ======
+2025-09-08 23:34:36,776 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:34:36,891 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-08 23:34:37,017 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/139.0.7258.154/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-08 23:34:42,154 - parser - INFO - Ввод логина...
+2025-09-08 23:34:43,611 - parser - INFO - Ввод пароля...
+2025-09-08 23:34:45,229 - parser - INFO - Нажатие кнопки 'Войти'...
+2025-09-08 23:34:49,897 - parser - INFO - Ожидание подтверждения входа (до 30 секунд)...

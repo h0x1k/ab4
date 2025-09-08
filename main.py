@@ -765,17 +765,19 @@ async def select_channel_for_bk_handler(callback: types.CallbackQuery, state: FS
     await callback.message.edit_text(message, reply_markup=keyboard)
     await callback.answer()
 
+# Add these handlers for channel bookmaker management
+
 @dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_toggle_bk:"))
 async def channel_toggle_bk_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
         return
     
-    parts = callback.data.split(':')
-    bookmaker_id = int(parts[1])
+    bookmaker_id = int(callback.data.split(':')[1])
     
     data = await state.get_data()
     current_selection = data.get('selected_ids', [])
+    channel_id = data.get('channel_id')
     
     if bookmaker_id in current_selection:
         new_selection = [bk_id for bk_id in current_selection if bk_id != bookmaker_id]
@@ -785,8 +787,71 @@ async def channel_toggle_bk_handler(callback: types.CallbackQuery, state: FSMCon
     await state.update_data(selected_ids=new_selection)
     
     bookmakers = database.get_all_bookmakers()
-    keyboard = kb.channel_bookmakers_management_keyboard(data['channel_id'], bookmakers, new_selection)
+    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, new_selection)
+    
     await callback.message.edit_reply_markup(reply_markup=keyboard)
+    await callback.answer()
+
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_toggle_all_bk:"))
+async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FSMContext):
+    if not is_admin(callback.from_user.id):
+        await callback.answer("У вас нет прав администратора.", show_alert=True)
+        return
+    
+    data = await state.get_data()
+    channel_id = data.get('channel_id')
+    bookmakers = database.get_all_bookmakers()
+    
+    active_bookmakers = [bk for bk in bookmakers if bk['is_active']]
+    all_selected = len(data.get('selected_ids', [])) == len(active_bookmakers)
+    
+    if all_selected:
+        new_selection = []
+    else:
+        new_selection = [bk['id'] for bk in active_bookmakers]
+    
+    await state.update_data(selected_ids=new_selection)
+    
+    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, new_selection)
+    await callback.message.edit_reply_markup(reply_markup=keyboard)
+    
+    action = "отключены" if all_selected else "включены"
+    await callback.answer(f"Все БК {action} для канала")
+
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_save_bk:"))
+async def channel_save_bk_handler(callback: types.CallbackQuery, state: FSMContext):
+    if not is_admin(callback.from_user.id):
+        await callback.answer("У вас нет прав администратора.", show_alert=True)
+        return
+    
+    data = await state.get_data()
+    selected_bks = data.get('selected_ids', [])
+    channel_id = data.get('channel_id')
+    
+    # Update all bookmakers for this channel
+    bookmakers = database.get_all_bookmakers()
+    for bookmaker in bookmakers:
+        is_selected = bookmaker['id'] in selected_bks
+        database.update_channel_bookmaker(channel_id, bookmaker['id'], is_selected)
+    
+    channel = database.get_channel(channel_id)
+    
+    if not selected_bks:
+        selected_text = "все БК"
+    else:
+        selected_names = []
+        for bk_id in selected_bks:
+            bk = next((b for b in bookmakers if b['id'] == bk_id), None)
+            if bk:
+                selected_names.append(bk['name'])
+        selected_text = ", ".join(selected_names)
+    
+    await callback.message.edit_text(
+        f"✅ Выбор БК для канала {channel['name']} сохранен!\n"
+        f"Выбранные БК: {selected_text}",
+        reply_markup=kb.back_to_admin_panel_keyboard()
+    )
+    await state.clear()
     await callback.answer()
 
 @dp.message(AdminStates.waiting_for_bot_end_time)
@@ -1088,10 +1153,12 @@ async def process_channel_name(message: types.Message, state: FSMContext):
     await send_admin_panel(message.chat.id)
 
 @dp.callback_query(F.data == "manage_channel_bk")
-async def manage_channel_bk_handler(callback: types.CallbackQuery):
+async def back_to_channel_list_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
         return
+    
+    await state.clear()
     
     channels = database.get_all_channels()
     if not channels:
@@ -1169,6 +1236,96 @@ async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FS
     await callback.answer(f"Все БК {action} для канала")
 
 @dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_save_bk:"))
+async def channel_save_bk_handler(callback: types.CallbackQuery, state: FSMContext):
+    if not is_admin(callback.from_user.id):
+        await callback.answer("У вас нет прав администратора.", show_alert=True)
+        return
+    
+    data = await state.get_data()
+    selected_bks = data.get('selected_ids', [])
+    channel_id = data.get('channel_id')
+    
+    # Update all bookmakers for this channel
+    bookmakers = database.get_all_bookmakers()
+    for bookmaker in bookmakers:
+        is_selected = bookmaker['id'] in selected_bks
+        database.update_channel_bookmaker(channel_id, bookmaker['id'], is_selected)
+    
+    channel = database.get_channel(channel_id)
+    bookmakers = database.get_all_bookmakers()
+    
+    if not selected_bks:
+        selected_text = "все БК"
+    else:
+        selected_names = []
+        for bk_id in selected_bks:
+            bk = next((b for b in bookmakers if b['id'] == bk_id), None)
+            if bk:
+                selected_names.append(bk['name'])
+        selected_text = ", ".join(selected_names)
+    
+    await callback.message.edit_text(
+        f"✅ Выбор БК для канала {channel['name']} сохранен!\n"
+        f"Выбранные БК: {selected_text}",
+        reply_markup=kb.back_to_admin_panel_keyboard()
+    )
+    await state.clear()
+    await callback.answer()
+
+
+# Add this handler for toggling individual channel bookmakers
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("toggle_channel_bk:"))
+async def channel_toggle_bk_handler(callback: types.CallbackQuery, state: FSMContext):
+    if not is_admin(callback.from_user.id):
+        await callback.answer("У вас нет прав администратора.", show_alert=True)
+        return
+    
+    parts = callback.data.split(':')
+    bookmaker_id = int(parts[1])
+    
+    data = await state.get_data()
+    current_selection = data.get('selected_ids', [])
+    
+    if bookmaker_id in current_selection:
+        new_selection = [bk_id for bk_id in current_selection if bk_id != bookmaker_id]
+    else:
+        new_selection = current_selection + [bookmaker_id]
+    
+    await state.update_data(selected_ids=new_selection)
+    
+    bookmakers = database.get_all_bookmakers()
+    keyboard = kb.channel_bookmakers_management_keyboard(data['channel_id'], bookmakers, new_selection)
+    await callback.message.edit_reply_markup(reply_markup=keyboard)
+    await callback.answer()
+
+# Add this handler for toggling all channel bookmakers
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("toggle_all_channel_bk:"))
+async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FSMContext):
+    if not is_admin(callback.from_user.id):
+        await callback.answer("У вас нет прав администратора.", show_alert=True)
+        return
+    
+    data = await state.get_data()
+    channel_id = data.get('channel_id')
+    bookmakers = database.get_all_bookmakers()
+    
+    all_selected = len(data.get('selected_ids', [])) == len([bk for bk in bookmakers if bk['is_active']])
+    
+    if all_selected:
+        new_selection = []
+    else:
+        new_selection = [bk['id'] for bk in bookmakers if bk['is_active']]
+    
+    await state.update_data(selected_ids=new_selection)
+    
+    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, new_selection)
+    await callback.message.edit_reply_markup(reply_markup=keyboard)
+    
+    action = "отключены" if all_selected else "включены"
+    await callback.answer(f"Все БК {action} для канала")
+
+# Add this handler for saving channel bookmaker selection
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("save_channel_bk:"))
 async def channel_save_bk_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)

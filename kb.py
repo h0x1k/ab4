@@ -132,27 +132,39 @@ def channels_list_keyboard(channels, action_prefix):
     buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="channel_settings_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def channel_bookmakers_management_keyboard(channel_id, bookmakers):
+def channel_bookmakers_management_keyboard(channel_id, bookmakers, selected_ids):
     buttons = []
     
     # Add toggle all button
-    all_selected = all(bk['is_selected'] for bk in bookmakers)
+    all_selected = len(selected_ids) == len([bk for bk in bookmakers if bk['is_active']])
+    toggle_text = "❌ Отключить все" if all_selected else "✅ Включить все"
     buttons.append([InlineKeyboardButton(
-        text="✅ Выбрать все БК" if all_selected else "☑️ Выбрать все БК",
+        text=toggle_text, 
         callback_data=f"channel_toggle_all_bk:{channel_id}"
     )])
     
-    # Add bookmaker buttons
+    # Add individual bookmaker buttons
     for bookmaker in bookmakers:
-        emoji = "✅" if bookmaker['is_selected'] else "❌"
+        if not bookmaker['is_active']:
+            continue
+            
+        is_selected = bookmaker['id'] in selected_ids
+        emoji = "✅" if is_selected else "❌"
         buttons.append([InlineKeyboardButton(
-            text=f"{emoji} {bookmaker['name']}",
-            callback_data=f"channel_toggle_bk:{channel_id}:{bookmaker['id']}"
+            text=f"{emoji} {bookmaker['name']}", 
+            callback_data=f"channel_toggle_bk:{bookmaker['id']}"
         )])
     
-    # Add channel management buttons
-    buttons.append([InlineKeyboardButton(text="🔄 Активировать/деактивировать", callback_data=f"toggle_channel_status:{channel_id}")])
-    buttons.append([InlineKeyboardButton(text="🗑️ Удалить канал", callback_data=f"delete_channel:{channel_id}")])
-    buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="manage_channel_bk")])
+    # Add save button
+    buttons.append([InlineKeyboardButton(
+        text="💾 Сохранить выбор", 
+        callback_data=f"channel_save_bk:{channel_id}"
+    )])
+    
+    # Add back button
+    buttons.append([InlineKeyboardButton(
+        text="◀️ Назад к каналам", 
+        callback_data="manage_channel_bk"
+    )])
     
     return InlineKeyboardMarkup(inline_keyboard=buttons)
