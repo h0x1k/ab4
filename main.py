@@ -547,63 +547,21 @@ async def cancel_subscription_handler(callback: types.CallbackQuery):
     await callback.answer()
     await send_admin_panel(callback.from_user.id)
 
-@dp.callback_query(F.data.startswith("user_list_from_subs:"))
-async def handle_user_selection_from_list(callback: types.CallbackQuery):
-    """Обработчик выбора пользователя из списка"""
+@dp.callback_query(F.data == "user_list_from_subs")
+async def user_list_from_subs_handler(callback: types.CallbackQuery):
+    """Handler for going back to user list from subscription management"""
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
         return
     
-    user_id = int(callback.data.split(':')[1])
-    user = database.get_user(user_id)
-    
-    if user:
-        # Расчет оставшихся дней подписки
-        end_date_str = user.get('end_date')
-        days_left = "Нет подписки"
-        
-        if end_date_str:
-            try:
-                end_date = datetime.fromisoformat(end_date_str)
-                now = datetime.now()
-                if end_date > now:
-                    days_left_int = (end_date - now).days
-                    days_left = f"{days_left_int} дней"
-                else:
-                    days_left = "Истекла"
-            except (ValueError, TypeError):
-                days_left = "Ошибка даты"
-        
-        # Получаем информацию о выбранных БК
-        user_bks = database.get_user_bookmakers(user_id)
-        bk_text = "все БК ✅" if not user_bks else ", ".join([bk['name'] for bk in user_bks])
-        
-        # Показываем информацию о пользователе
-        user_info = (
-            f"👤 Пользователь: @{user['username']}\n"
-            f"🆔 ID: {user['user_id']}\n"
-            f"👑 Админ: {'Да' if user['is_admin'] else 'Нет'}\n"
-            f"📅 Подписка: {days_left}\n"
-            f"⏰ Окончание: {end_date_str if end_date_str else 'Н/Д'}\n"
-            f"🎯 БК: {bk_text}\n"
-            f"⏸️ Статус: {'Активна' if not user.get('is_paused', False) else 'Приостановлена'}"
-        )
-        
-        # Создаем клавиатуру с действиями
-        keyboard = InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="➕ Добавить подписку", callback_data=f"add_subscription:{user_id}")],
-            [InlineKeyboardButton(text="⏸️ Приостановить", callback_data=f"pause_subscription:{user_id}")],
-            [InlineKeyboardButton(text="▶️ Возобновить", callback_data=f"unpause_subscription:{user_id}")],
-            [InlineKeyboardButton(text="❌ Отменить", callback_data=f"cancel_subscription:{user_id}")],
-            [InlineKeyboardButton(text="📊 Управление БК", callback_data=f"select_user_for_bk:{user_id}")],
-            [InlineKeyboardButton(text="👑 Сделать админом", callback_data=f"set_admin_user_list:{user_id}")],
-            [InlineKeyboardButton(text="◀️ Назад к списку", callback_data="user_list_from_subs")]
-        ])
-        
-        await callback.message.edit_text(user_info, reply_markup=keyboard)
-    else:
-        await callback.answer("Пользователь не найден", show_alert=True)
-    
+    users = database.get_all_users()
+    if not users:
+        await callback.message.edit_text("Список пользователей пуст.")
+        await callback.answer()
+        return
+
+    keyboard = kb.users_list_keyboard(users, "user_list_from_subs")
+    await callback.message.edit_text("Выберите пользователя:", reply_markup=keyboard)
     await callback.answer()
 
 # --- Channel management ---

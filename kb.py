@@ -56,13 +56,18 @@ def bookmakers_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def users_list_keyboard(users, action_prefix):
-    buttons = []
+    """Create keyboard for user list with specified action prefix"""
+    keyboard = []
+    
     for user in users:
         username = user['username'] or f"User {user['user_id']}"
-        # ИСПРАВЛЕНО: Используем action_prefix вместо жесткого "user_list_from_subs"
-        buttons.append([InlineKeyboardButton(text=username, callback_data=f"{action_prefix}:{user['user_id']}")])
-    buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="back_to_admin_panel")])
-    return InlineKeyboardMarkup(inline_keyboard=buttons)
+        button_text = f"👤 {username} (ID: {user['user_id']})"
+        callback_data = f"{action_prefix}:{user['user_id']}"
+        keyboard.append([InlineKeyboardButton(text=button_text, callback_data=callback_data)])
+    
+    keyboard.append([InlineKeyboardButton(text="◀️ Назад", callback_data="back_to_admin_panel")])
+    
+    return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
 def user_bookmakers_keyboard(user_id, bookmakers, selected_ids):
     buttons = []
