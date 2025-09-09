@@ -211,78 +211,101 @@ class SportscheckerParser:
 
         
     def _perform_full_login(self):
-        """Выполняет полный цикл входа только если это первая сессия или куки недействительны."""
-        # Проверка на паузу после неудачной попытки
-        if self.last_login_fail_time > 0 and (time.time() - self.last_login_fail_time) < 420: # 7 минут
-            logger.info("Пауза после неудачного входа. Повторная попытка будет через 7-10 минут.")
-            return False
+        """Полный вход с пошаговым логированием и дебагом"""
+        logger.info("=== НАЧАЛО ПОЛНОГО ЛОГИНА ===")
 
-        logger.info("Выполняется полный цикл входа...")
-        
-        # Создаем новый драйвер
-        self.close() # Закрываем старый драйвер, если он был
+        # закрываем старый драйвер если есть
+        self.close()
+
         try:
             options = webdriver.ChromeOptions()
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
+            options.add_argument("--start-maximized")
+            # !!! НЕ headless для дебага
+            # options.add_argument("--headless=new")
             options.add_argument(f"user-agent={random.choice(self.user_agents)}")
-            
-            # Добавляем прокси если указан
+
+            # анти-детект
+            options.add_argument("--disable-blink-features=AutomationControlled")
+            options.add_experimental_option("excludeSwitches", ["enable-automation"])
+            options.add_experimental_option('useAutomationExtension', False)
+
             if self.proxy_url:
                 options.add_argument(f'--proxy-server={self.proxy_url}')
-                logger.info(f"Using proxy for browser: {self.proxy_url}")
-                
+                logger.info(f"Используем прокси: {self.proxy_url}")
+
             service = Service(ChromeDriverManager().install())
             self.driver = webdriver.Chrome(service=service, options=options)
+
+            # небольшой анти-бот скрипт
+            self.driver.execute_cdp_cmd(
+                "Page.addScriptToEvaluateOnNewDocument",
+                {"source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"}
+            )
+
         except Exception as e:
-            logger.error(f"Не удалось запустить новый драйвер: {e}", exc_info=True)
-            self.last_login_fail_time = time.time()
+            logger.error(f"Не удалось запустить Chrome: {e}", exc_info=True)
             return False
 
         try:
-            # Выполняем полный вход
+            logger.info(f"Открываю страницу логина: {self.login_url}")
             self.driver.get(self.login_url)
-            self._random_delay(3, 5)
+            self._random_delay(2, 4)
+            self._save_screenshot("step_1_login_page.png")
 
-            WebDriverWait(self.driver, 45).until(EC.visibility_of_element_located((By.ID, 'user_email')))
-            
-            logger.info("Ввод логина...")
+            # проверка, есть ли поле email
+            WebDriverWait(self.driver, 20).until(
+                EC.visibility_of_element_located((By.ID, 'user_email'))
+            )
             email_field = self.driver.find_element(By.ID, 'user_email')
             email_field.clear()
             email_field.send_keys(self.login)
-            self._random_delay(1, 2)
-            
-            logger.info("Ввод пароля...")
+            logger.info("Ввел email")
+            self._save_screenshot("step_2_email_entered.png")
+
             password_field = self.driver.find_element(By.ID, 'user_password')
             password_field.clear()
             password_field.send_keys(self.password)
-            self._random_delay(1, 2)
+            logger.info("Ввел пароль")
+            self._save_screenshot("step_3_password_entered.png")
 
-            logger.info("Нажатие кнопки 'Войти'...")
-            self.driver.find_element(By.ID, 'sign-in-form-submit-button').click()
+            login_button = self.driver.find_element(By.ID, 'sign-in-form-submit-button')
+            login_button.click()
+            logger.info("Нажал кнопку Войти")
             self._random_delay(3, 5)
-            
-            # Проверяем наличие ошибки одновременного использования
-            if self._check_concurrent_session_error():
-                logger.error("Обнаружена ошибка одновременного использования аккаунта. Прерываем вход.")
-                self.last_login_fail_time = time.time()
+            self._save_screenshot("step_4_after_click.png")
+
+            # ждём, пока появится кнопка "Выйти"
+            try:
+                WebDriverWait(self.driver, 20).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href="/users/sign_out"]'))
+                )
+                logger.info("Авторизация успешна, найдена кнопка 'Выйти'")
+                self._save_screenshot("step_5_logged_in.png")
+                self._save_cookies()
+                return True
+            except TimeoutException:
+                logger.warning("Не нашел кнопку 'Выйти'. Возможно, сайт редиректнул в гостя.")
+                self._save_screenshot("step_5_login_failed.png")
+
+                # сохраняем html для анализа
+                with open("debug_login_page.html", "w", encoding="utf-8") as f:
+                    f.write(self.driver.page_source)
+                logger.info("Сохранил debug_login_page.html")
+
+                # удаляем битые куки
+                if os.path.exists(self.cookies_file):
+                    os.remove(self.cookies_file)
+
                 return False
-            
-            logger.info("Ожидание подтверждения входа (до 30 секунд)...")
-            logout_link_selector = (By.CSS_SELECTOR, 'a[href="/users/sign_out"]')
-            WebDriverWait(self.driver, 30).until(
-                EC.presence_of_element_located(logout_link_selector)
-            )
-            
-            # Сохраняем куки после успешного входа
-            self._save_cookies()
-            logger.info("Успешный вход на сайт подтвержден. Куки сохранены.")
-            
-            # Помечаем, что первая сессия завершена
-            self.first_session = False
-            
-            return True
+
+        except Exception as e:
+            logger.error(f"Ошибка во время входа: {e}", exc_info=True)
+            self._save_screenshot("critical_login_error.png")
+            return False
+
 
         except Exception as e:
             logger.error(f"Ошибка во время полного цикла входа: {e}", exc_info=True)
