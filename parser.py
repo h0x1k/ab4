@@ -37,7 +37,7 @@ class SportscheckerParser:
         self.driver = None
         self.session = None
         self.login_url = "https://ru.sportschecker.net/users/sign_in"
-        self.valuebets_url = "https://ru.sportschecker.net/valuebets"
+        self.valuebets_url = "https://ru.sportschecker.net/surebets"
         self.user_agents = [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
