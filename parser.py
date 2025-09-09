@@ -185,31 +185,30 @@ class SportscheckerParser:
             logger.error(f"Ошибка при сохранении куки: {e}")
 
     def _load_cookies(self):
-        """Загружает куки из файла и добавляет их в сессию."""
-        try:
-            if os.path.exists(self.cookies_file):
+        if os.path.exists(self.cookies_file):
+            try:
                 with open(self.cookies_file, 'r') as f:
                     cookies = json.load(f)
-                
-                # Переходим на домен перед добавлением куки
+
                 self.driver.get(self.login_url)
                 self.driver.delete_all_cookies()
-                
+
                 for cookie in cookies:
-                    # Некоторые куки могут иметь expiry как float вместо int
                     if 'expiry' in cookie:
                         cookie['expiry'] = int(cookie['expiry'])
                     try:
                         self.driver.add_cookie(cookie)
                     except Exception as e:
-                        logger.error(f"Не удалось добавить куки: {e}")
-                
+                        logger.warning(f"Не удалось добавить куки: {e}")
+
                 logger.info("Куки успешно загружены.")
                 return True
-        except Exception as e:
-            logger.error(f"Ошибка при загрузке куки: {e}")
-            return False
+            except Exception as e:
+                logger.error(f"Ошибка при загрузке куки: {e}")
+                os.remove(self.cookies_file)  # ⬅ delete invalid cookies
+                return False
         return False
+
         
     def _perform_full_login(self):
         """Выполняет полный цикл входа только если это первая сессия или куки недействительны."""
@@ -225,7 +224,6 @@ class SportscheckerParser:
         try:
             options = webdriver.ChromeOptions()
             options.add_argument("--no-sandbox")
-            options.add_argument("--headless")  # Run in background
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
             options.add_argument(f"user-agent={random.choice(self.user_agents)}")
