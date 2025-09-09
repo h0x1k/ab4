@@ -211,10 +211,7 @@ class SportscheckerParser:
 
         
     def _perform_full_login(self):
-        """Полный вход с пошаговым логированием и дебагом"""
         logger.info("=== НАЧАЛО ПОЛНОГО ЛОГИНА ===")
-
-        # закрываем старый драйвер если есть
         self.close()
 
         try:
@@ -222,98 +219,60 @@ class SportscheckerParser:
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
-            options.add_argument("--start-maximized")
             options.add_argument(f"user-agent={random.choice(self.user_agents)}")
-            options.add_argument("--disable-blink-features=AutomationControlled")
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])
-            options.add_experimental_option("useAutomationExtension", False)
-
-
-            # анти-детект
             options.add_argument("--disable-blink-features=AutomationControlled")
             options.add_experimental_option("excludeSwitches", ["enable-automation"])
             options.add_experimental_option('useAutomationExtension', False)
 
-            if self.proxy_url:
-                options.add_argument(f'--proxy-server={self.proxy_url}')
-                logger.info(f"Используем прокси: {self.proxy_url}")
-
             service = Service(ChromeDriverManager().install())
             self.driver = webdriver.Chrome(service=service, options=options)
-
-            # небольшой анти-бот скрипт
             self.driver.execute_cdp_cmd(
                 "Page.addScriptToEvaluateOnNewDocument",
                 {"source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"}
             )
-
         except Exception as e:
             logger.error(f"Не удалось запустить Chrome: {e}", exc_info=True)
             return False
 
         try:
-            logger.info(f"Открываю страницу логина: {self.login_url}")
             self.driver.get(self.login_url)
             self._random_delay(2, 4)
             self._save_screenshot("step_1_login_page.png")
 
-            # проверка, есть ли поле email
+            # ввод email
             WebDriverWait(self.driver, 20).until(
                 EC.visibility_of_element_located((By.ID, 'user_email'))
-            )
-            email_field = self.driver.find_element(By.ID, 'user_email')
-            email_field.clear()
-            email_field.send_keys(self.login)
-            logger.info("Ввел email")
-            self._save_screenshot("step_2_email_entered.png")
+            ).send_keys(self.login)
+            self._save_screenshot("step_2_email.png")
 
-            password_field = self.driver.find_element(By.ID, 'user_password')
-            password_field.clear()
-            password_field.send_keys(self.password)
-            logger.info("Ввел пароль")
-            self._save_screenshot("step_3_password_entered.png")
+            # ввод пароля
+            self.driver.find_element(By.ID, 'user_password').send_keys(self.password)
+            self._save_screenshot("step_3_password.png")
 
-            login_button = self.driver.find_element(By.ID, 'sign-in-form-submit-button')
-            login_button.click()
-            logger.info("Нажал кнопку Войти")
+            # --- фикc: подхватываем CSRF-токен перед сабмитом ---
+            token_el = self.driver.find_element(By.NAME, "authenticity_token")
+            token_val = token_el.get_attribute("value")
+            logger.info(f"CSRF токен: {token_val}")
+
+            # нажимаем submit
+            self.driver.find_element(By.ID, 'sign-in-form-submit-button').click()
             self._random_delay(3, 5)
-            self._save_screenshot("step_4_after_click.png")
+            self._save_screenshot("step_4_after_submit.png")
 
-            # ждём, пока появится кнопка "Выйти"
-            try:
-                WebDriverWait(self.driver, 20).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href="/users/sign_out"]'))
-                )
-                logger.info("Авторизация успешна, найдена кнопка 'Выйти'")
-                self._save_screenshot("step_5_logged_in.png")
-                self._save_cookies()
-                return True
-            except TimeoutException:
-                logger.warning("Не нашел кнопку 'Выйти'. Возможно, сайт редиректнул в гостя.")
-                self._save_screenshot("step_5_login_failed.png")
-
-                # сохраняем html для анализа
-                with open("debug_login_page.html", "w", encoding="utf-8") as f:
-                    f.write(self.driver.page_source)
-                logger.info("Сохранил debug_login_page.html")
-
-                # удаляем битые куки
-                if os.path.exists(self.cookies_file):
-                    os.remove(self.cookies_file)
-
-                return False
+            WebDriverWait(self.driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href="/users/sign_out"]'))
+            )
+            self._save_screenshot("step_5_logged_in.png")
+            self._save_cookies()
+            return True
 
         except Exception as e:
-            logger.error(f"Ошибка во время входа: {e}", exc_info=True)
-            self._save_screenshot("critical_login_error.png")
+            logger.error(f"Ошибка входа: {e}", exc_info=True)
+            self._save_screenshot("login_failed.png")
+            if os.path.exists(self.cookies_file):
+                os.remove(self.cookies_file)  # удаляем битые куки
             return False
 
-
-        except Exception as e:
-            logger.error(f"Ошибка во время полного цикла входа: {e}", exc_info=True)
-            self._save_screenshot("full_login_error.png")
-            self.last_login_fail_time = time.time()
-            return False
 
     def _restore_session_with_cookies(self):
         """Восстанавливает сессию с помощью сохраненных куки."""
