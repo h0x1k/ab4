@@ -477,6 +477,7 @@ async def add_subscription_handler(callback: types.CallbackQuery, state: FSMCont
     await state.set_state(AdminStates.waiting_for_subscription_days)
     await callback.answer()
 
+
 @dp.message(AdminStates.waiting_for_subscription_days)
 async def process_subscription_days(message: types.Message, state: FSMContext):
     try:
@@ -498,6 +499,20 @@ async def process_subscription_days(message: types.Message, state: FSMContext):
         await send_admin_panel(message.chat.id)
     except ValueError:
         await message.answer("Пожалуйста, введите корректное число дней.")
+
+async def send_with_retry(chat_id, text, parse_mode=None, max_retries=3):
+    """Send message with retry logic for network errors"""
+    for attempt in range(max_retries):
+        try:
+            await bot.send_message(chat_id, text, parse_mode=parse_mode)
+            return True
+        except Exception as e:
+            logger.error(f"Attempt {attempt + 1} failed: {e}")
+            if attempt < max_retries - 1:
+                await asyncio.sleep(2 ** attempt)  # Exponential backoff
+            else:
+                return False
+    return False
 
 @dp.callback_query(F.data.startswith("pause_subscription:"))
 async def pause_subscription_handler(callback: types.CallbackQuery):

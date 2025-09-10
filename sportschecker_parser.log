@@ -15882,3 +15882,24 @@ AttributeError: 'SportscheckerParser' object has no attribute 'is_logged_in'
 2025-09-10 14:12:46,486 - aiogram.event - INFO - Update id=951930733 is handled. Duration 223 ms by bot id=8068867993
 2025-09-10 14:12:47,816 - apscheduler.scheduler - INFO - Removed job send_predictions_job
 2025-09-10 14:12:47,968 - aiogram.event - INFO - Update id=951930734 is handled. Duration 163 ms by bot id=8068867993
+2025-09-10 14:17:46,545 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:17:46,546 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:17:46,546 - aiogram.dispatcher - INFO - Polling stopped
+2025-09-10 14:17:46,778 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:17:54,969 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 14:17:54,975 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:17:54,976 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:17:54,976 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:17:55,046 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:17:55,046 - __main__ - INFO - Следующий запуск: 2025-09-10 14:18:09
+2025-09-10 14:17:55,047 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 14:17:55,048 - apscheduler.scheduler - INFO - Scheduler started
+2025-09-10 14:17:55,049 - aiogram.dispatcher - INFO - Start polling
+2025-09-10 14:17:55,246 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:17:55,738 - aiogram.event - INFO - Update id=951930735 is handled. Duration 359 ms by bot id=8068867993
+2025-09-10 14:17:57,819 - aiogram.event - INFO - Update id=951930736 is handled. Duration 153 ms by bot id=8068867993
+2025-09-10 14:17:59,057 - aiogram.event - INFO - Update id=951930737 is handled. Duration 138 ms by bot id=8068867993
+2025-09-10 14:18:00,253 - aiogram.event - INFO - Update id=951930738 is handled. Duration 374 ms by bot id=8068867993
+2025-09-10 14:18:01,607 - aiogram.event - INFO - Update id=951930739 is handled. Duration 315 ms by bot id=8068867993
+2025-09-10 14:18:03,049 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 14:18:03,716 - aiogram.event - INFO - Update id=951930740 is handled. Duration 681 ms by bot id=8068867993
