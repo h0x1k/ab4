@@ -123,22 +123,19 @@ class BKManagementStates(StatesGroup):
     managing_user_bks = State()
     managing_channel_bks = State()
 
-async def initialize_parser(proxy_url=None):
+async def initialize_parser():
     global sportschecker_parser
     login = database.get_setting('sportschecker_login')
     password = database.get_setting('sportschecker_password')
-    
     if login and password:
         if sportschecker_parser:
-            await sportschecker_parser.close()
-        
-        # Создаем парсер с прокси
+            sportschecker_parser.close()
         sportschecker_parser = SportscheckerParser(login, password)
-        logger.info(f"Новый экземпляр парсера успешно создан/обновлен. {'С прокси' if proxy_url else 'Без прокси'}")
+        logger.info("Новый экземпляр парсера успешно создан/обновлен.")
     else:
         logger.error("Логин/пароль для парсера не найдены в настройки.")
         if sportschecker_parser:
-            await sportschecker_parser.close()
+            sportschecker_parser.close()
         sportschecker_parser = None
 
 async def send_admin_panel(chat_id):
@@ -186,7 +183,7 @@ async def send_prediction_to_user_and_channel(prediction_data):
 
     bookmaker_name = prediction_data.get('bookmaker', '').strip()
     
-    # Send to channels
+    # Send to channels with retry
     channels = database.get_all_channels()
     for channel in channels:
         if not channel['is_active']: continue
@@ -194,11 +191,11 @@ async def send_prediction_to_user_and_channel(prediction_data):
         channel_bk_names = [bk['name'] for bk in channel_bookmakers if bk['is_selected']]
         if channel_bk_names and bookmaker_name not in channel_bk_names: continue
         try:
-            await bot.send_message(channel['channel_id'], formatted_message, parse_mode=ParseMode.HTML)
+            await send_with_retry(channel['channel_id'], formatted_message, parse_mode=ParseMode.HTML)
         except Exception as e:
-            logger.error(f"❌ Failed to send to channel: {e}")
+            logger.error(f"❌ Failed to send to channel after retries: {e}")
     
-    # Send to users
+    # Send to users with retry
     if not bookmaker_name: return
     
     users = database.get_all_active_users()
@@ -219,28 +216,33 @@ async def send_prediction_to_user_and_channel(prediction_data):
             if bookmaker_name not in user_bk_names: continue
         
         try:
-            await bot.send_message(user['user_id'], formatted_message, parse_mode=ParseMode.HTML)
-            prediction_key = get_match_key(prediction_data)
-            database.add_user_prediction(user['user_id'], prediction_key)
-            
-            new_daily_count = daily_count + 1
-            if new_daily_count >= pause_after:
-                database.set_user_pause(user['user_id'], signal_limits['pause_duration_hours'])
+            success = await send_with_retry(user['user_id'], formatted_message, parse_mode=ParseMode.HTML)
+            if success:
+                prediction_key = get_match_key(prediction_data)
+                database.add_user_prediction(user['user_id'], prediction_key)
+                
+                new_daily_count = daily_count + 1
+                if new_daily_count >= pause_after:
+                    database.set_user_pause(user['user_id'], signal_limits['pause_duration_hours'])
         except Exception as e:
-            logger.error(f"Не удалось отправить прогноз пользователю {user['user_id']}: {e}")
+            logger.error(f"Не удалось отправить прогноз пользователю {user['user_id']} после retries: {e}")
+
 
 async def send_predictions_to_subscribed_users():
     global sportschecker_parser
     try:
         if sportschecker_parser is None:
-            # Получаем прокси из конфига для второго бота
-            proxy_url = config.get('PROXY_URL')
-            await initialize_parser(proxy_url)
+            await initialize_parser()
             if sportschecker_parser is None: 
+                logger.error("Parser initialization failed")
+                await asyncio.sleep(60)  # Wait before retrying
+                await schedule_next_run()
                 return
 
-        predictions = await sportschecker_parser.get_predictions()
+        predictions = sportschecker_parser.get_predictions()
         if not predictions: 
+            logger.info("No predictions found")
+            await schedule_next_run()
             return
 
         new_predictions_to_send = []
@@ -255,15 +257,19 @@ async def send_predictions_to_subscribed_users():
             for key, pred in new_predictions_to_send:
                 await send_prediction_to_user_and_channel(pred)
                 database.add_sent_prediction(key)
+        else:
+            logger.info("No new predictions to send")
         
         await schedule_next_run()
 
     except Exception as e:
-        logger.error(f"Критическая ошибка: {e}")
+        logger.error(f"Критическая ошибка в send_predictions_to_subscribed_users: {e}")
+        # Wait a bit before retrying on error
+        await asyncio.sleep(30)
         await schedule_next_run()
     finally:
         if sportschecker_parser:
-            await sportschecker_parser.close()
+            sportschecker_parser.close()
             sportschecker_parser = None
 
 async def schedule_next_run():
@@ -484,24 +490,42 @@ async def add_subscription_handler(callback: types.CallbackQuery, state: FSMCont
     await state.set_state(AdminStates.waiting_for_subscription_days)
     await callback.answer()
 
+
 @dp.message(AdminStates.waiting_for_subscription_days)
 async def process_subscription_days(message: types.Message, state: FSMContext):
     try:
         days = int(message.text)
+        if days <= 0:
+            await message.answer("Пожалуйста, введите положительное число дней.")
+            return
+            
         data = await state.get_data()
         user_id = data.get('subscription_user_id')
         
-        # Расчет даты окончания
-        end_date = datetime.now() + timedelta(days=days)
-        
-        # FIXED: Call update_subscription with only 2 arguments
+        # Pass days to database function instead of end_date
         database.update_subscription(user_id, days)
+        
+        # Calculate end date for confirmation message
+        end_date = datetime.now() + timedelta(days=days)
         await message.answer(f"✅ Подписка для пользователя {user_id} успешно добавлена на {days} дней.\nОкончание: {end_date.strftime('%Y-%m-%d %H:%M')}")
         await state.clear()
         await send_admin_panel(message.chat.id)
     except ValueError:
         await message.answer("Пожалуйста, введите корректное число дней.")
-        await state.set_state(AdminStates.waiting_for_subscription_days)
+
+async def send_with_retry(chat_id, text, parse_mode=None, max_retries=3):
+    """Send message with retry logic for network errors"""
+    for attempt in range(max_retries):
+        try:
+            await bot.send_message(chat_id, text, parse_mode=parse_mode)
+            return True
+        except Exception as e:
+            logger.error(f"Attempt {attempt + 1} failed: {e}")
+            if attempt < max_retries - 1:
+                await asyncio.sleep(2 ** attempt)  # Exponential backoff
+            else:
+                return False
+    return False
 
 @dp.callback_query(F.data.startswith("pause_subscription:"))
 async def pause_subscription_handler(callback: types.CallbackQuery):
@@ -547,88 +571,62 @@ async def cancel_subscription_handler(callback: types.CallbackQuery):
     await callback.answer()
     await send_admin_panel(callback.from_user.id)
 
-@dp.callback_query(F.data == "user_list_from_subs")
-async def user_list_from_subs_handler(callback: types.CallbackQuery):
-    """Handler for going back to user list from subscription management"""
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    users = database.get_all_users()
-    if not users:
-        await callback.message.edit_text("Список пользователей пуст.")
-        await callback.answer()
-        return
-
-    keyboard = kb.users_list_keyboard(users, "user_list_from_subs")
-    await callback.message.edit_text("Выберите пользователя:", reply_markup=keyboard)
-    await callback.answer()
-
 @dp.callback_query(F.data.startswith("user_list_from_subs:"))
 async def handle_user_selection_from_list(callback: types.CallbackQuery):
     """Обработчик выбора пользователя из списка"""
-    logger.info(f"User selection callback: {callback.data}")
-    
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
         return
     
-    try:
-        user_id = int(callback.data.split(':')[1])
-        logger.info(f"Selected user ID: {user_id}")
+    user_id = int(callback.data.split(':')[1])
+    user = database.get_user(user_id)
+    
+    if user:
+        # Расчет оставшихся дней подписки
+        end_date_str = user.get('end_date')
+        days_left = "Нет подписки"
         
-        user = database.get_user(user_id)
+        if end_date_str:
+            try:
+                end_date = datetime.fromisoformat(end_date_str)
+                now = datetime.now()
+                if end_date > now:
+                    days_left_int = (end_date - now).days
+                    days_left = f"{days_left_int} дней"
+                else:
+                    days_left = "Истекла"
+            except (ValueError, TypeError):
+                days_left = "Ошибка даты"
         
-        if user:
-            # Расчет оставшихся дней подписки
-            end_date_str = user.get('end_date')
-            days_left = "Нет подписки"
-            
-            if end_date_str:
-                try:
-                    end_date = datetime.fromisoformat(end_date_str)
-                    now = datetime.now()
-                    if end_date > now:
-                        days_left_int = (end_date - now).days
-                        days_left = f"{days_left_int} дней"
-                    else:
-                        days_left = "Истекла"
-                except (ValueError, TypeError):
-                    days_left = "Ошибка даты"
-            
-            # Получаем информацию о выбранных БК
-            user_bks = database.get_user_bookmakers(user_id)
-            bk_text = "все БК ✅" if not user_bks else ", ".join([bk['name'] for bk in user_bks])
-            
-            # Показываем информацию о пользователе
-            user_info = (
-                f"👤 Пользователь: @{user['username']}\n"
-                f"🆔 ID: {user['user_id']}\n"
-                f"👑 Админ: {'Да' if user['is_admin'] else 'Нет'}\n"
-                f"📅 Подписка: {days_left}\n"
-                f"⏰ Окончание: {end_date_str if end_date_str else 'Н/Д'}\n"
-                f"🎯 БК: {bk_text}\n"
-                f"⏸️ Статус: {'Активна' if not user.get('is_paused', False) else 'Приостановлена'}"
-            )
-            
-            # Создаем клавиатуру с действиями
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="➕ Добавить подписку", callback_data=f"add_subscription:{user_id}")],
-                [InlineKeyboardButton(text="⏸️ Приостановить", callback_data=f"pause_subscription:{user_id}")],
-                [InlineKeyboardButton(text="▶️ Возобновить", callback_data=f"unpause_subscription:{user_id}")],
-                [InlineKeyboardButton(text="❌ Отменить", callback_data=f"cancel_subscription:{user_id}")],
-                [InlineKeyboardButton(text="📊 Управление БК", callback_data=f"select_user_for_bk:{user_id}")],
-                [InlineKeyboardButton(text="👑 Сделать админом", callback_data=f"set_admin_user_list:{user_id}")],
-                [InlineKeyboardButton(text="◀️ Назад к списку", callback_data="user_list_from_subs")]
-            ])
-            
-            await callback.message.edit_text(user_info, reply_markup=keyboard)
-        else:
-            await callback.answer("Пользователь не найден", show_alert=True)
+        # Получаем информацию о выбранных БК
+        user_bks = database.get_user_bookmakers(user_id)
+        bk_text = "все БК ✅" if not user_bks else ", ".join([bk['name'] for bk in user_bks])
         
-    except (ValueError, IndexError) as e:
-        logger.error(f"Error parsing callback data: {e}")
-        await callback.answer("Ошибка обработки запроса", show_alert=True)
+        # Показываем информацию о пользователе
+        user_info = (
+            f"👤 Пользователь: @{user['username']}\n"
+            f"🆔 ID: {user['user_id']}\n"
+            f"👑 Админ: {'Да' if user['is_admin'] else 'Нет'}\n"
+            f"📅 Подписка: {days_left}\n"
+            f"⏰ Окончание: {end_date_str if end_date_str else 'Н/Д'}\n"
+            f"🎯 БК: {bk_text}\n"
+            f"⏸️ Статус: {'Активна' if not user.get('is_paused', False) else 'Приостановлена'}"
+        )
+        
+        # Создаем клавиатуру с действиями
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="➕ Добавить подписку", callback_data=f"add_subscription:{user_id}")],
+            [InlineKeyboardButton(text="⏸️ Приостановить", callback_data=f"pause_subscription:{user_id}")],
+            [InlineKeyboardButton(text="▶️ Возобновить", callback_data=f"unpause_subscription:{user_id}")],
+            [InlineKeyboardButton(text="❌ Отменить", callback_data=f"cancel_subscription:{user_id}")],
+            [InlineKeyboardButton(text="📊 Управление БК", callback_data=f"select_user_for_bk:{user_id}")],
+            [InlineKeyboardButton(text="👑 Сделать админом", callback_data=f"set_admin_user_list:{user_id}")],
+            [InlineKeyboardButton(text="◀️ Назад к списку", callback_data="user_list_from_subs")]
+        ])
+        
+        await callback.message.edit_text(user_info, reply_markup=keyboard)
+    else:
+        await callback.answer("Пользователь не найден", show_alert=True)
     
     await callback.answer()
 
@@ -765,516 +763,7 @@ async def select_channel_for_bk_handler(callback: types.CallbackQuery, state: FS
     await callback.message.edit_text(message, reply_markup=keyboard)
     await callback.answer()
 
-# Add these handlers for channel bookmaker management
-
 @dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_toggle_bk:"))
-async def channel_toggle_bk_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    bookmaker_id = int(callback.data.split(':')[1])
-    
-    data = await state.get_data()
-    current_selection = data.get('selected_ids', [])
-    channel_id = data.get('channel_id')
-    
-    if bookmaker_id in current_selection:
-        new_selection = [bk_id for bk_id in current_selection if bk_id != bookmaker_id]
-    else:
-        new_selection = current_selection + [bookmaker_id]
-    
-    await state.update_data(selected_ids=new_selection)
-    
-    bookmakers = database.get_all_bookmakers()
-    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, new_selection)
-    
-    await callback.message.edit_reply_markup(reply_markup=keyboard)
-    await callback.answer()
-
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_toggle_all_bk:"))
-async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    data = await state.get_data()
-    channel_id = data.get('channel_id')
-    bookmakers = database.get_all_bookmakers()
-    
-    active_bookmakers = [bk for bk in bookmakers if bk['is_active']]
-    all_selected = len(data.get('selected_ids', [])) == len(active_bookmakers)
-    
-    if all_selected:
-        new_selection = []
-    else:
-        new_selection = [bk['id'] for bk in active_bookmakers]
-    
-    await state.update_data(selected_ids=new_selection)
-    
-    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, new_selection)
-    await callback.message.edit_reply_markup(reply_markup=keyboard)
-    
-    action = "отключены" if all_selected else "включены"
-    await callback.answer(f"Все БК {action} для канала")
-
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_save_bk:"))
-async def channel_save_bk_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    data = await state.get_data()
-    selected_bks = data.get('selected_ids', [])
-    channel_id = data.get('channel_id')
-    
-    # Update all bookmakers for this channel
-    bookmakers = database.get_all_bookmakers()
-    for bookmaker in bookmakers:
-        is_selected = bookmaker['id'] in selected_bks
-        database.update_channel_bookmaker(channel_id, bookmaker['id'], is_selected)
-    
-    channel = database.get_channel(channel_id)
-    
-    if not selected_bks:
-        selected_text = "все БК"
-    else:
-        selected_names = []
-        for bk_id in selected_bks:
-            bk = next((b for b in bookmakers if b['id'] == bk_id), None)
-            if bk:
-                selected_names.append(bk['name'])
-        selected_text = ", ".join(selected_names)
-    
-    await callback.message.edit_text(
-        f"✅ Выбор БК для канала {channel['name']} сохранен!\n"
-        f"Выбранные БК: {selected_text}",
-        reply_markup=kb.back_to_admin_panel_keyboard()
-    )
-    await state.clear()
-    await callback.answer()
-
-@dp.message(AdminStates.waiting_for_bot_end_time)
-async def process_end_time(message: types.Message, state: FSMContext):
-    if re.match(r'^\d{2}:\d{2}$', message.text):
-        data = await state.get_data()
-        start_time = data.get('start_time')
-        database.set_setting('working_start_time', start_time)
-        database.set_setting('working_end_time', message.text)
-        await message.answer("Время работы бота успешно сохранено.")
-        await state.clear()
-        await restart_scheduler()
-        await send_admin_panel(message.chat.id)
-    else:
-        await message.answer("Неверный формат. Пожалуйста, введите время в формате ЧЧ:ММ.")
-        await state.set_state(AdminStates.waiting_for_bot_end_time)
-
-@dp.callback_query(F.data == "set_timezone")
-async def set_timezone_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    await callback.message.edit_text("Введите часовой пояс (например, Europe/Moscow):")
-    await state.set_state(AdminStates.waiting_for_timezone)
-    await callback.answer()
-
-@dp.message(AdminStates.waiting_for_timezone)
-async def process_timezone(message: types.Message, state: FSMContext):
-    try:
-        pytz.timezone(message.text)
-        database.set_setting('timezone', message.text)
-        await message.answer(f"Часовой пояс успешно установлен: {message.text}.")
-        await state.clear()
-        await restart_scheduler()
-        await send_admin_panel(message.chat.id)
-    except pytz.UnknownTimeZoneError:
-        await message.answer("Неверный часовой пояс. Пожалуйста, введите корректный.")
-        await state.set_state(AdminStates.waiting_for_timezone)
-
-# --- Subscription management ---
-@dp.callback_query(F.data == "subscriptions_menu")
-async def subscriptions_menu_handler(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    await callback.message.edit_text("Выберите действие с подписками:", reply_markup=kb.subscriptions_menu_keyboard())
-    await callback.answer()
-
-@dp.callback_query(F.data.in_(['add_subscription', 'pause_subscription', 'unpause_subscription', 'cancel_subscription', 'set_admin_user_list', 'user_list_from_subs']))
-async def select_user_for_subscription(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    users = database.get_all_users()
-    if not users:
-        await callback.message.edit_text("Список пользователей пуст.")
-        await callback.answer()
-        return
-
-    action = callback.data
-    keyboard = kb.users_list_keyboard(users, action)
-    await callback.message.edit_text("Выберите пользователя:", reply_markup=keyboard)
-    await callback.answer()
-
-@dp.callback_query(F.data.startswith("add_subscription:"))
-async def add_subscription_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    user_id = int(callback.data.split(':')[1])
-    await state.update_data(subscription_user_id=user_id)
-    await callback.message.edit_text("Введите количество дней подписки:")
-    await state.set_state(AdminStates.waiting_for_subscription_days)
-    await callback.answer()
-
-@dp.message(AdminStates.waiting_for_subscription_days)
-async def process_subscription_days(message: types.Message, state: FSMContext):
-    try:
-        days = int(message.text)
-        data = await state.get_data()
-        user_id = data.get('subscription_user_id')
-        
-        # Расчет даты окончания
-        end_date = datetime.now() + timedelta(days=days)
-        
-        database.update_subscription(user_id, days, end_date.isoformat())
-        await message.answer(f"✅ Подписка для пользователя {user_id} успешно добавлена на {days} дней.\nОкончание: {end_date.strftime('%Y-%m-%d %H:%M')}")
-        await state.clear()
-        await send_admin_panel(message.chat.id)
-    except ValueError:
-        await message.answer("Пожалуйста, введите корректное число дней.")
-        await state.set_state(AdminStates.waiting_for_subscription_days)
-
-@dp.callback_query(F.data.startswith("pause_subscription:"))
-async def pause_subscription_handler(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    user_id = int(callback.data.split(':')[1])
-    database.pause_subscription(user_id)
-    await callback.message.edit_text(f"Подписка пользователя {user_id} успешно приостановлена.")
-    await callback.answer()
-    await send_admin_panel(callback.from_user.id)
-
-@dp.callback_query(F.data.startswith("unpause_subscription:"))
-async def unpause_subscription_handler(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    user_id = int(callback.data.split(':')[1])
-    database.unpause_subscription(user_id)
-    await callback.message.edit_text(f"Подписка пользователя {user_id} успешно возобновлена.")
-    await callback.answer()
-    await send_admin_panel(callback.from_user.id)
-
-@dp.callback_query(F.data.startswith("set_admin_user_list:"))
-async def set_admin_handler_from_list(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    user_id = int(callback.data.split(':')[1])
-    database.make_admin(user_id)
-    await callback.message.edit_text(f"Пользователь с ID {user_id} теперь администратор.")
-    await callback.answer()
-    await send_admin_panel(callback.from_user.id)
-
-@dp.callback_query(F.data.startswith("cancel_subscription:"))
-async def cancel_subscription_handler(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    user_id = int(callback.data.split(':')[1])
-    database.cancel_subscription(user_id)
-    await callback.message.edit_text(f"Подписка пользователя {user_id} успешно отменена.")
-    await callback.answer()
-    await send_admin_panel(callback.from_user.id)
-
-@dp.callback_query(F.data == "user_list_from_subs")
-async def user_list_from_subs_handler(callback: types.CallbackQuery):
-    """Handler for going back to user list from subscription management"""
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    users = database.get_all_users()
-    if not users:
-        await callback.message.edit_text("Список пользователей пуст.")
-        await callback.answer()
-        return
-
-    keyboard = kb.users_list_keyboard(users, "user_list_from_subs")
-    await callback.message.edit_text("Выберите пользователя:", reply_markup=keyboard)
-    await callback.answer()
-
-@dp.callback_query(F.data.startswith("user_list_from_subs:"))
-async def handle_user_selection_from_list(callback: types.CallbackQuery):
-    """Обработчик выбора пользователя из списка"""
-    logger.info(f"User selection callback: {callback.data}")
-    
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    try:
-        user_id = int(callback.data.split(':')[1])
-        logger.info(f"Selected user ID: {user_id}")
-        
-        user = database.get_user(user_id)
-        
-        if user:
-            # Расчет оставшихся дней подписки
-            end_date_str = user.get('end_date')
-            days_left = "Нет подписки"
-            
-            if end_date_str:
-                try:
-                    end_date = datetime.fromisoformat(end_date_str)
-                    now = datetime.now()
-                    if end_date > now:
-                        days_left_int = (end_date - now).days
-                        days_left = f"{days_left_int} дней"
-                    else:
-                        days_left = "Истекла"
-                except (ValueError, TypeError):
-                    days_left = "Ошибка даты"
-            
-            # Получаем информацию о выбранных БК
-            user_bks = database.get_user_bookmakers(user_id)
-            bk_text = "все БК ✅" if not user_bks else ", ".join([bk['name'] for bk in user_bks])
-            
-            # Показываем информацию о пользователе
-            user_info = (
-                f"👤 Пользователь: @{user['username']}\n"
-                f"🆔 ID: {user['user_id']}\n"
-                f"👑 Админ: {'Да' if user['is_admin'] else 'Нет'}\n"
-                f"📅 Подписка: {days_left}\n"
-                f"⏰ Окончание: {end_date_str if end_date_str else 'Н/Д'}\n"
-                f"🎯 БК: {bk_text}\n"
-                f"⏸️ Статус: {'Активна' if not user.get('is_paused', False) else 'Приостановлена'}"
-            )
-            
-            # Создаем клавиатуру с действиями
-            keyboard = InlineKeyboardMarkup(inline_keyboard=[
-                [InlineKeyboardButton(text="➕ Добавить подписку", callback_data=f"add_subscription:{user_id}")],
-                [InlineKeyboardButton(text="⏸️ Приостановить", callback_data=f"pause_subscription:{user_id}")],
-                [InlineKeyboardButton(text="▶️ Возобновить", callback_data=f"unpause_subscription:{user_id}")],
-                [InlineKeyboardButton(text="❌ Отменить", callback_data=f"cancel_subscription:{user_id}")],
-                [InlineKeyboardButton(text="📊 Управление БК", callback_data=f"select_user_for_bk:{user_id}")],
-                [InlineKeyboardButton(text="👑 Сделать админом", callback_data=f"set_admin_user_list:{user_id}")],
-                [InlineKeyboardButton(text="◀️ Назад к списку", callback_data="user_list_from_subs")]
-            ])
-            
-            await callback.message.edit_text(user_info, reply_markup=keyboard)
-        else:
-            await callback.answer("Пользователь не найден", show_alert=True)
-        
-    except (ValueError, IndexError) as e:
-        logger.error(f"Error parsing callback data: {e}")
-        await callback.answer("Ошибка обработки запроса", show_alert=True)
-    
-    await callback.answer()
-
-# --- Channel management ---
-@dp.callback_query(F.data == "channel_settings_menu")
-async def channel_settings_menu_handler(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    await callback.message.edit_text(
-        "📢 Управление каналами для рассылки:",
-        reply_markup=kb.channel_management_keyboard()
-    )
-    await callback.answer()
-
-@dp.callback_query(F.data == "channel_list")
-async def channel_list_handler(callback: types.CallbackQuery):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    channels = database.get_all_channels()
-    if not channels:
-        await callback.message.edit_text("Нет добавленных каналов.", reply_markup=kb.back_to_admin_panel_keyboard())
-        await callback.answer()
-        return
-    
-    message = "📢 Список каналов для рассылки:\n\n"
-    for channel in channels:
-        status = "✅ Активен" if channel['is_active'] else "❌ Неактивен"
-        message += f"{channel['name']} (ID: {channel['channel_id']})\nСтатус: {status}\n\n"
-    
-    await callback.message.edit_text(message, reply_markup=kb.back_to_admin_panel_keyboard())
-    await callback.answer()
-
-@dp.callback_query(F.data == "add_channel")
-async def add_channel_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    await callback.message.edit_text("Введите ID канала (числовое значение):")
-    await state.set_state(AdminStates.waiting_for_channel_id)
-    await callback.answer()
-
-@dp.message(AdminStates.waiting_for_channel_id)
-async def process_channel_id(message: types.Message, state: FSMContext):
-    try:
-        channel_id = int(message.text)
-        existing_channel = database.get_channel(channel_id)
-        if existing_channel:
-            await message.answer("Этот канал уже добавлен.")
-            await state.clear()
-            await send_admin_panel(message.chat.id)
-            return
-            
-        await state.update_data(channel_id=channel_id)
-        await message.answer("Теперь введите название канала:")
-        await state.set_state(AdminStates.waiting_for_channel_name)
-    except ValueError:
-        await message.answer("Пожалуйста, введите корректный числовой ID канала:")
-        await state.set_state(AdminStates.waiting_for_channel_id)
-
-@dp.message(AdminStates.waiting_for_channel_name)
-async def process_channel_name(message: types.Message, state: FSMContext):
-    channel_name = message.text.strip()
-    if len(channel_name) < 2:
-        await message.answer("Название слишком короткое. Попробуйте снова:")
-        return
-        
-    data = await state.get_data()
-    channel_id = data.get('channel_id')
-    
-    database.add_channel(channel_id, channel_name)
-    await message.answer(f"Канал '{channel_name}' успешно добавлен!")
-    
-    await state.clear()
-    await send_admin_panel(message.chat.id)
-
-@dp.callback_query(F.data == "manage_channel_bk")
-async def back_to_channel_list_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    await state.clear()
-    
-    channels = database.get_all_channels()
-    if not channels:
-        await callback.message.edit_text("Нет добавленных каналов.", reply_markup=kb.back_to_admin_panel_keyboard())
-        await callback.answer()
-        return
-    
-    await callback.message.edit_text(
-        "Выберите канал для управления БК:",
-        reply_markup=kb.channels_list_keyboard(channels, "select_channel_for_bk")
-    )
-    await callback.answer()
-
-@dp.callback_query(F.data.startswith("select_channel_for_bk:"))
-async def select_channel_for_bk_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    channel_id = int(callback.data.split(':')[1])
-    channel = database.get_channel(channel_id)
-    
-    if not channel:
-        await callback.answer("Канал не найден.", show_alert=True)
-        return
-    
-    bookmakers = database.get_channel_bookmakers(channel_id)
-    selected_ids = [bk['id'] for bk in bookmakers if bk['is_selected']]
-    
-    await state.update_data(
-        channel_id=channel_id,
-        selected_ids=selected_ids
-    )
-    await state.set_state(BKManagementStates.managing_channel_bks)
-    
-    if not selected_ids:
-        selected_text = "все БК"
-    else:
-        selected_names = [bk['name'] for bk in bookmakers if bk['is_selected']]
-        selected_text = ", ".join(selected_names)
-    
-    message = (
-        f"📊 БК для канала {channel['name']}:\n"
-        f"Текущий выбор: {selected_text}\n\n"
-        f"Выберите БК для этого канала (можно выбрать несколько):"
-    )
-    
-    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, selected_ids)
-    await callback.message.edit_text(message, reply_markup=keyboard)
-    await callback.answer()
-
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_toggle_all_bk:"))
-async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    data = await state.get_data()
-    channel_id = data.get('channel_id')
-    bookmakers = database.get_all_bookmakers()
-    
-    all_selected = len(data.get('selected_ids', [])) == len([bk for bk in bookmakers if bk['is_active']])
-    
-    if all_selected:
-        new_selection = []
-    else:
-        new_selection = [bk['id'] for bk in bookmakers if bk['is_active']]
-    
-    await state.update_data(selected_ids=new_selection)
-    
-    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, new_selection)
-    await callback.message.edit_reply_markup(reply_markup=keyboard)
-    
-    action = "отключены" if all_selected else "включены"
-    await callback.answer(f"Все БК {action} для канала")
-
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_save_bk:"))
-async def channel_save_bk_handler(callback: types.CallbackQuery, state: FSMContext):
-    if not is_admin(callback.from_user.id):
-        await callback.answer("У вас нет прав администратора.", show_alert=True)
-        return
-    
-    data = await state.get_data()
-    selected_bks = data.get('selected_ids', [])
-    channel_id = data.get('channel_id')
-    
-    # Update all bookmakers for this channel
-    bookmakers = database.get_all_bookmakers()
-    for bookmaker in bookmakers:
-        is_selected = bookmaker['id'] in selected_bks
-        database.update_channel_bookmaker(channel_id, bookmaker['id'], is_selected)
-    
-    channel = database.get_channel(channel_id)
-    bookmakers = database.get_all_bookmakers()
-    
-    if not selected_bks:
-        selected_text = "все БК"
-    else:
-        selected_names = []
-        for bk_id in selected_bks:
-            bk = next((b for b in bookmakers if b['id'] == bk_id), None)
-            if bk:
-                selected_names.append(bk['name'])
-        selected_text = ", ".join(selected_names)
-    
-    await callback.message.edit_text(
-        f"✅ Выбор БК для канала {channel['name']} сохранен!\n"
-        f"Выбранные БК: {selected_text}",
-        reply_markup=kb.back_to_admin_panel_keyboard()
-    )
-    await state.clear()
-    await callback.answer()
-
-
-# Add this handler for toggling individual channel bookmakers
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("toggle_channel_bk:"))
 async def channel_toggle_bk_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
@@ -1298,8 +787,7 @@ async def channel_toggle_bk_handler(callback: types.CallbackQuery, state: FSMCon
     await callback.message.edit_reply_markup(reply_markup=keyboard)
     await callback.answer()
 
-# Add this handler for toggling all channel bookmakers
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("toggle_all_channel_bk:"))
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_toggle_all_bk:"))
 async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
@@ -1324,8 +812,7 @@ async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FS
     action = "отключены" if all_selected else "включены"
     await callback.answer(f"Все БК {action} для канала")
 
-# Add this handler for saving channel bookmaker selection
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("save_channel_bk:"))
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_save_bk:"))
 async def channel_save_bk_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
@@ -1798,39 +1285,6 @@ async def debug_info_handler(callback: types.CallbackQuery):
 async def noop_handler(callback: types.CallbackQuery):
     await callback.answer()
 
-# --- Debug commands ---
-@dp.message(Command("test_users"))
-async def test_users_command(message: types.Message):
-    """Test user retrieval"""
-    if not is_admin(message.from_user.id):
-        return
-    
-    users = database.get_all_users()
-    await message.answer(f"Found {len(users)} users in database")
-    
-    for user in users[:5]:  # Show first 5 users
-        await message.answer(
-            f"User: @{user['username']}\n"
-            f"ID: {user['user_id']}\n"
-            f"Admin: {user['is_admin']}\n"
-            f"Paused: {user.get('is_paused', False)}"
-        )
-
-@dp.message(Command("debug_db"))
-async def debug_db_command(message: types.Message):
-    """Debug database connection"""
-    if not is_admin(message.from_user.id):
-        return
-    
-    try:
-        users = database.get_all_users()
-        await message.answer(
-            f"Database connection OK\nTotal users: {len(users)}\n"
-            f"Sample users: {[{'id': u['user_id'], 'name': u['username']} for u in users[:3]]}"
-        )
-    except Exception as e:
-        await message.answer(f"Database error: {str(e)}")
-
 # --- Channel member handler ---
 @dp.my_chat_member(F.chat.type == "channel")
 async def my_chat_member_handler(my_chat_member: types.ChatMemberUpdated):
@@ -1850,12 +1304,10 @@ async def my_chat_member_handler(my_chat_member: types.ChatMemberUpdated):
         if ADMIN_ID:
             await bot.send_message(ADMIN_ID, f"✅ Бот добавлен в канал {channel_title} ({channel_id})")
 
+# --- Startup and main ---
 async def on_startup():
     database.create_tables()
-    
-    # Инициализируем парсер с прокси (если указан в конфиге)
-    proxy_url = config.get('PROXY_URL')
-    await initialize_parser(proxy_url)
+    await initialize_parser()
     
     channels = database.get_all_channels()
     bookmakers = database.get_all_bookmakers()

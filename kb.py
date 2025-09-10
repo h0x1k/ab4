@@ -56,18 +56,13 @@ def bookmakers_menu_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def users_list_keyboard(users, action_prefix):
-    """Create keyboard for user list with specified action prefix"""
-    keyboard = []
-    
+    buttons = []
     for user in users:
         username = user['username'] or f"User {user['user_id']}"
-        button_text = f"👤 {username} (ID: {user['user_id']})"
-        callback_data = f"{action_prefix}:{user['user_id']}"
-        keyboard.append([InlineKeyboardButton(text=button_text, callback_data=callback_data)])
-    
-    keyboard.append([InlineKeyboardButton(text="◀️ Назад", callback_data="back_to_admin_panel")])
-    
-    return InlineKeyboardMarkup(inline_keyboard=keyboard)
+        # ИСПРАВЛЕНО: Используем action_prefix вместо жесткого "user_list_from_subs"
+        buttons.append([InlineKeyboardButton(text=username, callback_data=f"{action_prefix}:{user['user_id']}")])
+    buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="back_to_admin_panel")])
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 def user_bookmakers_keyboard(user_id, bookmakers, selected_ids):
     buttons = []
@@ -132,39 +127,27 @@ def channels_list_keyboard(channels, action_prefix):
     buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="channel_settings_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def channel_bookmakers_management_keyboard(channel_id, bookmakers, selected_ids):
+def channel_bookmakers_management_keyboard(channel_id, bookmakers):
     buttons = []
     
     # Add toggle all button
-    all_selected = len(selected_ids) == len([bk for bk in bookmakers if bk['is_active']])
-    toggle_text = "❌ Отключить все" if all_selected else "✅ Включить все"
+    all_selected = all(bk['is_selected'] for bk in bookmakers)
     buttons.append([InlineKeyboardButton(
-        text=toggle_text, 
+        text="✅ Выбрать все БК" if all_selected else "☑️ Выбрать все БК",
         callback_data=f"channel_toggle_all_bk:{channel_id}"
     )])
     
-    # Add individual bookmaker buttons
+    # Add bookmaker buttons
     for bookmaker in bookmakers:
-        if not bookmaker['is_active']:
-            continue
-            
-        is_selected = bookmaker['id'] in selected_ids
-        emoji = "✅" if is_selected else "❌"
+        emoji = "✅" if bookmaker['is_selected'] else "❌"
         buttons.append([InlineKeyboardButton(
-            text=f"{emoji} {bookmaker['name']}", 
-            callback_data=f"channel_toggle_bk:{bookmaker['id']}"
+            text=f"{emoji} {bookmaker['name']}",
+            callback_data=f"channel_toggle_bk:{channel_id}:{bookmaker['id']}"
         )])
     
-    # Add save button
-    buttons.append([InlineKeyboardButton(
-        text="💾 Сохранить выбор", 
-        callback_data=f"channel_save_bk:{channel_id}"
-    )])
-    
-    # Add back button
-    buttons.append([InlineKeyboardButton(
-        text="◀️ Назад к каналам", 
-        callback_data="manage_channel_bk"
-    )])
+    # Add channel management buttons
+    buttons.append([InlineKeyboardButton(text="🔄 Активировать/деактивировать", callback_data=f"toggle_channel_status:{channel_id}")])
+    buttons.append([InlineKeyboardButton(text="🗑️ Удалить канал", callback_data=f"delete_channel:{channel_id}")])
+    buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="manage_channel_bk")])
     
     return InlineKeyboardMarkup(inline_keyboard=buttons)

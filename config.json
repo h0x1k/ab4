@@ -1,12 +1,11 @@
 {
     "API_TOKEN": "8068867993:AAE54xqq4hVpKupTb9LttPVdb_N7S0bXYTE",
     "ADMIN_ID": 7482542861,
-    "login": "artruster@yandex.by",
-    "password": "Qix1236xiQ",
+    "login": "betslabcupis@gmail.com",
+    "password": "MSIgaming3",
     "parsing_interval_minutes": 60,
     "work_start_hour": 6,
     "work_end_hour": 23,
     "timezone": "Europe/Moscow",
-    "CHANNEL_ID": -1003013389684,
-    "PROXY_URL": "p15734.ltespace.net:15734:5abusy18:eeqmeqw5"
+    "CHANNEL_ID": -1003013389684
 }

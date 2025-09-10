@@ -10,10 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, WebDriverException
 from webdriver_manager.chrome import ChromeDriverManager
-
-import aiohttp
-from aiohttp_socks import ProxyConnector
-import asyncio
+from proxy_manager import ProxyManager
 
 # Настройка логирования
 logging.basicConfig(
@@ -28,16 +25,15 @@ logger = logging.getLogger(__name__)
 
 class SportscheckerParser:
     """
-    Парсер для сайта Sportschecker.net с поддержкой прокси и постоянной сессией.
+    Парсер для сайта Sportschecker.net с постоянной сессией и "человеческим" поведением.
     """
-    def __init__(self, login, password, proxy_url=None):
+    def __init__(self, login, password):
         self.login = login
         self.password = password
-        self.proxy_url = proxy_url
         self.driver = None
-        self.session = None
         self.login_url = "https://ru.sportschecker.net/users/sign_in"
         self.valuebets_url = "https://ru.sportschecker.net/surebets"
+        self.proxy_manager = ProxyManager()
         self.user_agents = [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
@@ -47,45 +43,8 @@ class SportscheckerParser:
         ]
         self.cookies_file = "cookies.json"
         self.last_login_fail_time = 0
-        self.first_session = not os.path.exists(self.cookies_file)
-        self.session_ip = None
-
-    async def _create_session(self):
-        """Создает асинхронную сессию с прокси"""
-        try:
-            if self.proxy_url:
-                connector = ProxyConnector.from_url(self.proxy_url)
-                logger.info(f"Using proxy: {self.proxy_url}")
-            else:
-                connector = aiohttp.TCPConnector()
-            
-            self.session = aiohttp.ClientSession(
-                connector=connector,
-                headers={
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                    'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3',
-                    'Accept-Encoding': 'gzip, deflate',
-                    'Connection': 'keep-alive',
-                },
-                timeout=aiohttp.ClientTimeout(total=30)
-            )
-            
-        except Exception as e:
-            logger.error(f"Error creating session: {e}")
-            raise
-
-    async def get_current_ip(self):
-        """Проверка текущего IP через прокси"""
-        try:
-            if not self.session:
-                await self._create_session()
-                
-            async with self.session.get('http://httpbin.org/ip', timeout=10) as response:
-                data = await response.json()
-                return data.get('origin', 'Unknown')
-        except Exception as e:
-            return f"Error: {str(e)}"
+        self.first_session = not os.path.exists(self.cookies_file)  # Check if it's first session
+        self.session_ip = None  # Для отслеживания IP сессии
 
     def _random_delay(self, min_seconds=5, max_seconds=7):
         """Создает случайную задержку."""
@@ -185,94 +144,105 @@ class SportscheckerParser:
             logger.error(f"Ошибка при сохранении куки: {e}")
 
     def _load_cookies(self):
-        if os.path.exists(self.cookies_file):
-            try:
+        """Загружает куки из файла и добавляет их в сессию."""
+        try:
+            if os.path.exists(self.cookies_file):
                 with open(self.cookies_file, 'r') as f:
                     cookies = json.load(f)
-
+                
+                # Переходим на домен перед добавлением куки
                 self.driver.get(self.login_url)
                 self.driver.delete_all_cookies()
-
+                
                 for cookie in cookies:
+                    # Некоторые куки могут иметь expiry как float вместо int
                     if 'expiry' in cookie:
                         cookie['expiry'] = int(cookie['expiry'])
                     try:
                         self.driver.add_cookie(cookie)
                     except Exception as e:
-                        logger.warning(f"Не удалось добавить куки: {e}")
-
+                        logger.error(f"Не удалось добавить куки: {e}")
+                
                 logger.info("Куки успешно загружены.")
                 return True
-            except Exception as e:
-                logger.error(f"Ошибка при загрузке куки: {e}")
-                os.remove(self.cookies_file)  # ⬅ delete invalid cookies
-                return False
+        except Exception as e:
+            logger.error(f"Ошибка при загрузке куки: {e}")
+            return False
         return False
-
         
     def _perform_full_login(self):
-        logger.info("=== НАЧАЛО ПОЛНОГО ЛОГИНА ===")
-        self.close()
+        """Выполняет полный цикл входа только если это первая сессия или куки недействительны."""
+        # Проверка на паузу после неудачной попытки
+        if self.last_login_fail_time > 0 and (time.time() - self.last_login_fail_time) < 420: # 7 минут
+            logger.info("Пауза после неудачного входа. Повторная попытка будет через 7-10 минут.")
+            return False
 
+        logger.info("Выполняется полный цикл входа...")
+        
+        # Создаем новый драйвер
+        self.close() # Закрываем старый драйвер, если он был
         try:
             options = webdriver.ChromeOptions()
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
             options.add_argument(f"user-agent={random.choice(self.user_agents)}")
-            options.add_argument("--disable-blink-features=AutomationControlled")
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])
-            options.add_experimental_option('useAutomationExtension', False)
-
             service = Service(ChromeDriverManager().install())
             self.driver = webdriver.Chrome(service=service, options=options)
-            self.driver.execute_cdp_cmd(
-                "Page.addScriptToEvaluateOnNewDocument",
-                {"source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"}
-            )
         except Exception as e:
-            logger.error(f"Не удалось запустить Chrome: {e}", exc_info=True)
+            logger.error(f"Не удалось запустить новый драйвер: {e}", exc_info=True)
+            self.last_login_fail_time = time.time()
             return False
 
         try:
+            # Выполняем полный вход
             self.driver.get(self.login_url)
-            self._random_delay(2, 4)
-            self._save_screenshot("step_1_login_page.png")
+            self._random_delay(3, 5)
 
-            # ввод email
-            WebDriverWait(self.driver, 20).until(
-                EC.visibility_of_element_located((By.ID, 'user_email'))
-            ).send_keys(self.login)
-            self._save_screenshot("step_2_email.png")
+            WebDriverWait(self.driver, 45).until(EC.visibility_of_element_located((By.ID, 'user_email')))
+            
+            logger.info("Ввод логина...")
+            email_field = self.driver.find_element(By.ID, 'user_email')
+            email_field.clear()
+            email_field.send_keys(self.login)
+            self._random_delay(1, 2)
+            
+            logger.info("Ввод пароля...")
+            password_field = self.driver.find_element(By.ID, 'user_password')
+            password_field.clear()
+            password_field.send_keys(self.password)
+            self._random_delay(1, 2)
 
-            # ввод пароля
-            self.driver.find_element(By.ID, 'user_password').send_keys(self.password)
-            self._save_screenshot("step_3_password.png")
-
-            # --- фикc: подхватываем CSRF-токен перед сабмитом ---
-            token_el = self.driver.find_element(By.NAME, "authenticity_token")
-            token_val = token_el.get_attribute("value")
-            logger.info(f"CSRF токен: {token_val}")
-
-            # нажимаем submit
+            logger.info("Нажатие кнопки 'Войти'...")
             self.driver.find_element(By.ID, 'sign-in-form-submit-button').click()
             self._random_delay(3, 5)
-            self._save_screenshot("step_4_after_submit.png")
-
-            WebDriverWait(self.driver, 20).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href="/users/sign_out"]'))
+            
+            # Проверяем наличие ошибки одновременного использования
+            if self._check_concurrent_session_error():
+                logger.error("Обнаружена ошибка одновременного использования аккаунта. Прерываем вход.")
+                self.last_login_fail_time = time.time()
+                return False
+            
+            logger.info("Ожидание подтверждения входа (до 30 секунд)...")
+            logout_link_selector = (By.CSS_SELECTOR, 'a[href="/users/sign_out"]')
+            WebDriverWait(self.driver, 30).until(
+                EC.presence_of_element_located(logout_link_selector)
             )
-            self._save_screenshot("step_5_logged_in.png")
+            
+            # Сохраняем куки после успешного входа
             self._save_cookies()
+            logger.info("Успешный вход на сайт подтвержден. Куки сохранены.")
+            
+            # Помечаем, что первая сессия завершена
+            self.first_session = False
+            
             return True
 
         except Exception as e:
-            logger.error(f"Ошибка входа: {e}", exc_info=True)
-            self._save_screenshot("login_failed.png")
-            if os.path.exists(self.cookies_file):
-                os.remove(self.cookies_file)  # удаляем битые куки
+            logger.error(f"Ошибка во время полного цикла входа: {e}", exc_info=True)
+            self._save_screenshot("full_login_error.png")
+            self.last_login_fail_time = time.time()
             return False
-
 
     def _restore_session_with_cookies(self):
         """Восстанавливает сессию с помощью сохраненных куки."""
@@ -283,16 +253,10 @@ class SportscheckerParser:
                 options.add_argument("--disable-dev-shm-usage")
                 options.add_argument("--window-size=1920,1080")
                 options.add_argument(f"user-agent={random.choice(self.user_agents)}")
-                
-                # Добавляем прокси если указан
-                if self.proxy_url:
-                    options.add_argument(f'--proxy-server={self.proxy_url}')
-                    logger.info(f"Using proxy for browser: {self.proxy_url}")
-                    
                 service = Service(ChromeDriverManager().install())
                 self.driver = webdriver.Chrome(service=service, options=options)
             except Exception as e:
-                logger.error(f"Не удалось запустить драйver: {e}", exc_info=True)
+                logger.error(f"Не удалось запустить драйвер: {e}", exc_info=True)
                 return False
 
         try:
@@ -447,6 +411,7 @@ class SportscheckerParser:
                     value = value_element.text.strip()
 
                     if coeff % 0.5 == 0:
+
                         predictions.append({
                             'bookmaker': bookmaker, 'sport': sport, 'date': date,
                             'tournament': tournament, 'teams': teams, 'prediction': prediction,
@@ -458,6 +423,7 @@ class SportscheckerParser:
                     continue
             
             logger.info(f"Успешно спарсено {len(predictions)} прогнозов.")
+
             return predictions
 
         except Exception as e:
@@ -466,33 +432,21 @@ class SportscheckerParser:
             self.close()
             return []
 
-    async def close(self):
-        """Закрывает драйвер и сессию"""
-        # Закрываем браузер
+    def close(self):
+        """Закрывает драйвер, если он активен."""
         if self.driver:
-            try:
+            try:    
                 self.driver.quit()
                 logger.info("WebDriver сессия успешно закрыта.")
             except Exception as e:
                 logger.error(f"Ошибка при закрытии WebDriver: {e}")
             finally:
                 self.driver = None
-        
-        # Закрываем асинхронную сессию
-        if self.session:
-            try:
-                await self.session.close()
-                logger.info("Асинхронная сессия успешно закрыта.")
-            except Exception as e:
-                logger.error(f"Ошибка при закрытии асинхронной сессии: {e}")
-            finally:
-                self.session = None
 
 # Пример использования
 if __name__ == "__main__":
-    # Инициализация парсера с прокси
-    proxy_url = "socks5://username:password@proxy.proxyseller.ru:10000"  # Замените на ваш прокси
-    parser = SportscheckerParser('kosyakovsn@gmail.com', 'SC22332233', proxy_url)
+    # Инициализация парсера с вашими учетными данными
+    parser = SportscheckerParser('kosyakovsn@gmail.com', 'SC22332233')
     
     try:
         # Получение прогнозов
@@ -508,5 +462,4 @@ if __name__ == "__main__":
     
     finally:
         # Закрытие парсера
-        import asyncio
-        asyncio.run(parser.close())
+        parser.close()

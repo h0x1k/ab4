@@ -162,14 +162,18 @@ def get_all_active_users():
 
 def update_subscription(user_id, days):
     conn = get_connection()
-    cursor = conn.cursor()
-    end_date = datetime.now() + timedelta(days=days)
-    cursor.execute(
-        'UPDATE users SET end_date = ? WHERE user_id = ?',
-        (end_date.isoformat(), user_id)
-    )
-    conn.commit()
-    conn.close()
+    try:
+        # Calculate end date from days parameter
+        end_date = datetime.now() + timedelta(days=int(days))
+        end_date_str = end_date.isoformat()
+            
+        conn.execute(
+            "UPDATE users SET end_date = ? WHERE user_id = ?",
+            (end_date_str, user_id)
+        )
+        conn.commit()
+    finally:
+        conn.close()
 
 def pause_subscription(user_id):
     conn = get_connection()
@@ -498,48 +502,15 @@ def get_channel_bookmakers(channel_id):
     conn.close()
     return bookmakers
 
-# In database.py, ensure these functions work:
-
 def update_channel_bookmaker(channel_id, bookmaker_id, is_selected):
-    """Update or insert channel bookmaker selection"""
     conn = get_connection()
-    try:
-        cursor = conn.cursor()
-        cursor.execute('''
-            INSERT OR REPLACE INTO channel_bookmakers (channel_id, bookmaker_id, is_selected)
-            VALUES (?, ?, ?)
-        ''', (channel_id, bookmaker_id, is_selected))
-        conn.commit()
-    except Exception as e:
-        logger.error(f"Error updating channel bookmaker: {e}")
-    finally:
-        conn.close()
-
-def get_channel_bookmakers(channel_id):
-    """Get bookmakers for a specific channel"""
-    conn = get_connection()
-    try:
-        cursor = conn.cursor()
-        cursor.execute('''
-            SELECT b.id, b.name, b.is_active, cb.is_selected
-            FROM bookmakers b
-            LEFT JOIN channel_bookmakers cb ON b.id = cb.bookmaker_id AND cb.channel_id = ?
-            ORDER BY b.name
-        ''', (channel_id,))
-        
-        bookmakers = []
-        for row in cursor.fetchall():
-            bookmakers.append({
-                'id': row[0],
-                'name': row[1],
-                'is_active': bool(row[2]),
-                'is_selected': bool(row[3]) if row[3] is not None else True  # Default to True if not set
-            })
-        return bookmakers
-    except Exception as e:
-        return e
-    finally:
-        conn.close()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT OR REPLACE INTO channel_bookmakers (channel_id, bookmaker_id, is_selected)
+        VALUES (?, ?, ?)
+    ''', (channel_id, bookmaker_id, is_selected))
+    conn.commit()
+    conn.close()
 
 def get_selected_channel_bookmakers(channel_id=None):
     conn = get_connection()
