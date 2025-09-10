@@ -183,7 +183,7 @@ async def send_prediction_to_user_and_channel(prediction_data):
 
     bookmaker_name = prediction_data.get('bookmaker', '').strip()
     
-    # Send to channels with retry
+    # Send to channels
     channels = database.get_all_channels()
     for channel in channels:
         if not channel['is_active']: continue
@@ -191,11 +191,11 @@ async def send_prediction_to_user_and_channel(prediction_data):
         channel_bk_names = [bk['name'] for bk in channel_bookmakers if bk['is_selected']]
         if channel_bk_names and bookmaker_name not in channel_bk_names: continue
         try:
-            await send_with_retry(channel['channel_id'], formatted_message, parse_mode=ParseMode.HTML)
+            await bot.send_message(channel['channel_id'], formatted_message, parse_mode=ParseMode.HTML)
         except Exception as e:
-            logger.error(f"❌ Failed to send to channel after retries: {e}")
+            logger.error(f"❌ Failed to send to channel: {e}")
     
-    # Send to users with retry
+    # Send to users
     if not bookmaker_name: return
     
     users = database.get_all_active_users()
@@ -216,34 +216,25 @@ async def send_prediction_to_user_and_channel(prediction_data):
             if bookmaker_name not in user_bk_names: continue
         
         try:
-            success = await send_with_retry(user['user_id'], formatted_message, parse_mode=ParseMode.HTML)
-            if success:
-                prediction_key = get_match_key(prediction_data)
-                database.add_user_prediction(user['user_id'], prediction_key)
-                
-                new_daily_count = daily_count + 1
-                if new_daily_count >= pause_after:
-                    database.set_user_pause(user['user_id'], signal_limits['pause_duration_hours'])
+            await bot.send_message(user['user_id'], formatted_message, parse_mode=ParseMode.HTML)
+            prediction_key = get_match_key(prediction_data)
+            database.add_user_prediction(user['user_id'], prediction_key)
+            
+            new_daily_count = daily_count + 1
+            if new_daily_count >= pause_after:
+                database.set_user_pause(user['user_id'], signal_limits['pause_duration_hours'])
         except Exception as e:
-            logger.error(f"Не удалось отправить прогноз пользователю {user['user_id']} после retries: {e}")
-
+            logger.error(f"Не удалось отправить прогноз пользователю {user['user_id']}: {e}")
 
 async def send_predictions_to_subscribed_users():
     global sportschecker_parser
     try:
         if sportschecker_parser is None:
             await initialize_parser()
-            if sportschecker_parser is None: 
-                logger.error("Parser initialization failed")
-                await asyncio.sleep(60)  # Wait before retrying
-                await schedule_next_run()
-                return
+            if sportschecker_parser is None: return
 
         predictions = sportschecker_parser.get_predictions()
-        if not predictions: 
-            logger.info("No predictions found")
-            await schedule_next_run()
-            return
+        if not predictions: return
 
         new_predictions_to_send = []
         for p in predictions:
@@ -257,15 +248,11 @@ async def send_predictions_to_subscribed_users():
             for key, pred in new_predictions_to_send:
                 await send_prediction_to_user_and_channel(pred)
                 database.add_sent_prediction(key)
-        else:
-            logger.info("No new predictions to send")
         
         await schedule_next_run()
 
     except Exception as e:
-        logger.error(f"Критическая ошибка в send_predictions_to_subscribed_users: {e}")
-        # Wait a bit before retrying on error
-        await asyncio.sleep(30)
+        logger.error(f"Критическая ошибка: {e}")
         await schedule_next_run()
     finally:
         if sportschecker_parser:
@@ -490,7 +477,6 @@ async def add_subscription_handler(callback: types.CallbackQuery, state: FSMCont
     await state.set_state(AdminStates.waiting_for_subscription_days)
     await callback.answer()
 
-
 @dp.message(AdminStates.waiting_for_subscription_days)
 async def process_subscription_days(message: types.Message, state: FSMContext):
     try:
@@ -512,20 +498,6 @@ async def process_subscription_days(message: types.Message, state: FSMContext):
         await send_admin_panel(message.chat.id)
     except ValueError:
         await message.answer("Пожалуйста, введите корректное число дней.")
-
-async def send_with_retry(chat_id, text, parse_mode=None, max_retries=3):
-    """Send message with retry logic for network errors"""
-    for attempt in range(max_retries):
-        try:
-            await bot.send_message(chat_id, text, parse_mode=parse_mode)
-            return True
-        except Exception as e:
-            logger.error(f"Attempt {attempt + 1} failed: {e}")
-            if attempt < max_retries - 1:
-                await asyncio.sleep(2 ** attempt)  # Exponential backoff
-            else:
-                return False
-    return False
 
 @dp.callback_query(F.data.startswith("pause_subscription:"))
 async def pause_subscription_handler(callback: types.CallbackQuery):

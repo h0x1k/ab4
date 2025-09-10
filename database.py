@@ -162,18 +162,14 @@ def get_all_active_users():
 
 def update_subscription(user_id, days):
     conn = get_connection()
-    try:
-        # Calculate end date from days parameter
-        end_date = datetime.now() + timedelta(days=int(days))
-        end_date_str = end_date.isoformat()
-            
-        conn.execute(
-            "UPDATE users SET end_date = ? WHERE user_id = ?",
-            (end_date_str, user_id)
-        )
-        conn.commit()
-    finally:
-        conn.close()
+    cursor = conn.cursor()
+    end_date = datetime.now() + timedelta(days=days)
+    cursor.execute(
+        'UPDATE users SET end_date = ? WHERE user_id = ?',
+        (end_date.isoformat(), user_id)
+    )
+    conn.commit()
+    conn.close()
 
 def pause_subscription(user_id):
     conn = get_connection()

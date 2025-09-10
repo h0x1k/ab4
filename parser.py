@@ -32,7 +32,7 @@ class SportscheckerParser:
         self.password = password
         self.driver = None
         self.login_url = "https://ru.sportschecker.net/users/sign_in"
-        self.valuebets_url = "https://ru.sportschecker.net/surebets"
+        self.valuebets_url = "https://ru.sportschecker.net/valuebets"
         self.proxy_manager = ProxyManager()
         self.user_agents = [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
@@ -435,7 +435,15 @@ class SportscheckerParser:
     def close(self):
         """Закрывает драйвер, если он активен."""
         if self.driver:
-            try:    
+            try:
+                # Перед закрытием пытаемся выйти из системы
+                try:
+                    self.driver.get("https://ru.sportschecker.net/users/sign_out")
+                    self._random_delay(2, 3)
+                    logger.info("Выполнен выход из системы перед закрытием драйвера.")
+                except:
+                    pass
+                    
                 self.driver.quit()
                 logger.info("WebDriver сессия успешно закрыта.")
             except Exception as e:

@@ -15188,95 +15188,34 @@ aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: query
 2025-09-05 15:50:32,564 - aiogram.event - INFO - Update id=951930125 is handled. Duration 260 ms by bot id=8068867993
 2025-09-05 15:50:33,940 - aiogram.event - INFO - Update id=951930126 is handled. Duration 591 ms by bot id=8068867993
 2025-09-05 15:53:12,821 - aiogram.event - INFO - Update id=951930127 is handled. Duration 109 ms by bot id=8068867993
-2025-09-10 11:43:29,630 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
-2025-09-10 11:43:29,632 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:43:29,632 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:43:29,633 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:43:29,661 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:43:29,662 - __main__ - INFO - Следующий запуск: 2025-09-10 11:43:41
-2025-09-10 11:43:29,662 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 11:43:29,663 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 11:43:29,663 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 11:43:29,823 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:43:41,663 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 11:43:41,664 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:43:41 MSK], next run at: 2025-09-10 11:43:41 MSK)" (scheduled at 2025-09-10 11:43:41.661742+03:00)
-2025-09-10 11:43:41,664 - WDM - INFO - ====== WebDriver manager ======
-2025-09-10 11:43:41,920 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 11:43:42,039 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 11:43:42,144 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
-2025-09-10 11:43:44,103 - parser - INFO - Куки успешно загружены.
-2025-09-10 11:43:54,865 - parser - WARNING - Проверка авторизации: пользователь не в системе (кнопка 'Выйти' не найдена).
-2025-09-10 11:43:54,865 - parser - WARNING - Куки устарели или недействительны. Требуется повторный вход.
-2025-09-10 11:43:54,865 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
-2025-09-10 11:43:54,866 - parser - INFO - Выполняется полный цикл входа...
-2025-09-10 11:43:57,393 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
-2025-09-10 11:43:57,521 - parser - INFO - WebDriver сессия успешно закрыта.
-2025-09-10 11:43:57,521 - WDM - INFO - ====== WebDriver manager ======
-2025-09-10 11:43:57,789 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 11:43:57,893 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 11:43:58,016 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
-2025-09-10 11:44:03,682 - parser - INFO - Ввод логина...
-2025-09-10 11:44:05,034 - parser - INFO - Ввод пароля...
-2025-09-10 11:44:06,318 - parser - INFO - Нажатие кнопки 'Войти'...
-2025-09-10 11:44:09,560 - parser - INFO - Ожидание подтверждения входа (до 30 секунд)...
-2025-09-10 11:44:09,575 - parser - INFO - Куки успешно сохранены.
-2025-09-10 11:44:09,575 - parser - INFO - Успешный вход на сайт подтвержден. Куки сохранены.
-2025-09-10 11:44:09,594 - parser - INFO - Переход на страницу со ставками: https://ru.sportschecker.net/valuebets
-2025-09-10 11:44:15,407 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
-2025-09-10 11:44:22,768 - parser - INFO - Имитация скроллинга страницы.
-2025-09-10 11:44:26,385 - parser - INFO - Начало парсинга таблицы...
-2025-09-10 11:44:26,409 - parser - INFO - Найдено 25 строк в таблице для парсинга.
-2025-09-10 11:44:26,604 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
-2025-09-10 11:44:26,681 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:26,750 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
-2025-09-10 11:44:26,907 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
-2025-09-10 11:44:26,977 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:27,045 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
-2025-09-10 11:44:27,112 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:27,262 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:27,351 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:27,584 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:27,730 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:27,883 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':2'
-2025-09-10 11:44:27,955 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
-2025-09-10 11:44:28,107 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
-2025-09-10 11:44:28,254 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
-2025-09-10 11:44:28,351 - parser - INFO - Успешно спарсено 10 прогнозов.
-2025-09-10 11:44:28,351 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'IviBet', 'sport': 'Хоккей', 'date': '10/09 19:00', 'tournament': 'Czech Republic - Czech Republic. Extraliga', 'teams': 'Kometa Brno – Verva Litvinov', 'prediction': 'Тб(2.5) highest period', 'odd': '2.00', 'value': '+10.0%'}
-2025-09-10 11:44:28,353 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'JugaBet (CL)', 'sport': 'Футбол', 'date': '12/09 20:30', 'tournament': 'Germany - Oberliga', 'teams': 'FC Oberneuland – FC Union 60 Bremen', 'prediction': 'Тб(2) 1-й период', 'odd': '2.30', 'value': '+10.0%'}
-2025-09-10 11:44:28,354 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '11/09 04:00', 'tournament': 'Коста-Рика - Costa Rican Primera Division', 'teams': 'Puntarenas – Deportivo Saprissa', 'prediction': 'Тб(3.5) 1-я команда', 'odd': '41.00', 'value': '+10.0%'}
-2025-09-10 11:44:28,354 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Casa Pariurilor (RO)', 'sport': 'Футзал', 'date': '10/09 19:30', 'tournament': 'Poland - 1.Poland', 'teams': 'GI Malepszy Leszno – Eurobus Przemysl', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.01', 'value': '+10.0%'}
-2025-09-10 11:44:28,354 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Betcity', 'sport': 'Теннис', 'date': '10/09 12:30', 'tournament': 'Теннис. WTA 125. Любляна. Словения. Clay.', 'teams': 'Доминика Шалкова – Рената Ямрихова', 'prediction': 'Тб(10.5) 2-й участник', 'odd': '2.20', 'value': '+10.0%'}
-2025-09-10 11:44:28,355 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'FB Sports', 'sport': 'Футбол', 'date': '14/09 17:00', 'tournament': 'Greece - Greece Super League 2', 'teams': 'Nestos Chrysoupoli FC – PAS Giannina', 'prediction': 'Тб(0.5) 2-я команда', 'odd': '1.98', 'value': '+10.0%'}
-2025-09-10 11:44:28,355 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Novibet (BR)', 'sport': 'Футбол', 'date': '14/09 22:00', 'tournament': 'Serie A', 'teams': 'Atletico MG – Santos SP', 'prediction': 'Тб(12.5) - угловые', 'odd': '4.35', 'value': '+10.0%'}
-2025-09-10 11:44:28,355 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'BetClic (PL)', 'sport': 'Футбол', 'date': '12/09 22:15', 'tournament': 'Portugalia - Liga Betclic', 'teams': 'Alverca Futebol – Tondela', 'prediction': 'Тб(4.5) - угловые 2-я команда', 'odd': '2.30', 'value': '+9.95%'}
-2025-09-10 11:44:28,356 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'BetClic', 'sport': 'Футбол', 'date': '12/09 21:45', 'tournament': 'France - French Ligue 1', 'teams': 'Marseille – Lorient', 'prediction': 'Тм(4.5) - угловые 1-я команда', 'odd': '3.10', 'value': '+9.95%'}
-2025-09-10 11:44:28,356 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'PointsBet (AU)', 'sport': 'Футбол', 'date': '13/09 17:00', 'tournament': 'England - English Championship', 'teams': 'Wrexham – QPR', 'prediction': 'Тб(4.5) - угловые 2-й период 2-я команда', 'odd': '8.50', 'value': '+9.95%'}
-2025-09-10 11:44:28,369 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 11:44:28,369 - __main__ - INFO - Следующий запуск: 2025-09-10 11:45:08
-2025-09-10 11:44:31,426 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
-2025-09-10 11:44:31,534 - parser - INFO - WebDriver сессия успешно закрыта.
-2025-09-10 11:44:31,534 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:43:41 MSK], next run at: 2025-09-10 11:43:41 MSK)" executed successfully
-2025-09-10 11:44:41,923 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 11:44:41,924 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:44:41,924 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 11:45:52,427 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:45:52,428 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:45:52,429 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:45:52,429 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:45:52,461 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:45:52,461 - __main__ - INFO - Следующий запуск: 2025-09-10 11:46:04
-2025-09-10 11:45:52,462 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 11:45:52,462 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 11:45:52,462 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 11:45:52,618 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:45:55,369 - aiogram.event - INFO - Update id=951930605 is handled. Duration 280 ms by bot id=8068867993
-2025-09-10 11:45:58,424 - aiogram.event - INFO - Update id=951930606 is handled. Duration 171 ms by bot id=8068867993
-2025-09-10 11:46:00,461 - aiogram.event - INFO - Update id=951930607 is handled. Duration 827 ms by bot id=8068867993
-2025-09-10 11:46:00,645 - aiogram.event - INFO - Update id=951930608 is handled. Duration 150 ms by bot id=8068867993
-2025-09-10 11:46:01,894 - aiogram.event - INFO - Update id=951930609 is not handled. Duration 3 ms by bot id=8068867993
-2025-09-10 11:46:01,894 - aiogram.event - ERROR - Cause exception while process update id=951930609 by bot id=8068867993
-TypeError: update_subscription() takes 2 positional arguments but 3 were given
+2025-09-10 13:54:30,619 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 13:54:30,624 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 13:54:30,625 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 13:54:30,627 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 13:54:30,695 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 13:54:30,696 - __main__ - INFO - Следующий запуск: 2025-09-10 13:54:55
+2025-09-10 13:54:30,697 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 13:54:30,698 - apscheduler.scheduler - INFO - Scheduler started
+2025-09-10 13:54:30,699 - aiogram.dispatcher - INFO - Start polling
+2025-09-10 13:54:30,883 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 13:54:31,276 - aiogram.event - INFO - Update id=951930711 is handled. Duration 301 ms by bot id=8068867993
+2025-09-10 13:54:34,701 - aiogram.event - INFO - Update id=951930712 is handled. Duration 210 ms by bot id=8068867993
+2025-09-10 13:54:35,768 - aiogram.event - INFO - Update id=951930713 is handled. Duration 146 ms by bot id=8068867993
+2025-09-10 13:54:36,741 - aiogram.event - INFO - Update id=951930714 is handled. Duration 162 ms by bot id=8068867993
+2025-09-10 13:54:38,297 - aiogram.event - INFO - Update id=951930715 is handled. Duration 180 ms by bot id=8068867993
+2025-09-10 13:54:39,893 - aiogram.event - INFO - Update id=951930716 is handled. Duration 276 ms by bot id=8068867993
+2025-09-10 13:54:41,597 - aiogram.event - INFO - Update id=951930717 is handled. Duration 163 ms by bot id=8068867993
+2025-09-10 13:54:42,648 - aiogram.event - INFO - Update id=951930718 is handled. Duration 372 ms by bot id=8068867993
+2025-09-10 13:54:44,629 - aiogram.event - INFO - Update id=951930719 is handled. Duration 239 ms by bot id=8068867993
+2025-09-10 13:54:45,712 - aiogram.event - INFO - Update id=951930720 is handled. Duration 245 ms by bot id=8068867993
+2025-09-10 13:54:47,306 - aiogram.event - INFO - Update id=951930721 is handled. Duration 140 ms by bot id=8068867993
+2025-09-10 13:54:48,828 - aiogram.event - INFO - Update id=951930722 is handled. Duration 226 ms by bot id=8068867993
+2025-09-10 13:54:50,156 - aiogram.event - INFO - Update id=951930723 is handled. Duration 304 ms by bot id=8068867993
+2025-09-10 13:54:51,220 - aiogram.event - INFO - Update id=951930724 is handled. Duration 283 ms by bot id=8068867993
+2025-09-10 13:54:51,924 - aiogram.event - INFO - Update id=951930725 is handled. Duration 156 ms by bot id=8068867993
+2025-09-10 13:54:52,723 - aiogram.event - INFO - Update id=951930726 is not handled. Duration 7 ms by bot id=8068867993
+2025-09-10 13:54:52,723 - aiogram.event - ERROR - Cause exception while process update id=951930726 by bot id=8068867993
+TypeError: channel_bookmakers_management_keyboard() takes 2 positional arguments but 3 were given
 Traceback (most recent call last):
   File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
     response = await self.feed_update(bot, update, **kwargs)
@@ -15324,867 +15263,441 @@ Traceback (most recent call last):
   File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
     return await wrapped()
            ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 491, in process_subscription_days
-    database.update_subscription(user_id, days, end_date.isoformat())
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: update_subscription() takes 2 positional arguments but 3 were given
-2025-09-10 11:46:04,462 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 11:46:04,463 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:46:04 MSK], next run at: 2025-09-10 11:46:04 MSK)" (scheduled at 2025-09-10 11:46:04.461509+03:00)
-2025-09-10 11:46:04,467 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:46:04,467 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:46:04 MSK], next run at: 2025-09-10 11:46:04 MSK)" executed successfully
-2025-09-10 11:50:32,851 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 11:50:32,852 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:50:32,853 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 11:50:33,083 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 11:50:43,894 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:50:43,900 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:50:43,900 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:50:43,901 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:50:43,982 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:50:43,982 - __main__ - INFO - Следующий запуск: 2025-09-10 11:51:03
-2025-09-10 11:50:43,985 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 11:50:43,985 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 11:50:43,986 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 11:50:44,179 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:50:44,479 - aiogram.event - INFO - Update id=951930610 is handled. Duration 222 ms by bot id=8068867993
-2025-09-10 11:50:46,924 - aiogram.event - INFO - Update id=951930611 is handled. Duration 184 ms by bot id=8068867993
-2025-09-10 11:50:48,058 - aiogram.event - INFO - Update id=951930612 is handled. Duration 174 ms by bot id=8068867993
-2025-09-10 11:50:49,041 - aiogram.event - INFO - Update id=951930613 is handled. Duration 245 ms by bot id=8068867993
-2025-09-10 11:50:49,539 - aiogram.event - INFO - Update id=951930614 is not handled. Duration 5 ms by bot id=8068867993
-2025-09-10 11:50:49,540 - aiogram.event - ERROR - Cause exception while process update id=951930614 by bot id=8068867993
-TypeError: update_subscription() takes 2 positional arguments but 3 were given
+  File "/Users/h0x/Documents/fl/ab4/main.py", line 734, in select_channel_for_bk_handler
+    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, selected_ids)
+TypeError: channel_bookmakers_management_keyboard() takes 2 positional arguments but 3 were given
+2025-09-10 13:54:54,102 - aiogram.event - INFO - Update id=951930727 is handled. Duration 212 ms by bot id=8068867993
+2025-09-10 13:54:55,104 - aiogram.event - INFO - Update id=951930728 is handled. Duration 205 ms by bot id=8068867993
+2025-09-10 13:54:55,697 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 13:54:55,699 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:54:55 MSK], next run at: 2025-09-10 13:54:55 MSK)" (scheduled at 2025-09-10 13:54:55.695636+03:00)
+2025-09-10 13:54:55,699 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 13:54:56,332 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:54:56,516 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:54:56,659 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 13:54:59,710 - parser - INFO - Куки успешно загружены.
+2025-09-10 13:55:09,711 - parser - WARNING - Проверка авторизации: пользователь не в системе (кнопка 'Выйти' не найдена).
+2025-09-10 13:55:09,711 - parser - WARNING - Куки устарели или недействительны. Требуется повторный вход.
+2025-09-10 13:55:09,712 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-10 13:55:09,712 - parser - INFO - Выполняется полный цикл входа...
+2025-09-10 13:55:12,245 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
+2025-09-10 13:55:12,383 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 13:55:12,383 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 13:55:12,951 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:55:48,141 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:55:48,282 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 13:55:54,576 - parser - INFO - Ввод логина...
+2025-09-10 13:55:56,609 - parser - INFO - Ввод пароля...
+2025-09-10 13:55:57,900 - parser - INFO - Нажатие кнопки 'Войти'...
+2025-09-10 13:56:01,300 - parser - INFO - Ожидание подтверждения входа (до 30 секунд)...
+2025-09-10 13:56:01,316 - parser - INFO - Куки успешно сохранены.
+2025-09-10 13:56:01,316 - parser - INFO - Успешный вход на сайт подтвержден. Куки сохранены.
+2025-09-10 13:56:01,334 - parser - INFO - Переход на страницу со ставками: https://ru.sportschecker.net/valuebets
+2025-09-10 13:56:05,489 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
+2025-09-10 13:56:31,648 - parser - INFO - Имитация скроллинга страницы.
+2025-09-10 13:56:34,146 - parser - INFO - Начало парсинга таблицы...
+2025-09-10 13:56:34,170 - parser - INFO - Найдено 25 строк в таблице для парсинга.
+2025-09-10 13:56:34,401 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:56:34,478 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:56:34,642 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:56:34,715 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 13:56:34,790 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:56:34,866 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:56:34,946 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:56:35,135 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: 'ы'
+2025-09-10 13:56:35,297 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:56:35,702 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:56:35,880 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:56:36,038 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:56:36,210 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:56:36,293 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:56:36,701 - parser - INFO - Успешно спарсено 10 прогнозов.
+2025-09-10 13:56:36,701 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'SuperBet (BR)', 'sport': 'Футбол', 'date': '14/09 18:00', 'tournament': 'Romênia - Romênia - SuperLiga', 'teams': 'Universitatea Craiova – Farul Constanta', 'prediction': 'Тб(10.5) - угловые', 'odd': '2.25', 'value': '+10.0%'}
+2025-09-10 13:56:36,703 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '13/09 22:00', 'tournament': 'Бразилия - Brazilian Serie A', 'teams': 'Gremio – Mirassol', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '46.00', 'value': '+10.0%'}
+2025-09-10 13:56:36,703 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Casa Pariurilor (RO)', 'sport': 'Футзал', 'date': '10/09 19:30', 'tournament': 'Poland - 1.Poland', 'teams': 'GI Malepszy Leszno – Eurobus Przemysl', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.01', 'value': '+10.0%'}
+2025-09-10 13:56:36,704 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'W88Es', 'sport': 'Футбол', 'date': '10/09 22:00', 'tournament': 'Scotland - Scotland Fifth League', 'teams': 'Buckie Thistle – Clachnacuddin', 'prediction': 'Тм(1.5)', 'odd': '6.50', 'value': '+9.95%'}
+2025-09-10 13:56:36,704 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Crocobet', 'sport': 'Футзал', 'date': '10/09 19:00', 'tournament': 'Польша - Ekstraklasa', 'teams': 'Wks Slask Wroclaw – Пяст Гливице', 'prediction': 'Тм(7.5)', 'odd': '1.70', 'value': '+9.94%'}
+2025-09-10 13:56:36,705 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'DoxxBet (SK)', 'sport': 'Футбол', 'date': '10/09 17:30', 'tournament': 'Slovakia - Cup', 'teams': 'FC Nadszeg – Slovan Bratislava', 'prediction': 'Тм(6.5)', 'odd': '1.53', 'value': '+9.94%'}
+2025-09-10 13:56:36,705 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'BetClic (FR)', 'sport': 'Футбол', 'date': '12/09 22:00', 'tournament': 'Espagne - Espagne LaLiga', 'teams': 'Séville – Elche', 'prediction': 'Тм(6.5) - удар в створ', 'odd': '3.00', 'value': '+9.93%'}
+2025-09-10 13:56:36,706 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Tennisi', 'sport': 'Теннис', 'date': '11/09 01:00', 'tournament': 'Теннис :: WTA 500. Гвадалахара. Hard. Пары', 'teams': 'Козырева М./Шиманович И. – Никулеску М./Осорио Серрано М.', 'prediction': 'Ф2(+2.5)', 'odd': '1.93', 'value': '+9.93%'}
+2025-09-10 13:56:36,706 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '12/09 21:30', 'tournament': 'Польша - Polish Ekstraklasa', 'teams': 'Lech Poznan – Zaglebie Lubin', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '61.00', 'value': '+9.93%'}
+2025-09-10 13:56:36,706 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'AccessBet', 'sport': 'Футбол', 'date': '13/09 14:35', 'tournament': 'China - Chinese Super League', 'teams': 'Qingdao West Coast FC – Zhejiang Professional FC', 'prediction': 'Тб(4.5) 1-я команда', 'odd': '40.00', 'value': '+9.93%'}
+2025-09-10 13:56:36,748 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 13:56:36,749 - __main__ - INFO - Следующий запуск: 2025-09-10 13:57:08
+2025-09-10 13:56:39,729 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
+2025-09-10 13:56:39,839 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 13:56:39,839 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:54:55 MSK], next run at: 2025-09-10 13:54:55 MSK)" executed successfully
+2025-09-10 13:56:39,840 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
+2025-09-10 13:56:39,840 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
+2025-09-10 13:56:51,005 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8068867993)
+2025-09-10 13:57:08,750 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 13:57:08,751 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:57:08 MSK], next run at: 2025-09-10 13:57:08 MSK)" (scheduled at 2025-09-10 13:57:08.748600+03:00)
+2025-09-10 13:57:08,752 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 13:57:08,753 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 13:57:09,025 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:57:09,129 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:57:09,227 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 13:57:11,220 - parser - INFO - Куки успешно загружены.
+2025-09-10 13:57:16,941 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
+2025-09-10 13:57:16,941 - parser - INFO - Сессия успешно восстановлена с помощью куки.
+2025-09-10 13:57:16,999 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
+2025-09-10 13:57:24,232 - parser - INFO - Имитация скроллинга страницы.
+2025-09-10 13:57:29,181 - parser - INFO - Начало парсинга таблицы...
+2025-09-10 13:57:29,205 - parser - INFO - Найдено 25 строк в таблице для парсинга.
+2025-09-10 13:57:29,995 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:57:30,292 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:57:30,983 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:57:31,233 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:57:31,497 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:57:31,789 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:57:32,453 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: 'ы'
+2025-09-10 13:57:33,440 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:57:34,790 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:57:35,138 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:57:36,840 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:57:37,588 - parser - INFO - Успешно спарсено 13 прогнозов.
+2025-09-10 13:57:37,588 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'SuperBet (BR)', 'sport': 'Футбол', 'date': '14/09 18:00', 'tournament': 'Romênia - Romênia - SuperLiga', 'teams': 'Universitatea Craiova – Farul Constanta', 'prediction': 'Тб(10.5) - угловые', 'odd': '2.25', 'value': '+10.0%'}
+2025-09-10 13:57:37,589 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '13/09 22:00', 'tournament': 'Бразилия - Brazilian Serie A', 'teams': 'Gremio – Mirassol', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '46.00', 'value': '+10.0%'}
+2025-09-10 13:57:37,589 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Casa Pariurilor (RO)', 'sport': 'Футзал', 'date': '10/09 19:30', 'tournament': 'Poland - 1.Poland', 'teams': 'GI Malepszy Leszno – Eurobus Przemysl', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.01', 'value': '+10.0%'}
+2025-09-10 13:57:37,590 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'TippmixPro (HU)', 'sport': 'Баскетбол', 'date': '10/09 21:00', 'tournament': 'Europe - EuroBasket 2025', 'teams': 'Germany – Slovenia', 'prediction': 'Тм(85.5) ОТ 1-я команда', 'odd': '6.00', 'value': '+10.0%'}
+2025-09-10 13:57:37,590 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'CBet (LT)', 'sport': 'Баскетбол', 'date': '10/09 17:00', 'tournament': 'Europe - Eurobasket', 'teams': 'Finland – Georgia', 'prediction': 'Тб(176.5) ОТ', 'odd': '5.20', 'value': '+10.0%'}
+2025-09-10 13:57:37,591 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'W88Es', 'sport': 'Футбол', 'date': '10/09 22:00', 'tournament': 'Scotland - Scotland Fifth League', 'teams': 'Buckie Thistle – Clachnacuddin', 'prediction': 'Тм(1.5)', 'odd': '6.50', 'value': '+9.95%'}
+2025-09-10 13:57:37,591 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Crocobet', 'sport': 'Футзал', 'date': '10/09 19:00', 'tournament': 'Польша - Ekstraklasa', 'teams': 'Wks Slask Wroclaw – Пяст Гливице', 'prediction': 'Тм(7.5)', 'odd': '1.70', 'value': '+9.94%'}
+2025-09-10 13:57:37,592 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'BetClic (FR)', 'sport': 'Футбол', 'date': '12/09 22:00', 'tournament': 'Espagne - Espagne LaLiga', 'teams': 'Séville – Elche', 'prediction': 'Тм(6.5) - удар в створ', 'odd': '3.00', 'value': '+9.93%'}
+2025-09-10 13:57:37,592 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Tennisi', 'sport': 'Теннис', 'date': '11/09 01:00', 'tournament': 'Теннис :: WTA 500. Гвадалахара. Hard. Пары', 'teams': 'Козырева М./Шиманович И. – Никулеску М./Осорио Серрано М.', 'prediction': 'Ф2(+2.5)', 'odd': '1.93', 'value': '+9.93%'}
+2025-09-10 13:57:37,593 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '12/09 21:30', 'tournament': 'Польша - Polish Ekstraklasa', 'teams': 'Lech Poznan – Zaglebie Lubin', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '61.00', 'value': '+9.93%'}
+2025-09-10 13:57:37,593 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'AccessBet', 'sport': 'Футбол', 'date': '13/09 14:35', 'tournament': 'China - Chinese Super League', 'teams': 'Qingdao West Coast FC – Zhejiang Professional FC', 'prediction': 'Тб(4.5) 1-я команда', 'odd': '40.00', 'value': '+9.93%'}
+2025-09-10 13:57:37,594 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Parimatch (KZ)', 'sport': 'Футбол', 'date': '13/09 19:00', 'tournament': 'Германия - Оберлига', 'teams': 'Липпштадт – Гивенбек 1949', 'prediction': 'Тб(2) 1-й период', 'odd': '2.58', 'value': '+9.92%'}
+2025-09-10 13:57:37,595 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Betcris', 'sport': 'Хоккей', 'date': '10/09 19:00', 'tournament': 'EUROPE - ICE HOCKEY - RUSSIA MHL', 'teams': 'Akademiya SKA-Junior Saint Petersburg – Amurskie Tigry Khabarovsk', 'prediction': 'Тб(6)', 'odd': '2.42', 'value': '+9.92%'}
+2025-09-10 13:57:37,613 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 13:57:37,613 - __main__ - INFO - Следующий запуск: 2025-09-10 13:58:06
+2025-09-10 13:57:40,317 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
+2025-09-10 13:57:40,414 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 13:57:40,414 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:57:08 MSK], next run at: 2025-09-10 13:57:08 MSK)" executed successfully
+2025-09-10 13:58:06,614 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 13:58:06,614 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:58:06 MSK], next run at: 2025-09-10 13:58:06 MSK)" (scheduled at 2025-09-10 13:58:06.613284+03:00)
+2025-09-10 13:58:06,616 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 13:58:06,616 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 13:58:06,901 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:58:07,028 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:58:07,125 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 13:58:09,133 - parser - INFO - Куки успешно загружены.
+2025-09-10 13:58:15,014 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
+2025-09-10 13:58:15,014 - parser - INFO - Сессия успешно восстановлена с помощью куки.
+2025-09-10 13:58:15,042 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
+2025-09-10 13:58:22,732 - parser - INFO - Имитация скроллинга страницы.
+2025-09-10 13:58:26,230 - parser - INFO - Начало парсинга таблицы...
+2025-09-10 13:58:26,253 - parser - INFO - Найдено 25 строк в таблице для парсинга.
+2025-09-10 13:58:26,393 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:26,492 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:26,584 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:58:26,679 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:26,761 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:58:26,975 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:58:27,071 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 13:58:27,161 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:27,363 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:27,449 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: 'ы'
+2025-09-10 13:58:27,640 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 13:58:27,857 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:58:27,968 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:28,308 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:28,514 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: '−2.5'
+2025-09-10 13:58:28,607 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 13:58:28,873 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:58:28,970 - parser - INFO - Успешно спарсено 7 прогнозов.
+2025-09-10 13:58:28,970 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '13/09 22:00', 'tournament': 'Бразилия - Brazilian Serie A', 'teams': 'Gremio – Mirassol', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '46.00', 'value': '+10.0%'}
+2025-09-10 13:58:28,971 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Casa Pariurilor (RO)', 'sport': 'Футзал', 'date': '10/09 19:30', 'tournament': 'Poland - 1.Poland', 'teams': 'GI Malepszy Leszno – Eurobus Przemysl', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.01', 'value': '+10.0%'}
+2025-09-10 13:58:28,971 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'CBet (LT)', 'sport': 'Баскетбол', 'date': '10/09 17:00', 'tournament': 'Europe - Eurobasket', 'teams': 'Finland – Georgia', 'prediction': 'Тб(176.5) ОТ', 'odd': '5.20', 'value': '+10.0%'}
+2025-09-10 13:58:28,972 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'PokerStars (UK)', 'sport': 'Футбол', 'date': '10/09 17:30', 'tournament': 'Croatian Cup', 'teams': 'Libertas – HNK Gorica', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.20', 'value': '+10.0%'}
+2025-09-10 13:58:28,972 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'W88Es', 'sport': 'Футбол', 'date': '10/09 22:00', 'tournament': 'Scotland - Scotland Fifth League', 'teams': 'Buckie Thistle – Clachnacuddin', 'prediction': 'Тм(1.5)', 'odd': '6.50', 'value': '+9.95%'}
+2025-09-10 13:58:28,972 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Bodog (EU)', 'sport': 'Футбол', 'date': '10/09 20:00', 'tournament': 'Europe - Finland - Finnish Cup', 'teams': 'KuPS – FF Jaro', 'prediction': 'Тб(1) 1-й период', 'odd': '1.61', 'value': '+9.95%'}
+2025-09-10 13:58:28,973 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Crocobet', 'sport': 'Футзал', 'date': '10/09 19:00', 'tournament': 'Польша - Ekstraklasa', 'teams': 'Wks Slask Wroclaw – Пяст Гливице', 'prediction': 'Тм(7.5)', 'odd': '1.70', 'value': '+9.94%'}
+2025-09-10 13:58:28,983 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 13:58:28,983 - __main__ - INFO - Следующий запуск: 2025-09-10 13:58:47
+2025-09-10 13:58:31,317 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
+2025-09-10 13:58:31,485 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 13:58:31,485 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:58:06 MSK], next run at: 2025-09-10 13:58:06 MSK)" executed successfully
+2025-09-10 13:58:47,984 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 13:58:47,984 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:58:47 MSK], next run at: 2025-09-10 13:58:47 MSK)" (scheduled at 2025-09-10 13:58:47.982837+03:00)
+2025-09-10 13:58:47,985 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 13:58:47,986 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 13:58:48,274 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:58:48,406 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:58:49,013 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 13:58:51,172 - parser - INFO - Куки успешно загружены.
+2025-09-10 13:58:56,448 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
+2025-09-10 13:58:56,448 - parser - INFO - Сессия успешно восстановлена с помощью куки.
+2025-09-10 13:58:56,478 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
+2025-09-10 13:59:06,486 - parser - INFO - Имитация скроллинга страницы.
+2025-09-10 13:59:08,930 - parser - INFO - Начало парсинга таблицы...
+2025-09-10 13:59:08,953 - parser - INFO - Найдено 25 строк в таблице для парсинга.
+2025-09-10 13:59:09,080 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:59:09,173 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:09,266 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:59:09,351 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:09,435 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:59:09,521 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:09,604 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:09,845 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:09,929 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: 'ы'
+2025-09-10 13:59:10,129 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 13:59:10,218 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:59:10,306 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:10,623 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 13:59:10,704 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:11,236 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 13:59:11,323 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 13:59:11,417 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 13:59:11,418 - parser - INFO - Успешно спарсено 7 прогнозов.
+2025-09-10 13:59:11,418 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Casa Pariurilor (RO)', 'sport': 'Футзал', 'date': '10/09 19:30', 'tournament': 'Poland - 1.Poland', 'teams': 'GI Malepszy Leszno – Eurobus Przemysl', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.01', 'value': '+10.0%'}
+2025-09-10 13:59:11,418 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'CBet (LT)', 'sport': 'Баскетбол', 'date': '10/09 17:00', 'tournament': 'Europe - Eurobasket', 'teams': 'Finland – Georgia', 'prediction': 'Тб(176.5) ОТ', 'odd': '5.20', 'value': '+10.0%'}
+2025-09-10 13:59:11,419 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'W88Es', 'sport': 'Футбол', 'date': '10/09 22:00', 'tournament': 'Scotland - Scotland Fifth League', 'teams': 'Buckie Thistle – Clachnacuddin', 'prediction': 'Тм(1.5)', 'odd': '6.50', 'value': '+9.95%'}
+2025-09-10 13:59:11,419 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'PokerStars (UK)', 'sport': 'Футбол', 'date': '10/09 17:30', 'tournament': 'Croatian Cup', 'teams': 'Libertas – HNK Gorica', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.20', 'value': '+9.93%'}
+2025-09-10 13:59:11,420 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Tennisi', 'sport': 'Теннис', 'date': '11/09 01:00', 'tournament': 'Теннис :: WTA 500. Гвадалахара. Hard. Пары', 'teams': 'Козырева М./Шиманович И. – Никулеску М./Осорио Серрано М.', 'prediction': 'Ф2(+2.5)', 'odd': '1.93', 'value': '+9.93%'}
+2025-09-10 13:59:11,420 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '12/09 21:30', 'tournament': 'Польша - Polish Ekstraklasa', 'teams': 'Lech Poznan – Zaglebie Lubin', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '61.00', 'value': '+9.93%'}
+2025-09-10 13:59:11,421 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'AccessBet', 'sport': 'Футбол', 'date': '13/09 14:35', 'tournament': 'China - Chinese Super League', 'teams': 'Qingdao West Coast FC – Zhejiang Professional FC', 'prediction': 'Тб(4.5) 1-я команда', 'odd': '40.00', 'value': '+9.93%'}
+2025-09-10 13:59:11,423 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 13:59:11,423 - __main__ - INFO - Следующий запуск: 2025-09-10 13:59:43
+2025-09-10 13:59:13,965 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
+2025-09-10 13:59:14,092 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 13:59:14,093 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:58:47 MSK], next run at: 2025-09-10 13:58:47 MSK)" executed successfully
+2025-09-10 13:59:43,425 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 13:59:43,425 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:59:43 MSK], next run at: 2025-09-10 13:59:43 MSK)" (scheduled at 2025-09-10 13:59:43.423089+03:00)
+2025-09-10 13:59:43,427 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 13:59:43,427 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 13:59:43,710 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:59:43,825 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 13:59:43,931 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 13:59:45,897 - parser - INFO - Куки успешно загружены.
+2025-09-10 13:59:51,716 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
+2025-09-10 13:59:51,716 - parser - INFO - Сессия успешно восстановлена с помощью куки.
+2025-09-10 13:59:51,744 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
+2025-09-10 14:00:00,540 - parser - INFO - Имитация скроллинга страницы.
+2025-09-10 14:00:03,223 - parser - INFO - Начало парсинга таблицы...
+2025-09-10 14:00:03,246 - parser - INFO - Найдено 25 строк в таблице для парсинга.
+2025-09-10 14:00:03,376 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:03,474 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:03,590 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:03,674 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:03,774 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:03,871 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:03,957 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:04,190 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:04,278 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: 'ы'
+2025-09-10 14:00:04,370 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:04,569 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 14:00:04,670 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 14:00:04,757 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:04,850 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:04,953 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:05,149 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:05,244 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:05,334 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:05,789 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:05,790 - parser - INFO - Успешно спарсено 5 прогнозов.
+2025-09-10 14:00:05,790 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Casa Pariurilor (RO)', 'sport': 'Футзал', 'date': '10/09 19:30', 'tournament': 'Poland - 1.Poland', 'teams': 'GI Malepszy Leszno – Eurobus Przemysl', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.01', 'value': '+10.0%'}
+2025-09-10 14:00:05,791 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'W88Es', 'sport': 'Футбол', 'date': '10/09 22:00', 'tournament': 'Scotland - Scotland Fifth League', 'teams': 'Buckie Thistle – Clachnacuddin', 'prediction': 'Тм(1.5)', 'odd': '6.50', 'value': '+9.95%'}
+2025-09-10 14:00:05,791 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Tennisi', 'sport': 'Теннис', 'date': '11/09 01:00', 'tournament': 'Теннис :: WTA 500. Гвадалахара. Hard. Пары', 'teams': 'Козырева М./Шиманович И. – Никулеску М./Осорио Серрано М.', 'prediction': 'Ф2(+2.5)', 'odd': '1.93', 'value': '+9.93%'}
+2025-09-10 14:00:05,792 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '12/09 21:30', 'tournament': 'Польша - Polish Ekstraklasa', 'teams': 'Lech Poznan – Zaglebie Lubin', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '61.00', 'value': '+9.93%'}
+2025-09-10 14:00:05,792 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'AccessBet', 'sport': 'Футбол', 'date': '13/09 14:35', 'tournament': 'China - Chinese Super League', 'teams': 'Qingdao West Coast FC – Zhejiang Professional FC', 'prediction': 'Тб(4.5) 1-я команда', 'odd': '40.00', 'value': '+9.93%'}
+2025-09-10 14:00:05,795 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 14:00:05,795 - __main__ - INFO - Следующий запуск: 2025-09-10 14:00:22
+2025-09-10 14:00:08,218 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
+2025-09-10 14:00:08,355 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 14:00:08,356 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:59:43 MSK], next run at: 2025-09-10 13:59:43 MSK)" executed successfully
+2025-09-10 14:00:22,795 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 14:00:22,796 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 14:00:22 MSK], next run at: 2025-09-10 14:00:22 MSK)" (scheduled at 2025-09-10 14:00:22.795017+03:00)
+2025-09-10 14:00:22,797 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 14:00:22,797 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 14:00:23,083 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 14:00:23,234 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 14:00:23,338 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 14:00:25,337 - parser - INFO - Куки успешно загружены.
+2025-09-10 14:00:30,597 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
+2025-09-10 14:00:30,597 - parser - INFO - Сессия успешно восстановлена с помощью куки.
+2025-09-10 14:00:30,627 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
+2025-09-10 14:00:40,253 - parser - INFO - Имитация скроллинга страницы.
+2025-09-10 14:00:43,290 - parser - INFO - Начало парсинга таблицы...
+2025-09-10 14:00:43,314 - parser - INFO - Найдено 25 строк в таблице для парсинга.
+2025-09-10 14:00:43,440 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:43,546 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:43,639 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:43,725 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:43,822 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:43,918 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:44,142 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:44,228 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: 'ы'
+2025-09-10 14:00:44,488 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:44,574 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 14:00:44,663 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 14:00:44,752 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:44,841 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:44,921 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:45,107 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:45,180 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:45,588 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ''
+2025-09-10 14:00:45,680 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':1'
+2025-09-10 14:00:45,771 - parser - WARNING - Не удалось обработать строку таблицы: could not convert string to float: ':0'
+2025-09-10 14:00:45,771 - parser - INFO - Успешно спарсено 5 прогнозов.
+2025-09-10 14:00:45,771 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Casa Pariurilor (RO)', 'sport': 'Футзал', 'date': '10/09 19:30', 'tournament': 'Poland - 1.Poland', 'teams': 'GI Malepszy Leszno – Eurobus Przemysl', 'prediction': 'Тб(2.5) 1-й период', 'odd': '2.01', 'value': '+10.0%'}
+2025-09-10 14:00:45,772 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'W88Es', 'sport': 'Футбол', 'date': '10/09 22:00', 'tournament': 'Scotland - Scotland Fifth League', 'teams': 'Buckie Thistle – Clachnacuddin', 'prediction': 'Тм(1.5)', 'odd': '6.50', 'value': '+9.95%'}
+2025-09-10 14:00:45,773 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'Tennisi', 'sport': 'Теннис', 'date': '11/09 01:00', 'tournament': 'Теннис :: WTA 500. Гвадалахара. Hard. Пары', 'teams': 'Козырева М./Шиманович И. – Никулеску М./Осорио Серрано М.', 'prediction': 'Ф2(+2.5)', 'odd': '1.93', 'value': '+9.93%'}
+2025-09-10 14:00:45,773 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': '888sport', 'sport': 'Футбол', 'date': '12/09 21:30', 'tournament': 'Польша - Polish Ekstraklasa', 'teams': 'Lech Poznan – Zaglebie Lubin', 'prediction': 'Тб(2.5) 1-й период 2-я команда', 'odd': '61.00', 'value': '+9.93%'}
+2025-09-10 14:00:45,774 - __main__ - INFO - [FILTER TEST] Bypassing filter, accepting all predictions: {'bookmaker': 'AccessBet', 'sport': 'Футбол', 'date': '13/09 14:35', 'tournament': 'China - Chinese Super League', 'teams': 'Qingdao West Coast FC – Zhejiang Professional FC', 'prediction': 'Тб(4.5) 1-я команда', 'odd': '40.00', 'value': '+9.93%'}
+2025-09-10 14:00:45,776 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 14:00:45,777 - __main__ - INFO - Следующий запуск: 2025-09-10 14:01:08
+2025-09-10 14:00:48,736 - parser - INFO - Выполнен выход из системы перед закрытием драйвера.
+2025-09-10 14:00:48,865 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 14:00:48,865 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 14:00:22 MSK], next run at: 2025-09-10 14:00:22 MSK)" executed successfully
+2025-09-10 14:01:08,777 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 14:01:08,778 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 14:01:08 MSK], next run at: 2025-09-10 14:01:08 MSK)" (scheduled at 2025-09-10 14:01:08.776688+03:00)
+2025-09-10 14:01:08,779 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 14:01:08,779 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 14:01:09,059 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 14:01:09,186 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 14:01:09,303 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 14:01:11,368 - parser - INFO - Куки успешно загружены.
+2025-09-10 14:01:17,336 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11326f680>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00/elements
+2025-09-10 14:01:17,338 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11326f9b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00/elements
+2025-09-10 14:01:17,339 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11326fce0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00/elements
+2025-09-10 14:01:17,340 - parser - ERROR - Ошибка при восстановлении сессии: HTTPConnectionPool(host='localhost', port=59902): Max retries exceeded with url: /session/becd26e7d1e330c5902ca81a4b6a3e00/elements (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b8050>: Failed to establish a new connection: [Errno 61] Connection refused'))
 Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
-    response = await self.feed_update(bot, update, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
-    response = await self.update.wrap_outer_middleware(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
     )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
-    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
-    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
-    return await self._propagate_event(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        observer=observer, update_type=update_type, event=telegram_event, **data
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
-    response = await observer.trigger(event, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 494, in process_subscription_days
-    database.update_subscription(user_id, days, end_date)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: update_subscription() takes 2 positional arguments but 3 were given
-2025-09-10 11:51:03,982 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 11:51:03,982 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:51:03 MSK], next run at: 2025-09-10 11:51:03 MSK)" (scheduled at 2025-09-10 11:51:03.981920+03:00)
-2025-09-10 11:51:03,983 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:51:03,983 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:51:03 MSK], next run at: 2025-09-10 11:51:03 MSK)" executed successfully
-2025-09-10 11:52:51,973 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 11:52:51,974 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:52:51,974 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 11:52:55,245 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:52:55,246 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:52:55,246 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:52:55,246 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:52:55,269 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:52:55,270 - __main__ - INFO - Следующий запуск: 2025-09-10 11:53:13
-2025-09-10 11:52:55,270 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 11:52:55,270 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 11:52:55,270 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 11:52:55,439 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:53:02,305 - aiogram.event - INFO - Update id=951930615 is handled. Duration 192 ms by bot id=8068867993
-2025-09-10 11:53:05,457 - aiogram.event - INFO - Update id=951930616 is handled. Duration 212 ms by bot id=8068867993
-2025-09-10 11:53:06,990 - aiogram.event - INFO - Update id=951930617 is handled. Duration 328 ms by bot id=8068867993
-2025-09-10 11:53:07,769 - aiogram.event - INFO - Update id=951930618 is handled. Duration 256 ms by bot id=8068867993
-2025-09-10 11:53:08,188 - aiogram.event - INFO - Update id=951930619 is not handled. Duration 3 ms by bot id=8068867993
-2025-09-10 11:53:08,188 - aiogram.event - ERROR - Cause exception while process update id=951930619 by bot id=8068867993
-TypeError: unsupported type for timedelta days component: str
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
-    response = await self.feed_update(bot, update, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
-    response = await self.update.wrap_outer_middleware(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
-    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
-    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
-    return await self._propagate_event(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        observer=observer, update_type=update_type, event=telegram_event, **data
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
-    response = await observer.trigger(event, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 494, in process_subscription_days
-    database.update_subscription(user_id, end_date.isoformat())
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/database.py", line 166, in update_subscription
-    end_date = datetime.now() + timedelta(days=days)
-                                ~~~~~~~~~^^^^^^^^^^^
-TypeError: unsupported type for timedelta days component: str
-2025-09-10 11:53:13,270 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 11:53:13,271 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:53:13 MSK], next run at: 2025-09-10 11:53:13 MSK)" (scheduled at 2025-09-10 11:53:13.269757+03:00)
-2025-09-10 11:53:13,272 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:53:13,272 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:53:13 MSK], next run at: 2025-09-10 11:53:13 MSK)" executed successfully
-2025-09-10 11:55:37,229 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 11:55:37,230 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:55:37,230 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 11:55:37,414 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 11:55:41,778 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:55:41,780 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:55:41,780 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:55:41,780 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:55:41,813 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 11:55:41,813 - __main__ - INFO - Следующий запуск: 2025-09-10 11:55:59
-2025-09-10 11:55:41,814 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 11:55:41,814 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 11:55:41,814 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 11:55:41,995 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 11:55:42,703 - aiogram.event - INFO - Update id=951930620 is handled. Duration 222 ms by bot id=8068867993
-2025-09-10 11:55:44,295 - aiogram.event - INFO - Update id=951930621 is handled. Duration 176 ms by bot id=8068867993
-2025-09-10 11:55:45,281 - aiogram.event - INFO - Update id=951930622 is handled. Duration 157 ms by bot id=8068867993
-2025-09-10 11:55:46,089 - aiogram.event - INFO - Update id=951930623 is handled. Duration 137 ms by bot id=8068867993
-2025-09-10 11:55:47,621 - aiogram.event - INFO - Update id=951930624 is not handled. Duration 3 ms by bot id=8068867993
-2025-09-10 11:55:47,622 - aiogram.event - ERROR - Cause exception while process update id=951930624 by bot id=8068867993
-TypeError: unsupported type for timedelta days component: datetime.datetime
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
-    response = await self.feed_update(bot, update, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
-    response = await self.update.wrap_outer_middleware(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
-    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
-    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
-    return await self._propagate_event(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        observer=observer, update_type=update_type, event=telegram_event, **data
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
-    response = await observer.trigger(event, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 497, in process_subscription_days
-    database.update_subscription(user_id, end_date)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/database.py", line 166, in update_subscription
-    end_date = datetime.now() + timedelta(days=days)
-                                ~~~~~~~~~^^^^^^^^^^^
-TypeError: unsupported type for timedelta days component: datetime.datetime
-2025-09-10 11:55:59,813 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 11:55:59,814 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:55:59 MSK], next run at: 2025-09-10 11:55:59 MSK)" (scheduled at 2025-09-10 11:55:59.813288+03:00)
-2025-09-10 11:55:59,815 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 11:55:59,815 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 11:55:59 MSK], next run at: 2025-09-10 11:55:59 MSK)" executed successfully
-2025-09-10 12:00:32,770 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:00:32,773 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:00:32,774 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 12:00:38,680 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:00:38,682 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:00:38,682 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:00:38,682 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:00:38,727 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:00:38,727 - __main__ - INFO - Следующий запуск: 2025-09-10 12:01:06
-2025-09-10 12:00:38,728 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 12:00:38,728 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 12:00:38,729 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 12:00:38,930 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:01:06,727 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 12:01:06,727 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:01:06 MSK], next run at: 2025-09-10 12:01:06 MSK)" (scheduled at 2025-09-10 12:01:06.727038+03:00)
-2025-09-10 12:01:06,729 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:01:06,729 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:01:06 MSK], next run at: 2025-09-10 12:01:06 MSK)" executed successfully
-2025-09-10 12:01:18,742 - aiogram.event - INFO - Update id=951930625 is handled. Duration 217 ms by bot id=8068867993
-2025-09-10 12:01:20,438 - aiogram.event - INFO - Update id=951930626 is handled. Duration 158 ms by bot id=8068867993
-2025-09-10 12:01:22,120 - aiogram.event - INFO - Update id=951930627 is handled. Duration 348 ms by bot id=8068867993
-2025-09-10 12:01:22,921 - aiogram.event - INFO - Update id=951930628 is handled. Duration 142 ms by bot id=8068867993
-2025-09-10 12:01:23,450 - aiogram.event - INFO - Update id=951930629 is not handled. Duration 3 ms by bot id=8068867993
-2025-09-10 12:01:23,451 - aiogram.event - ERROR - Cause exception while process update id=951930629 by bot id=8068867993
-TypeError: unsupported type for timedelta days component: str
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
-    response = await self.feed_update(bot, update, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
-    response = await self.update.wrap_outer_middleware(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
-    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
-    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
-    return await self._propagate_event(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        observer=observer, update_type=update_type, event=telegram_event, **data
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
-    response = await observer.trigger(event, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 496, in process_subscription_days
-    database.update_subscription(user_id, end_date.isoformat())
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/database.py", line 166, in update_subscription
-    end_date = datetime.now() + timedelta(days=days)
-                                ~~~~~~~~~^^^^^^^^^^^
-TypeError: unsupported type for timedelta days component: str
-2025-09-10 12:33:37,472 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:33:37,478 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:33:37,482 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 12:33:37,676 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:33:48,796 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:33:48,801 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:33:48,803 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:33:48,803 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:33:48,910 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:33:48,910 - __main__ - INFO - Следующий запуск: 2025-09-10 12:34:17
-2025-09-10 12:33:48,912 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 12:33:48,912 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 12:33:48,913 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 12:33:49,124 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:33:59,657 - aiogram.event - INFO - Update id=951930630 is handled. Duration 230 ms by bot id=8068867993
-2025-09-10 12:34:16,792 - aiogram.event - INFO - Update id=951930631 is handled. Duration 309 ms by bot id=8068867993
-2025-09-10 12:34:17,913 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 12:34:17,920 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:34:17 MSK], next run at: 2025-09-10 12:34:17 MSK)" (scheduled at 2025-09-10 12:34:17.910139+03:00)
-2025-09-10 12:34:17,923 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:34:17,923 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:34:17 MSK], next run at: 2025-09-10 12:34:17 MSK)" executed successfully
-2025-09-10 12:34:18,200 - aiogram.event - INFO - Update id=951930632 is handled. Duration 655 ms by bot id=8068867993
-2025-09-10 12:34:19,536 - aiogram.event - INFO - Update id=951930633 is handled. Duration 157 ms by bot id=8068867993
-2025-09-10 12:34:20,244 - aiogram.event - INFO - Update id=951930634 is not handled. Duration 7 ms by bot id=8068867993
-2025-09-10 12:34:20,244 - aiogram.event - ERROR - Cause exception while process update id=951930634 by bot id=8068867993
-OperationalError: no such column: is_subscribed
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
-    response = await self.feed_update(bot, update, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
-    response = await self.update.wrap_outer_middleware(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
-    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
-    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
-    return await self._propagate_event(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        observer=observer, update_type=update_type, event=telegram_event, **data
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
-    response = await observer.trigger(event, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 496, in process_subscription_days
-    database.update_subscription(user_id, end_date.isoformat())
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/database.py", line 175, in update_subscription
-    conn.execute(
-    ~~~~~~~~~~~~^
-        "UPDATE users SET end_date = ?, is_subscribed = 1 WHERE user_id = ?",
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        (end_date_str, user_id)
-        ^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-sqlite3.OperationalError: no such column: is_subscribed
-2025-09-10 12:34:43,858 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:34:43,860 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:34:43,860 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 12:34:44,058 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:34:52,626 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:34:52,629 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:34:52,629 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:34:52,630 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:34:52,705 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:34:52,705 - __main__ - INFO - Следующий запуск: 2025-09-10 12:35:19
-2025-09-10 12:34:52,707 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 12:34:52,707 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 12:34:52,708 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 12:34:52,906 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:34:53,203 - aiogram.event - INFO - Update id=951930635 is handled. Duration 233 ms by bot id=8068867993
-2025-09-10 12:34:54,733 - aiogram.event - INFO - Update id=951930636 is handled. Duration 171 ms by bot id=8068867993
-2025-09-10 12:34:55,969 - aiogram.event - INFO - Update id=951930637 is handled. Duration 335 ms by bot id=8068867993
-2025-09-10 12:34:57,021 - aiogram.event - INFO - Update id=951930638 is handled. Duration 235 ms by bot id=8068867993
-2025-09-10 12:34:57,999 - aiogram.event - INFO - Update id=951930639 is not handled. Duration 6 ms by bot id=8068867993
-2025-09-10 12:34:57,999 - aiogram.event - ERROR - Cause exception while process update id=951930639 by bot id=8068867993
-OperationalError: no such column: is_subscribed
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
-    response = await self.feed_update(bot, update, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
-    response = await self.update.wrap_outer_middleware(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
-    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
-    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
-    return await self._propagate_event(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        observer=observer, update_type=update_type, event=telegram_event, **data
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
-    response = await observer.trigger(event, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 493, in process_subscription_days
-    database.update_subscription(user_id, days)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/database.py", line 175, in update_subscription
-    conn.execute(
-    ~~~~~~~~~~~~^
-        "UPDATE users SET end_date = ?, is_subscribed = 1 WHERE user_id = ?",
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        (end_date_str, user_id)
-        ^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-sqlite3.OperationalError: no such column: is_subscribed
-2025-09-10 12:35:11,664 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:35:11,665 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:35:11,665 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 12:35:21,363 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:35:21,369 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:35:21,370 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:35:21,371 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:35:21,464 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:35:21,465 - __main__ - INFO - Следующий запуск: 2025-09-10 12:35:57
-2025-09-10 12:35:21,466 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 12:35:21,467 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 12:35:21,468 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 12:35:21,648 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:35:22,042 - aiogram.event - INFO - Update id=951930640 is handled. Duration 326 ms by bot id=8068867993
-2025-09-10 12:35:24,805 - aiogram.event - INFO - Update id=951930641 is handled. Duration 244 ms by bot id=8068867993
-2025-09-10 12:35:25,673 - aiogram.event - INFO - Update id=951930642 is handled. Duration 135 ms by bot id=8068867993
-2025-09-10 12:35:26,612 - aiogram.event - INFO - Update id=951930643 is handled. Duration 207 ms by bot id=8068867993
-2025-09-10 12:35:27,082 - aiogram.event - INFO - Update id=951930644 is not handled. Duration 6 ms by bot id=8068867993
-2025-09-10 12:35:27,083 - aiogram.event - ERROR - Cause exception while process update id=951930644 by bot id=8068867993
-OperationalError: no such column: is_subscribed
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 309, in _process_update
-    response = await self.feed_update(bot, update, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 158, in feed_update
-    response = await self.update.wrap_outer_middleware(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    ...<7 lines>...
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 56, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/fsm/middleware.py", line 42, in __call__
-    return await handler(event, data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/dispatcher.py", line 276, in _listen_update
-    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 146, in propagate_event
-    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 141, in _wrapped
-    return await self._propagate_event(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        observer=observer, update_type=update_type, event=telegram_event, **data
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/router.py", line 166, in _propagate_event
-    response = await observer.trigger(event, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/telegram.py", line 121, in trigger
-    return await wrapped_inner(event, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/aiogram/dispatcher/event/handler.py", line 43, in call
-    return await wrapped()
-           ^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/main.py", line 493, in process_subscription_days
-    database.update_subscription(user_id, days)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/database.py", line 175, in update_subscription
-    conn.execute(
-    ~~~~~~~~~~~~^
-        "UPDATE users SET end_date = ?, is_subscribed = 1 WHERE user_id = ?",
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        (end_date_str, user_id)
-        ^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-sqlite3.OperationalError: no such column: is_subscribed
-2025-09-10 12:35:57,466 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 12:35:57,468 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:35:57 MSK], next run at: 2025-09-10 12:35:57 MSK)" (scheduled at 2025-09-10 12:35:57.464397+03:00)
-2025-09-10 12:35:57,471 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:35:57,472 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:35:57 MSK], next run at: 2025-09-10 12:35:57 MSK)" executed successfully
-2025-09-10 12:36:03,010 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:36:03,012 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:36:03,013 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 12:36:16,864 - __main__ - ERROR - Логин/пароль для парсера не найдены в настройки.
-2025-09-10 12:36:16,868 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:36:16,869 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:36:16,869 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:36:16,994 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:36:16,994 - __main__ - INFO - Следующий запуск: 2025-09-10 12:36:49
-2025-09-10 12:36:16,996 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 12:36:16,996 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 12:36:16,997 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 12:36:17,221 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:36:21,361 - aiogram.event - INFO - Update id=951930645 is handled. Duration 230 ms by bot id=8068867993
-2025-09-10 12:36:23,272 - aiogram.event - INFO - Update id=951930646 is handled. Duration 237 ms by bot id=8068867993
-2025-09-10 12:36:25,297 - aiogram.event - INFO - Update id=951930647 is handled. Duration 337 ms by bot id=8068867993
-2025-09-10 12:36:26,395 - aiogram.event - INFO - Update id=951930648 is handled. Duration 162 ms by bot id=8068867993
-2025-09-10 12:36:27,133 - aiogram.event - INFO - Update id=951930649 is handled. Duration 236 ms by bot id=8068867993
-2025-09-10 12:36:30,607 - aiogram.event - INFO - Update id=951930650 is handled. Duration 152 ms by bot id=8068867993
-2025-09-10 12:36:31,472 - aiogram.event - INFO - Update id=951930651 is handled. Duration 161 ms by bot id=8068867993
-2025-09-10 12:36:41,321 - aiogram.event - INFO - Update id=951930652 is handled. Duration 96 ms by bot id=8068867993
-2025-09-10 12:36:43,797 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
-2025-09-10 12:36:43,882 - aiogram.event - INFO - Update id=951930653 is handled. Duration 179 ms by bot id=8068867993
-2025-09-10 12:36:48,844 - aiogram.event - INFO - Update id=951930654 is handled. Duration 148 ms by bot id=8068867993
-2025-09-10 12:36:49,848 - aiogram.event - INFO - Update id=951930655 is handled. Duration 256 ms by bot id=8068867993
-2025-09-10 12:36:49,995 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 12:36:49,996 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:36:49 MSK], next run at: 2025-09-10 12:36:49 MSK)" (scheduled at 2025-09-10 12:36:49.993718+03:00)
-2025-09-10 12:36:49,997 - WDM - INFO - ====== WebDriver manager ======
-2025-09-10 12:36:51,018 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 12:36:51,310 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 12:36:51,507 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
-2025-09-10 12:36:59,377 - parser - INFO - Куки успешно загружены.
-2025-09-10 12:37:05,748 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
-2025-09-10 12:37:05,748 - parser - INFO - Сессия успешно восстановлена с помощью куки.
-2025-09-10 12:37:05,847 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
-2025-09-10 12:37:15,581 - parser - INFO - Имитация скроллинга страницы.
-2025-09-10 12:37:18,985 - parser - INFO - Начало парсинга таблицы...
-2025-09-10 12:37:39,194 - parser - ERROR - Критическая ошибка в методе get_predictions: Message: 
-Stacktrace:
-0   chromedriver                        0x000000010c6c4028 chromedriver + 6361128
-1   chromedriver                        0x000000010c6bb72a chromedriver + 6326058
-2   chromedriver                        0x000000010c11bc20 chromedriver + 429088
-3   chromedriver                        0x000000010c16dd1b chromedriver + 765211
-4   chromedriver                        0x000000010c16dfe1 chromedriver + 765921
-5   chromedriver                        0x000000010c1bdf44 chromedriver + 1093444
-6   chromedriver                        0x000000010c193e2d chromedriver + 921133
-7   chromedriver                        0x000000010c1bb26e chromedriver + 1081966
-8   chromedriver                        0x000000010c193bd3 chromedriver + 920531
-9   chromedriver                        0x000000010c15f8ff chromedriver + 706815
-10  chromedriver                        0x000000010c160dc1 chromedriver + 712129
-11  chromedriver                        0x000000010c681fc0 chromedriver + 6090688
-12  chromedriver                        0x000000010c685e55 chromedriver + 6106709
-13  chromedriver                        0x000000010c65d287 chromedriver + 5939847
-14  chromedriver                        0x000000010c6868cf chromedriver + 6109391
-15  chromedriver                        0x000000010c64c5f4 chromedriver + 5871092
-16  chromedriver                        0x000000010c6a8a78 chromedriver + 6249080
-17  chromedriver                        0x000000010c6a8c3c chromedriver + 6249532
-18  chromedriver                        0x000000010c6bb301 chromedriver + 6324993
-19  libsystem_pthread.dylib             0x00007ff814b74e59 _pthread_start + 115
-20  libsystem_pthread.dylib             0x00007ff814b70857 thread_start + 15
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/parser.py", line 376, in get_predictions
-    WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.ID, 'valuebets-table')))
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 138, in until
-    raise TimeoutException(message, screen, stacktrace)
-selenium.common.exceptions.TimeoutException: Message: 
-Stacktrace:
-0   chromedriver                        0x000000010c6c4028 chromedriver + 6361128
-1   chromedriver                        0x000000010c6bb72a chromedriver + 6326058
-2   chromedriver                        0x000000010c11bc20 chromedriver + 429088
-3   chromedriver                        0x000000010c16dd1b chromedriver + 765211
-4   chromedriver                        0x000000010c16dfe1 chromedriver + 765921
-5   chromedriver                        0x000000010c1bdf44 chromedriver + 1093444
-6   chromedriver                        0x000000010c193e2d chromedriver + 921133
-7   chromedriver                        0x000000010c1bb26e chromedriver + 1081966
-8   chromedriver                        0x000000010c193bd3 chromedriver + 920531
-9   chromedriver                        0x000000010c15f8ff chromedriver + 706815
-10  chromedriver                        0x000000010c160dc1 chromedriver + 712129
-11  chromedriver                        0x000000010c681fc0 chromedriver + 6090688
-12  chromedriver                        0x000000010c685e55 chromedriver + 6106709
-13  chromedriver                        0x000000010c65d287 chromedriver + 5939847
-14  chromedriver                        0x000000010c6868cf chromedriver + 6109391
-15  chromedriver                        0x000000010c64c5f4 chromedriver + 5871092
-16  chromedriver                        0x000000010c6a8a78 chromedriver + 6249080
-17  chromedriver                        0x000000010c6a8c3c chromedriver + 6249532
-18  chromedriver                        0x000000010c6bb301 chromedriver + 6324993
-19  libsystem_pthread.dylib             0x00007ff814b74e59 _pthread_start + 115
-20  libsystem_pthread.dylib             0x00007ff814b70857 thread_start + 15
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [Errno 61] Connection refused
 
-2025-09-10 12:37:39,941 - parser - INFO - Скриншот сохранен: screenshots/critical_parser_error.png
-2025-09-10 12:37:40,242 - parser - INFO - WebDriver сессия успешно закрыта.
-2025-09-10 12:37:40,243 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:36:49 MSK], next run at: 2025-09-10 12:36:49 MSK)" executed successfully
-2025-09-10 12:37:40,564 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 12:37:40,564 - __main__ - INFO - Следующий запуск: 2025-09-10 12:38:07
-2025-09-10 12:37:40,711 - aiogram.event - INFO - Update id=951930656 is handled. Duration 445 ms by bot id=8068867993
-2025-09-10 12:37:47,400 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:37:47,401 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:37:47,401 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 12:38:04,687 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
-2025-09-10 12:38:04,692 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:38:04,693 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:38:04,693 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:38:04,816 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 12:38:04,816 - __main__ - INFO - Следующий запуск: 2025-09-10 12:38:39
-2025-09-10 12:38:04,819 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 12:38:04,819 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 12:38:04,820 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 12:38:05,039 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:38:05,591 - aiogram.event - INFO - Update id=951930657 is handled. Duration 469 ms by bot id=8068867993
-2025-09-10 12:38:07,429 - aiogram.event - INFO - Update id=951930658 is handled. Duration 181 ms by bot id=8068867993
-2025-09-10 12:38:08,644 - aiogram.event - INFO - Update id=951930659 is handled. Duration 187 ms by bot id=8068867993
-2025-09-10 12:38:10,459 - aiogram.event - INFO - Update id=951930660 is handled. Duration 214 ms by bot id=8068867993
-2025-09-10 12:38:11,469 - aiogram.event - INFO - Update id=951930661 is handled. Duration 172 ms by bot id=8068867993
-2025-09-10 12:38:12,467 - aiogram.event - INFO - Update id=951930662 is handled. Duration 176 ms by bot id=8068867993
-2025-09-10 12:38:39,817 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 12:38:39,818 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:38:39 MSK], next run at: 2025-09-10 12:38:39 MSK)" (scheduled at 2025-09-10 12:38:39.816031+03:00)
-2025-09-10 12:38:39,829 - WDM - INFO - ====== WebDriver manager ======
-2025-09-10 12:38:41,350 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 12:38:41,763 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 12:38:42,068 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
-2025-09-10 12:38:52,500 - parser - INFO - Куки успешно загружены.
-2025-09-10 12:39:01,291 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
-2025-09-10 12:39:01,292 - parser - INFO - Сессия успешно восстановлена с помощью куки.
-2025-09-10 12:39:01,486 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
-2025-09-10 12:39:11,128 - parser - INFO - Имитация скроллинга страницы.
-2025-09-10 12:39:14,302 - parser - INFO - Начало парсинга таблицы...
-2025-09-10 12:39:34,495 - parser - ERROR - Критическая ошибка в методе get_predictions: Message: 
-Stacktrace:
-0   chromedriver                        0x000000010fe2e028 chromedriver + 6361128
-1   chromedriver                        0x000000010fe2572a chromedriver + 6326058
-2   chromedriver                        0x000000010f885c20 chromedriver + 429088
-3   chromedriver                        0x000000010f8d7d1b chromedriver + 765211
-4   chromedriver                        0x000000010f8d7fe1 chromedriver + 765921
-5   chromedriver                        0x000000010f927f44 chromedriver + 1093444
-6   chromedriver                        0x000000010f8fde2d chromedriver + 921133
-7   chromedriver                        0x000000010f92526e chromedriver + 1081966
-8   chromedriver                        0x000000010f8fdbd3 chromedriver + 920531
-9   chromedriver                        0x000000010f8c98ff chromedriver + 706815
-10  chromedriver                        0x000000010f8cadc1 chromedriver + 712129
-11  chromedriver                        0x000000010fdebfc0 chromedriver + 6090688
-12  chromedriver                        0x000000010fdefe55 chromedriver + 6106709
-13  chromedriver                        0x000000010fdc7287 chromedriver + 5939847
-14  chromedriver                        0x000000010fdf08cf chromedriver + 6109391
-15  chromedriver                        0x000000010fdb65f4 chromedriver + 5871092
-16  chromedriver                        0x000000010fe12a78 chromedriver + 6249080
-17  chromedriver                        0x000000010fe12c3c chromedriver + 6249532
-18  chromedriver                        0x000000010fe25301 chromedriver + 6324993
-19  libsystem_pthread.dylib             0x00007ff814b74e59 _pthread_start + 115
-20  libsystem_pthread.dylib             0x00007ff814b70857 thread_start + 15
-Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/parser.py", line 376, in get_predictions
-    WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.ID, 'valuebets-table')))
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 138, in until
-    raise TimeoutException(message, screen, stacktrace)
-selenium.common.exceptions.TimeoutException: Message: 
-Stacktrace:
-0   chromedriver                        0x000000010fe2e028 chromedriver + 6361128
-1   chromedriver                        0x000000010fe2572a chromedriver + 6326058
-2   chromedriver                        0x000000010f885c20 chromedriver + 429088
-3   chromedriver                        0x000000010f8d7d1b chromedriver + 765211
-4   chromedriver                        0x000000010f8d7fe1 chromedriver + 765921
-5   chromedriver                        0x000000010f927f44 chromedriver + 1093444
-6   chromedriver                        0x000000010f8fde2d chromedriver + 921133
-7   chromedriver                        0x000000010f92526e chromedriver + 1081966
-8   chromedriver                        0x000000010f8fdbd3 chromedriver + 920531
-9   chromedriver                        0x000000010f8c98ff chromedriver + 706815
-10  chromedriver                        0x000000010f8cadc1 chromedriver + 712129
-11  chromedriver                        0x000000010fdebfc0 chromedriver + 6090688
-12  chromedriver                        0x000000010fdefe55 chromedriver + 6106709
-13  chromedriver                        0x000000010fdc7287 chromedriver + 5939847
-14  chromedriver                        0x000000010fdf08cf chromedriver + 6109391
-15  chromedriver                        0x000000010fdb65f4 chromedriver + 5871092
-16  chromedriver                        0x000000010fe12a78 chromedriver + 6249080
-17  chromedriver                        0x000000010fe12c3c chromedriver + 6249532
-18  chromedriver                        0x000000010fe25301 chromedriver + 6324993
-19  libsystem_pthread.dylib             0x00007ff814b74e59 _pthread_start + 115
-20  libsystem_pthread.dylib             0x00007ff814b70857 thread_start + 15
+The above exception was the direct cause of the following exception:
 
-2025-09-10 12:39:37,212 - parser - INFO - Скриншот сохранен: screenshots/critical_parser_error.png
-2025-09-10 12:39:37,851 - parser - INFO - WebDriver сессия успешно закрыта.
-2025-09-10 12:39:37,852 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 12:38:39 MSK], next run at: 2025-09-10 12:38:39 MSK)" executed successfully
-2025-09-10 12:39:37,930 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
-2025-09-10 12:39:37,930 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
-2025-09-10 12:39:45,960 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 12:39:45,989 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 12:39:45,993 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 13:16:04,148 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
-2025-09-10 13:16:04,155 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:16:04,156 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:16:04,157 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:16:04,335 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:16:04,335 - __main__ - INFO - Следующий запуск: 2025-09-10 13:16:17
-2025-09-10 13:16:04,338 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 13:16:04,338 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 13:16:04,339 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 13:16:04,582 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 13:16:17,336 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 13:16:17,337 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:16:17 MSK], next run at: 2025-09-10 13:16:17 MSK)" (scheduled at 2025-09-10 13:16:17.334938+03:00)
-2025-09-10 13:16:17,338 - WDM - INFO - ====== WebDriver manager ======
-2025-09-10 13:16:18,431 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 13:16:18,732 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 13:16:19,101 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
-2025-09-10 13:16:27,388 - parser - INFO - Куки успешно загружены.
-2025-09-10 13:16:34,943 - parser - INFO - Проверка авторизации: пользователь в системе (найдена кнопка 'Выйти').
-2025-09-10 13:16:34,943 - parser - INFO - Сессия успешно восстановлена с помощью куки.
-2025-09-10 13:16:35,060 - parser - INFO - Обновление таблицы путем нажатия кнопки 'Фильтровать'...
-2025-09-10 13:16:44,266 - parser - INFO - Имитация скроллинга страницы.
-2025-09-10 13:16:47,597 - parser - INFO - Начало парсинга таблицы...
-2025-09-10 13:17:07,758 - parser - ERROR - Критическая ошибка в методе get_predictions: Message: 
-Stacktrace:
-0   chromedriver                        0x0000000108d3e028 chromedriver + 6361128
-1   chromedriver                        0x0000000108d3572a chromedriver + 6326058
-2   chromedriver                        0x0000000108795c20 chromedriver + 429088
-3   chromedriver                        0x00000001087e7d1b chromedriver + 765211
-4   chromedriver                        0x00000001087e7fe1 chromedriver + 765921
-5   chromedriver                        0x0000000108837f44 chromedriver + 1093444
-6   chromedriver                        0x000000010880de2d chromedriver + 921133
-7   chromedriver                        0x000000010883526e chromedriver + 1081966
-8   chromedriver                        0x000000010880dbd3 chromedriver + 920531
-9   chromedriver                        0x00000001087d98ff chromedriver + 706815
-10  chromedriver                        0x00000001087dadc1 chromedriver + 712129
-11  chromedriver                        0x0000000108cfbfc0 chromedriver + 6090688
-12  chromedriver                        0x0000000108cffe55 chromedriver + 6106709
-13  chromedriver                        0x0000000108cd7287 chromedriver + 5939847
-14  chromedriver                        0x0000000108d008cf chromedriver + 6109391
-15  chromedriver                        0x0000000108cc65f4 chromedriver + 5871092
-16  chromedriver                        0x0000000108d22a78 chromedriver + 6249080
-17  chromedriver                        0x0000000108d22c3c chromedriver + 6249532
-18  chromedriver                        0x0000000108d35301 chromedriver + 6324993
-19  libsystem_pthread.dylib             0x00007ff814b74e59 _pthread_start + 115
-20  libsystem_pthread.dylib             0x00007ff814b70857 thread_start + 15
 Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/parser.py", line 376, in get_predictions
-    WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.ID, 'valuebets-table')))
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/support/wait.py", line 138, in until
-    raise TimeoutException(message, screen, stacktrace)
-selenium.common.exceptions.TimeoutException: Message: 
-Stacktrace:
-0   chromedriver                        0x0000000108d3e028 chromedriver + 6361128
-1   chromedriver                        0x0000000108d3572a chromedriver + 6326058
-2   chromedriver                        0x0000000108795c20 chromedriver + 429088
-3   chromedriver                        0x00000001087e7d1b chromedriver + 765211
-4   chromedriver                        0x00000001087e7fe1 chromedriver + 765921
-5   chromedriver                        0x0000000108837f44 chromedriver + 1093444
-6   chromedriver                        0x000000010880de2d chromedriver + 921133
-7   chromedriver                        0x000000010883526e chromedriver + 1081966
-8   chromedriver                        0x000000010880dbd3 chromedriver + 920531
-9   chromedriver                        0x00000001087d98ff chromedriver + 706815
-10  chromedriver                        0x00000001087dadc1 chromedriver + 712129
-11  chromedriver                        0x0000000108cfbfc0 chromedriver + 6090688
-12  chromedriver                        0x0000000108cffe55 chromedriver + 6106709
-13  chromedriver                        0x0000000108cd7287 chromedriver + 5939847
-14  chromedriver                        0x0000000108d008cf chromedriver + 6109391
-15  chromedriver                        0x0000000108cc65f4 chromedriver + 5871092
-16  chromedriver                        0x0000000108d22a78 chromedriver + 6249080
-17  chromedriver                        0x0000000108d22c3c chromedriver + 6249532
-18  chromedriver                        0x0000000108d35301 chromedriver + 6324993
-19  libsystem_pthread.dylib             0x00007ff814b74e59 _pthread_start + 115
-20  libsystem_pthread.dylib             0x00007ff814b70857 thread_start + 15
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x1133b8050>: Failed to establish a new connection: [Errno 61] Connection refused
 
-2025-09-10 13:17:08,430 - parser - INFO - Скриншот сохранен: screenshots/critical_parser_error.png
-2025-09-10 13:17:08,679 - parser - INFO - WebDriver сессия успешно закрыта.
-2025-09-10 13:17:08,679 - __main__ - INFO - No predictions found
-2025-09-10 13:17:08,684 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 13:17:08,685 - __main__ - INFO - Следующий запуск: 2025-09-10 13:17:42
-2025-09-10 13:17:08,685 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:16:17 MSK], next run at: 2025-09-10 13:16:17 MSK)" executed successfully
-2025-09-10 13:17:08,706 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - ServerDisconnectedError: Server disconnected
-2025-09-10 13:17:08,706 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
-2025-09-10 13:17:19,877 - aiogram.dispatcher - INFO - Connection established (tryings = 1, bot id = 8068867993)
-2025-09-10 13:17:42,685 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 13:17:42,686 - apscheduler.executors.default - INFO - Running job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:17:42 MSK], next run at: 2025-09-10 13:17:42 MSK)" (scheduled at 2025-09-10 13:17:42.684200+03:00)
-2025-09-10 13:17:42,688 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
-2025-09-10 13:17:42,689 - WDM - INFO - ====== WebDriver manager ======
-2025-09-10 13:17:43,501 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 13:17:43,710 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 13:17:43,989 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
-2025-09-10 13:17:49,100 - parser - ERROR - Ошибка при загрузке куки: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-2025-09-10 13:17:49,101 - parser - WARNING - Не удалось загрузить куки. Требуется повторный вход.
-2025-09-10 13:17:49,102 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
-2025-09-10 13:17:49,103 - parser - INFO - Выполняется полный цикл входа...
-2025-09-10 13:17:49,112 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e776c10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5276cab0dcab1b71c77b1539c94735b0
-2025-09-10 13:17:49,122 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e7090f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5276cab0dcab1b71c77b1539c94735b0
-2025-09-10 13:17:49,143 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10e708fc0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5276cab0dcab1b71c77b1539c94735b0
-2025-09-10 13:17:49,151 - parser - INFO - WebDriver сессия успешно закрыта.
-2025-09-10 13:17:49,152 - WDM - INFO - ====== WebDriver manager ======
-2025-09-10 13:17:50,209 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 13:17:50,526 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2025-09-10 13:17:50,836 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
-2025-09-10 13:17:54,037 - parser - ERROR - Не удалось запустить новый драйвер: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 271, in _restore_session_with_cookies
+    logger.error("Обнаружена ошибка одновременного использования аккаунта. Требуется повторный вход.")
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 100, in _check_concurrent_session_error
+    error_elements = self.driver.find_elements(By.XPATH, "//*[contains(text(), 'Учётная запись уже используется')]")
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 967, in find_elements
+    return self.execute(Command.FIND_ELEMENTS, {"using": by, "value": value})["value"] or []
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 455, in execute
+    response = cast(RemoteConnection, self.command_executor).execute(driver_command, params)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/remote_connection.py", line 406, in execute
+    return self._request(command_info[0], url, body=data)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/remote_connection.py", line 430, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        method, url, fields=fields, headers=headers, **urlopen_kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/poolmanager.py", line 459, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=59902): Max retries exceeded with url: /session/becd26e7d1e330c5902ca81a4b6a3e00/elements (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b8050>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-09-10 14:01:17,358 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-10 14:01:17,358 - parser - INFO - Выполняется полный цикл входа...
+2025-09-10 14:01:17,359 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b8490>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00/url
+2025-09-10 14:01:17,360 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b8e20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00/url
+2025-09-10 14:01:17,361 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b8af0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00/url
+2025-09-10 14:01:17,362 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b9370>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00
+2025-09-10 14:01:17,364 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b9590>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00
+2025-09-10 14:01:17,365 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1133b97b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/becd26e7d1e330c5902ca81a4b6a3e00
+2025-09-10 14:01:17,366 - parser - INFO - WebDriver сессия успешно закрыта.
+2025-09-10 14:01:17,366 - WDM - INFO - ====== WebDriver manager ======
+2025-09-10 14:01:17,667 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 14:01:17,791 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-10 14:01:17,899 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-10 14:01:18,680 - parser - ERROR - Не удалось запустить новый драйвер: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 Traceback (most recent call last):
   File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
     response = self._make_request(
@@ -16210,9 +15723,9 @@ http.client.RemoteDisconnected: Remote end closed connection without response
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/Users/h0x/Documents/fl/ab4/parser.py", line 191, in _perform_full_login
-    self.driver = webdriver.Chrome(service=service, options=options)
-                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 192, in _perform_full_login
+    except Exception as e:
+                      ^^^^
   File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
     super().__init__(
     ~~~~~~~~~~~~~~~~^
@@ -16280,32 +15793,92 @@ Traceback (most recent call last):
     raise RemoteDisconnected("Remote end closed connection without"
                              " response")
 urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
-2025-09-10 13:17:54,133 - parser - WARNING - Не удалось войти. Прерывание парсинга.
-2025-09-10 13:17:54,134 - __main__ - INFO - No predictions found
-2025-09-10 13:17:54,149 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 13:17:54,150 - __main__ - INFO - Следующий запуск: 2025-09-10 13:18:25
-2025-09-10 13:17:54,151 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 13:17:42 MSK], next run at: 2025-09-10 13:17:42 MSK)" executed successfully
-2025-09-10 13:17:54,154 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 13:17:54,156 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 13:17:54,156 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 13:17:54,156 - aiogram.dispatcher - WARNING - Received SIGINT signal
-2025-09-10 13:17:54,203 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 13:17:54,206 - aiogram.dispatcher - INFO - Polling stopped
-2025-09-10 13:18:10,521 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
-2025-09-10 13:18:10,526 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:18:10,527 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:18:10,528 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:18:10,700 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2025-09-10 13:18:10,700 - __main__ - INFO - Следующий запуск: 2025-09-10 13:18:44
-2025-09-10 13:18:10,702 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
-2025-09-10 13:18:10,702 - apscheduler.scheduler - INFO - Scheduler started
-2025-09-10 13:18:10,703 - aiogram.dispatcher - INFO - Start polling
-2025-09-10 13:18:10,941 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
-2025-09-10 13:18:11,054 - apscheduler.scheduler - INFO - Removed job send_predictions_job
-2025-09-10 13:18:11,384 - aiogram.event - INFO - Update id=951930663 is handled. Duration 359 ms by bot id=8068867993
-2025-09-10 13:18:13,488 - aiogram.event - INFO - Update id=951930664 is handled. Duration 190 ms by bot id=8068867993
-2025-09-10 13:18:17,580 - aiogram.event - INFO - Update id=951930665 is handled. Duration 178 ms by bot id=8068867993
-2025-09-10 13:18:18,596 - aiogram.event - INFO - Update id=951930666 is handled. Duration 166 ms by bot id=8068867993
-2025-09-10 13:18:24,624 - aiogram.event - INFO - Update id=951930667 is handled. Duration 148 ms by bot id=8068867993
-2025-09-10 13:21:57,168 - aiogram.dispatcher - ERROR - Failed to fetch updates - TelegramNetworkError: HTTP Client says - Request timeout error
-2025-09-10 13:21:57,169 - aiogram.dispatcher - WARNING - Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8068867993)
+2025-09-10 14:01:18,708 - parser - WARNING - Не удалось войти. Прерывание парсинга.
+2025-09-10 14:01:18,709 - apscheduler.executors.default - INFO - Job "send_predictions_to_subscribed_users (trigger: date[2025-09-10 14:01:08 MSK], next run at: 2025-09-10 14:01:08 MSK)" executed successfully
+2025-09-10 14:01:18,728 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:01:18,728 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:01:18,728 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:01:18,729 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:01:18,729 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:01:18,730 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:01:18,730 - aiogram.dispatcher - INFO - Polling stopped
+2025-09-10 14:01:18,853 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:05:34,758 - __main__ - INFO - Starting up...
+2025-09-10 14:05:34,760 - __main__ - INFO - Database tables created/verified
+2025-09-10 14:05:34,762 - __main__ - INFO - Initializing parser with login: waist275@mriscan.live, password: **********
+2025-09-10 14:05:34,763 - __main__ - ERROR - Failed to initialize parser: 'SportscheckerParser' object has no attribute 'is_logged_in'
+2025-09-10 14:05:34,763 - __main__ - WARNING - Parser not initialized - credentials may be missing
+2025-09-10 14:05:34,769 - __main__ - INFO - Channel bookmakers initialized
+2025-09-10 14:05:34,772 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:05:34,773 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:05:34,773 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:05:34,773 - __main__ - INFO - Maintenance jobs scheduled
+2025-09-10 14:05:34,836 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:05:34,837 - __main__ - INFO - Next run scheduled for: 2025-09-10 14:06:04
+2025-09-10 14:05:34,838 - __main__ - INFO - Prediction scheduler started
+2025-09-10 14:05:35,050 - aiogram.dispatcher - INFO - Start polling
+2025-09-10 14:05:35,110 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:07:46,889 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:07:46,890 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:07:46,890 - aiogram.dispatcher - INFO - Polling stopped
+2025-09-10 14:07:50,436 - __main__ - INFO - Starting up...
+2025-09-10 14:07:50,437 - __main__ - INFO - Database tables created/verified
+2025-09-10 14:07:50,438 - __main__ - INFO - Initializing parser with login: waist275@mriscan.live, password: **********
+2025-09-10 14:07:50,438 - __main__ - ERROR - Failed to initialize parser: 'SportscheckerParser' object has no attribute 'is_logged_in'
+2025-09-10 14:07:50,438 - __main__ - WARNING - Parser not initialized - credentials may be missing
+2025-09-10 14:07:50,439 - __main__ - INFO - Channel bookmakers initialized
+2025-09-10 14:07:50,440 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:07:50,440 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:07:50,440 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:07:50,440 - __main__ - INFO - Maintenance jobs scheduled
+2025-09-10 14:07:50,464 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:07:50,464 - __main__ - INFO - Next run scheduled for: 2025-09-10 14:08:07
+2025-09-10 14:07:50,464 - __main__ - INFO - Prediction scheduler started
+2025-09-10 14:07:50,679 - aiogram.dispatcher - INFO - Start polling
+2025-09-10 14:07:50,736 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:10:15,108 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:10:15,109 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:10:15,109 - aiogram.dispatcher - INFO - Polling stopped
+2025-09-10 14:10:15,340 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:10:20,139 - __main__ - INFO - Starting up...
+2025-09-10 14:10:20,142 - __main__ - INFO - Database tables created/verified
+2025-09-10 14:10:20,143 - __main__ - INFO - Initializing parser with login: waist275@mriscan.live
+2025-09-10 14:10:20,143 - __main__ - ERROR - ❌ Failed to initialize parser: 'SportscheckerParser' object has no attribute 'is_logged_in'
+2025-09-10 14:10:20,145 - __main__ - ERROR - Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/main.py", line 149, in initialize_parser
+    asyncio.get_event_loop().run_in_executor(None, sportschecker_parser.is_logged_in),
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SportscheckerParser' object has no attribute 'is_logged_in'
+
+2025-09-10 14:10:20,145 - __main__ - WARNING - Parser not initialized - credentials may be missing
+2025-09-10 14:10:20,147 - __main__ - INFO - Channel bookmakers initialized
+2025-09-10 14:10:20,148 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:10:20,148 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:10:20,148 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:10:20,148 - __main__ - INFO - Maintenance jobs scheduled
+2025-09-10 14:10:20,183 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:10:20,183 - __main__ - INFO - Next run scheduled for: 2025-09-10 14:10:49
+2025-09-10 14:10:20,183 - __main__ - INFO - Prediction scheduler started
+2025-09-10 14:10:20,575 - aiogram.dispatcher - INFO - Start polling
+2025-09-10 14:10:20,680 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:12:30,967 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:12:30,968 - aiogram.dispatcher - INFO - Polling stopped for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:12:30,968 - aiogram.dispatcher - INFO - Polling stopped
+2025-09-10 14:12:31,174 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2025-09-10 14:12:34,798 - __main__ - INFO - Новый экземпляр парсера успешно создан/обновлен.
+2025-09-10 14:12:34,799 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:12:34,799 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:12:34,799 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:12:34,825 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-10 14:12:34,825 - __main__ - INFO - Следующий запуск: 2025-09-10 14:13:01
+2025-09-10 14:12:34,826 - apscheduler.scheduler - INFO - Added job "send_predictions_to_subscribed_users" to job store "default"
+2025-09-10 14:12:34,827 - apscheduler.scheduler - INFO - Scheduler started
+2025-09-10 14:12:34,827 - aiogram.dispatcher - INFO - Start polling
+2025-09-10 14:12:35,004 - aiogram.dispatcher - INFO - Run polling for bot @ars3nb0t_bot id=8068867993 - 'ars3nb0t'
+2025-09-10 14:12:41,545 - aiogram.event - INFO - Update id=951930729 is handled. Duration 205 ms by bot id=8068867993
+2025-09-10 14:12:42,887 - aiogram.event - INFO - Update id=951930730 is handled. Duration 147 ms by bot id=8068867993
+2025-09-10 14:12:44,456 - aiogram.event - INFO - Update id=951930731 is handled. Duration 168 ms by bot id=8068867993
+2025-09-10 14:12:45,510 - aiogram.event - INFO - Update id=951930732 is handled. Duration 239 ms by bot id=8068867993
+2025-09-10 14:12:46,486 - aiogram.event - INFO - Update id=951930733 is handled. Duration 223 ms by bot id=8068867993
+2025-09-10 14:12:47,816 - apscheduler.scheduler - INFO - Removed job send_predictions_job
+2025-09-10 14:12:47,968 - aiogram.event - INFO - Update id=951930734 is handled. Duration 163 ms by bot id=8068867993
