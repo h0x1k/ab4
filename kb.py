@@ -127,27 +127,58 @@ def channels_list_keyboard(channels, action_prefix):
     buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="channel_settings_menu")])
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
-def channel_bookmakers_management_keyboard(channel_id, bookmakers):
-    buttons = []
+def channel_bookmakers_management_keyboard(bookmakers, selected_ids):
+    """Create keyboard for channel bookmaker management"""
+    keyboard = []
     
-    # Add toggle all button
-    all_selected = all(bk['is_selected'] for bk in bookmakers)
-    buttons.append([InlineKeyboardButton(
-        text="✅ Выбрать все БК" if all_selected else "☑️ Выбрать все БК",
-        callback_data=f"channel_toggle_all_bk:{channel_id}"
-    )])
+    # Handle case where bookmakers might be IDs instead of objects
+    if bookmakers and isinstance(bookmakers[0], int):
+        # Convert IDs to bookmaker objects
+        all_bookmakers = database.get_all_bookmakers()
+        bookmaker_objects = []
+        for bk_id in bookmakers:
+            bk_obj = next((b for b in all_bookmakers if b['id'] == bk_id), None)
+            if bk_obj:
+                bookmaker_objects.append(bk_obj)
+        bookmakers = bookmaker_objects
     
-    # Add bookmaker buttons
+    # Process bookmaker objects
     for bookmaker in bookmakers:
-        emoji = "✅" if bookmaker['is_selected'] else "❌"
-        buttons.append([InlineKeyboardButton(
-            text=f"{emoji} {bookmaker['name']}",
-            callback_data=f"channel_toggle_bk:{channel_id}:{bookmaker['id']}"
-        )])
+        if isinstance(bookmaker, dict) and 'id' in bookmaker:
+            is_selected = bookmaker['id'] in selected_ids
+            emoji = "✅" if is_selected else "❌"
+            keyboard.append([
+                InlineKeyboardButton(
+                    text=f"{emoji} {bookmaker.get('name', 'Unknown')}",
+                    callback_data=f"channel_toggle_bk:{bookmaker['id']}"
+                )
+            ])
     
-    # Add channel management buttons
-    buttons.append([InlineKeyboardButton(text="🔄 Активировать/деактивировать", callback_data=f"toggle_channel_status:{channel_id}")])
-    buttons.append([InlineKeyboardButton(text="🗑️ Удалить канал", callback_data=f"delete_channel:{channel_id}")])
-    buttons.append([InlineKeyboardButton(text="◀️ Назад", callback_data="manage_channel_bk")])
+    # Add select all/none button
+    if bookmakers:
+        all_selected = all(bk['id'] in selected_ids for bk in bookmakers if isinstance(bk, dict) and 'id' in bk)
+        toggle_all_text = "❌ Отменить все" if all_selected else "✅ Выбрать все"
+        keyboard.append([
+            InlineKeyboardButton(
+                text=toggle_all_text,
+                callback_data=f"channel_toggle_all_bk"
+            )
+        ])
     
-    return InlineKeyboardMarkup(inline_keyboard=buttons)
+    # Add save button
+    keyboard.append([
+        InlineKeyboardButton(
+            text="💾 Сохранить",
+            callback_data=f"channel_save_bk"
+        )
+    ])
+    
+    # Add back button
+    keyboard.append([
+        InlineKeyboardButton(
+            text="◀️ Назад",
+            callback_data="back_to_admin_panel"
+        )
+    ])
+    
+    return InlineKeyboardMarkup(inline_keyboard=keyboard)

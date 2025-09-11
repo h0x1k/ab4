@@ -123,20 +123,42 @@ class BKManagementStates(StatesGroup):
     managing_user_bks = State()
     managing_channel_bks = State()
 
+# Enhanced parser initialization with better error handling
 async def initialize_parser():
     global sportschecker_parser
     login = database.get_setting('sportschecker_login')
     password = database.get_setting('sportschecker_password')
-    if login and password:
+    
+    if not login or not password:
+        logger.error("❌ Parser credentials not found in database")
+        if ADMIN_ID:
+            await bot.send_message(ADMIN_ID, "❌ Ошибка: Логин/пароль для парсера не установлены в настройках")
+        return False
+    
+    try:
         if sportschecker_parser:
             sportschecker_parser.close()
+        
+        # Test parser connection immediately
+        test_parser = SportscheckerParser(login, password)
+        test_predictions = test_parser.get_predictions()
+        test_parser.close()
+        
+        if test_predictions is None:
+            logger.error("❌ Parser failed to get predictions during initialization")
+            if ADMIN_ID:
+                await bot.send_message(ADMIN_ID, "❌ Ошибка парсера: Не удалось получить прогнозы")
+            return False
+        
+        logger.info(f"✅ Parser initialized successfully. Found {len(test_predictions) if test_predictions else 0} test predictions")
         sportschecker_parser = SportscheckerParser(login, password)
-        logger.info("Новый экземпляр парсера успешно создан/обновлен.")
-    else:
-        logger.error("Логин/пароль для парсера не найдены в настройки.")
-        if sportschecker_parser:
-            sportschecker_parser.close()
-        sportschecker_parser = None
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Failed to initialize parser: {e}")
+        if ADMIN_ID:
+            await bot.send_message(ADMIN_ID, f"❌ Ошибка инициализации парсера: {str(e)}")
+        return False
 
 async def send_admin_panel(chat_id):
     job = scheduler.get_job('send_predictions_job')
@@ -144,6 +166,93 @@ async def send_admin_panel(chat_id):
     
     keyboard = kb.admin_panel_keyboard(is_parsing_active)
     await bot.send_message(chat_id, "Добро пожаловать в админ-панель!", reply_markup=keyboard)
+
+async def send_predictions_to_subscribed_users():
+    global sportschecker_parser
+    
+    logger.info("🔍 Starting prediction sending process...")
+    
+    try:
+        # Check parser status
+        if sportschecker_parser is None:
+            logger.warning("⚠️ Parser not initialized, attempting to initialize...")
+            success = await initialize_parser()
+            if not success or sportschecker_parser is None:
+                logger.error("❌ Failed to initialize parser, skipping this run")
+                await schedule_next_run()
+                return
+
+        logger.info("🔄 Getting predictions from parser...")
+        predictions = sportschecker_parser.get_predictions()
+        
+        if predictions is None:
+            logger.error("❌ Parser returned None instead of predictions list")
+            if ADMIN_ID:
+                await bot.send_message(ADMIN_ID, "❌ Парсер вернул ошибку (None)")
+            await schedule_next_run()
+            return
+            
+        logger.info(f"📊 Parser returned {len(predictions)} predictions")
+
+        if not predictions:
+            logger.info("ℹ️ No new predictions found")
+            await schedule_next_run()
+            return
+
+        new_predictions_to_send = []
+        for i, p in enumerate(predictions):
+            logger.debug(f"🔍 Processing prediction {i+1}: {p.get('teams', 'Unknown')}")
+            
+            filtered_p = _filter_and_clean_prediction(p)
+            if not filtered_p:
+                logger.debug(f"❌ Prediction {i+1} filtered out")
+                continue
+                
+            key = get_match_key(filtered_p)
+            if database.is_prediction_sent(key):
+                logger.debug(f"⏩ Prediction {i+1} already sent (key: {key})")
+                continue
+                
+            new_predictions_to_send.append((key, filtered_p))
+            logger.info(f"✅ New prediction queued: {key}")
+
+        logger.info(f"📨 Ready to send {len(new_predictions_to_send)} new predictions")
+
+        if new_predictions_to_send:
+            sent_count = 0
+            for key, pred in new_predictions_to_send:
+                try:
+                    logger.info(f"📤 Sending prediction: {key}")
+                    await send_prediction_to_user_and_channel(pred)
+                    database.add_sent_prediction(key)
+                    sent_count += 1
+                    logger.info(f"✅ Successfully sent prediction {sent_count}/{len(new_predictions_to_send)}")
+                    
+                    # Small delay between sends to avoid rate limiting
+                    await asyncio.sleep(1)
+                    
+                except Exception as e:
+                    logger.error(f"❌ Failed to send prediction {key}: {e}")
+                    continue
+                    
+            logger.info(f"🎯 Total sent: {sent_count} predictions")
+            
+            if ADMIN_ID and sent_count > 0:
+                await bot.send_message(ADMIN_ID, f"✅ Отправлено {sent_count} новых прогнозов")
+        
+        else:
+            logger.info("ℹ️ No new predictions to send after filtering")
+
+    except Exception as e:
+        logger.error(f"💥 Critical error in prediction sending: {e}", exc_info=True)
+        if ADMIN_ID:
+            await bot.send_message(ADMIN_ID, f"💥 Критическая ошибка отправки прогнозов: {str(e)}")
+    
+    finally:
+        logger.info("🔄 Scheduling next run...")
+        await schedule_next_run()
+
+from aiogram import exceptions
 
 async def send_prediction_to_user_and_channel(prediction_data):
     MONTHS_RU = ['янв.', 'фев.', 'мар.', 'апр.', 'май', 'июнь', 'июль', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.']
@@ -154,6 +263,7 @@ async def send_prediction_to_user_and_channel(prediction_data):
         s = re.sub(r'<([^>]+)>', r'&lt;\1&gt;', s)
         return s
     
+    # Format date
     date_str = prediction_data.get('date', '').strip()
     formatted_date = date_str
     try:
@@ -163,6 +273,7 @@ async def send_prediction_to_user_and_channel(prediction_data):
     except (ValueError, IndexError):
         formatted_date = date_str
     
+    # Prepare message content
     bookmaker = safe_html(prediction_data.get('bookmaker', ''))
     sport = safe_html(prediction_data.get('sport', ''))
     tournament = safe_html(prediction_data.get('tournament', ''))
@@ -182,106 +293,232 @@ async def send_prediction_to_user_and_channel(prediction_data):
     )
 
     bookmaker_name = prediction_data.get('bookmaker', '').strip()
+    prediction_key = get_match_key(prediction_data)
     
-    # Send to channels
+    logger.info(f"🎯 Processing prediction for distribution: {teams}")
+    logger.info(f"📊 Bookmaker: {bookmaker_name}, Key: {prediction_key}")
+
+    if not bookmaker_name:
+        logger.warning("⚠️ Prediction missing bookmaker name, skipping")
+        return
+
+    # --- Send to Channels ---
     channels = database.get_all_channels()
+    logger.info(f"📢 Found {len(channels)} channels in database")
+    
+    channel_sent = 0
+    channel_skipped = 0
+    channel_errors = 0
+
     for channel in channels:
-        if not channel['is_active']: continue
-        channel_bookmakers = database.get_channel_bookmakers(channel['channel_id'])
+        channel_id = channel['channel_id']
+        channel_name = channel['name']
+        
+        # Skip inactive channels
+        if not channel['is_active']:
+            logger.debug(f"⏭️ Channel {channel_name} ({channel_id}) is inactive, skipping")
+            channel_skipped += 1
+            continue
+            
+        # Check channel bookmaker preferences
+        channel_bookmakers = database.get_channel_bookmakers(channel_id)
         channel_bk_names = [bk['name'] for bk in channel_bookmakers if bk['is_selected']]
-        if channel_bk_names and bookmaker_name not in channel_bk_names: continue
+        
+        if channel_bk_names and bookmaker_name not in channel_bk_names:
+            logger.debug(f"⏭️ Channel {channel_name} doesn't accept {bookmaker_name}, skipping")
+            channel_skipped += 1
+            continue
+        
+        # Send to channel with comprehensive error handling
         try:
-            await bot.send_message(channel['channel_id'], formatted_message, parse_mode=ParseMode.HTML)
+            # Verify bot has proper permissions in the channel
+            try:
+                chat_member = await bot.get_chat_member(channel_id, bot.id)
+                if chat_member.status != ChatMemberStatus.ADMINISTRATOR:
+                    logger.error(f"❌ Bot is not administrator in channel {channel_name} ({channel_id})")
+                    channel_errors += 1
+                    continue
+                    
+                if not chat_member.can_post_messages:
+                    logger.error(f"❌ Bot cannot post messages in channel {channel_name} ({channel_id})")
+                    channel_errors += 1
+                    continue
+            except exceptions.ChatNotFound:
+                logger.error(f"❌ Channel {channel_name} ({channel_id}) not found")
+                database.update_channel(channel_id, is_active=False)
+                channel_errors += 1
+                continue
+            except exceptions.BotKicked:
+                logger.error(f"❌ Bot was kicked from channel {channel_name} ({channel_id})")
+                database.update_channel(channel_id, is_active=False)
+                channel_errors += 1
+                continue
+
+            # Send the actual message
+            logger.info(f"📤 Sending to channel: {channel_name} ({channel_id})")
+            await bot.send_message(channel_id, formatted_message, parse_mode=ParseMode.HTML)
+            
+            channel_sent += 1
+            logger.info(f"✅ Successfully sent to channel: {channel_name} ({channel_id})")
+            
+        except exceptions.ChatWriteForbidden:
+            logger.error(f"❌ Bot cannot write in channel {channel_name} ({channel_id})")
+            database.update_channel(channel_id, is_active=False)
+            channel_errors += 1
+        except exceptions.RetryAfter as e:
+            logger.warning(f"⏰ Rate limited for channel {channel_name}, retry after {e.timeout}s")
+            await asyncio.sleep(e.timeout)
+            # Retry sending after rate limit
+            try:
+                await bot.send_message(channel_id, formatted_message, parse_mode=ParseMode.HTML)
+                channel_sent += 1
+                logger.info(f"✅ Successfully sent to channel after rate limit: {channel_name}")
+            except Exception as retry_error:
+                logger.error(f"❌ Failed retry for channel {channel_name}: {retry_error}")
+                channel_errors += 1
         except Exception as e:
-            logger.error(f"❌ Failed to send to channel: {e}")
-    
-    # Send to users
-    if not bookmaker_name: return
-    
+            logger.error(f"❌ Failed to send to channel {channel_name} ({channel_id}): {e}")
+            channel_errors += 1
+
+    logger.info(f"📊 Channels: {channel_sent} successful, {channel_skipped} skipped, {channel_errors} errors")
+
+    # --- Send to Users ---
     users = database.get_all_active_users()
-    if not users: return
+    logger.info(f"👥 Found {len(users)} active users")
     
+    if not users:
+        logger.info("ℹ️ No active users to send to")
+        await schedule_next_run()
+        return
+
     signal_limits = database.get_signal_limits()
     max_per_day = signal_limits['max_signals_per_day']
     pause_after = signal_limits['pause_after_signals']
     
+    user_sent = 0
+    user_skipped = 0
+    user_errors = 0
+
     for user in users:
-        if database.is_user_paused(user['user_id']): continue
-        daily_count = database.get_user_daily_signal_count(user['user_id'])
-        if daily_count >= max_per_day: continue
+        user_id = user['user_id']
         
-        user_bookmakers = database.get_user_bookmakers(user['user_id'])
+        # Check if user is paused
+        if database.is_user_paused(user_id):
+            logger.debug(f"⏸️ User {user_id} is paused, skipping")
+            user_skipped += 1
+            continue
+            
+        # Check daily signal limit
+        daily_count = database.get_user_daily_signal_count(user_id)
+        if daily_count >= max_per_day:
+            logger.debug(f"📊 User {user_id} reached daily limit ({daily_count}/{max_per_day}), skipping")
+            user_skipped += 1
+            continue
+        
+        # Check user's bookmaker preferences
+        user_bookmakers = database.get_user_bookmakers(user_id)
         if user_bookmakers:
             user_bk_names = [bk['name'] for bk in user_bookmakers]
-            if bookmaker_name not in user_bk_names: continue
+            if bookmaker_name not in user_bk_names:
+                logger.debug(f"🎯 User {user_id} doesn't accept {bookmaker_name}, skipping")
+                user_skipped += 1
+                continue
         
+        # Send to user
         try:
-            await bot.send_message(user['user_id'], formatted_message, parse_mode=ParseMode.HTML)
-            prediction_key = get_match_key(prediction_data)
-            database.add_user_prediction(user['user_id'], prediction_key)
+            logger.info(f"📤 Sending to user {user_id}")
+            await bot.send_message(user_id, formatted_message, parse_mode=ParseMode.HTML)
+            
+            database.add_user_prediction(user_id, prediction_key)
+            user_sent += 1
             
             new_daily_count = daily_count + 1
             if new_daily_count >= pause_after:
-                database.set_user_pause(user['user_id'], signal_limits['pause_duration_hours'])
+                database.set_user_pause(user_id, signal_limits['pause_duration_hours'])
+                logger.info(f"⏸️ User {user_id} paused after {new_daily_count} signals")
+                
+        except exceptions.BotBlocked:
+            logger.error(f"❌ User {user_id} blocked the bot")
+            user_errors += 1
+        except exceptions.UserDeactivated:
+            logger.error(f"❌ User {user_id} deactivated")
+            user_errors += 1
         except Exception as e:
-            logger.error(f"Не удалось отправить прогноз пользователю {user['user_id']}: {e}")
+            logger.error(f"❌ Failed to send to user {user_id}: {e}")
+            user_errors += 1
 
-async def send_predictions_to_subscribed_users():
-    global sportschecker_parser
-    try:
-        if sportschecker_parser is None:
-            await initialize_parser()
-            if sportschecker_parser is None: return
+    logger.info(f"📊 Users: {user_sent} sent, {user_skipped} skipped, {user_errors} errors")
 
-        predictions = sportschecker_parser.get_predictions()
-        if not predictions: return
+    # --- Final Processing ---
+    # Mark prediction as sent only if it was successfully sent to at least one recipient
+    if channel_sent > 0 or user_sent > 0:
+        database.add_sent_prediction(prediction_key)
+        logger.info(f"✅ Prediction {prediction_key} marked as sent")
+    else:
+        logger.warning(f"⚠️ Prediction {prediction_key} not sent to any recipients")
 
-        new_predictions_to_send = []
-        for p in predictions:
-            filtered_p = _filter_and_clean_prediction(p)
-            if filtered_p:
-                key = get_match_key(filtered_p)
-                if not database.is_prediction_sent(key):
-                    new_predictions_to_send.append((key, filtered_p))
+    # Send summary to admin
+    if ADMIN_ID and (channel_sent > 0 or user_sent > 0 or channel_errors > 0):
+        try:
+            summary_message = (
+                f"📊 Отчет по отправке прогноза:\n"
+                f"• Матч: {teams}\n"
+                f"• БК: {bookmaker_name}\n"
+                f"• Каналы: {channel_sent} отправлено, {channel_skipped} пропущено, {channel_errors} ошибок\n"
+                f"• Пользователи: {user_sent} отправлено, {user_skipped} пропущено, {user_errors} ошибок\n"
+                f"• Всего: {channel_sent + user_sent} успешных отправок"
+            )
+            await bot.send_message(ADMIN_ID, summary_message)
+        except Exception as e:
+            logger.error(f"❌ Failed to send summary to admin: {e}")
 
-        if new_predictions_to_send:
-            for key, pred in new_predictions_to_send:
-                await send_prediction_to_user_and_channel(pred)
-                database.add_sent_prediction(key)
-        
-        await schedule_next_run()
-
-    except Exception as e:
-        logger.error(f"Критическая ошибка: {e}")
-        await schedule_next_run()
-    finally:
-        if sportschecker_parser:
-            sportschecker_parser.close()
-            sportschecker_parser = None
+    await schedule_next_run()
 
 async def schedule_next_run():
-    if scheduler.get_job('send_predictions_job'):
-        scheduler.remove_job('send_predictions_job')
-
-    interval_seconds = int(database.get_setting('parsing_interval', 10))
-    start_time_str = database.get_setting('working_start_time', '08:00')
-    end_time_str = database.get_setting('working_end_time', '23:00')
-    tz_str = database.get_setting('timezone', 'Europe/Moscow')
-
-    start_hour, start_minute = map(int, start_time_str.split(':'))
-    end_hour, end_minute = map(int, end_time_str.split(':'))
-
+    logger.info("⏰ Scheduling next run...")
+    
     try:
-        timezone = pytz.timezone(tz_str)
-    except pytz.UnknownTimeZoneError:
-        timezone = pytz.timezone('Europe/Moscow')
-    
-    now = datetime.now(timezone)
-    next_run_date = now + timedelta(seconds=interval_seconds + random.randint(0, 30))
-    
-    scheduler.add_job(send_predictions_to_subscribed_users, 'date', run_date=next_run_date, timezone=timezone, id='send_predictions_job')
-    logger.info(f"Следующий запуск: {next_run_date.strftime('%Y-%m-%d %H:%M:%S')}")
+        if scheduler.get_job('send_predictions_job'):
+            scheduler.remove_job('send_predictions_job')
+            logger.debug("🗑️ Removed existing job")
 
+        interval_seconds = int(database.get_setting('parsing_interval', 100))
+        start_time_str = database.get_setting('working_start_time', '08:00')
+        end_time_str = database.get_setting('working_end_time', '23:00')
+        tz_str = database.get_setting('timezone', 'Europe/Moscow')
+
+        logger.info(f"⚙️ Settings: interval={interval_seconds}s, time={start_time_str}-{end_time_str}, tz={tz_str}")
+
+        try:
+            timezone = pytz.timezone(tz_str)
+        except pytz.UnknownTimeZoneError:
+            logger.warning(f"⚠️ Unknown timezone {tz_str}, using Europe/Moscow")
+            timezone = pytz.timezone('Europe/Moscow')
+        
+        now = datetime.now(timezone)
+        next_run_date = now + timedelta(seconds=interval_seconds + random.randint(0, 30))
+        
+        scheduler.add_job(
+            send_predictions_to_subscribed_users, 
+            'date', 
+            run_date=next_run_date, 
+            timezone=timezone, 
+            id='send_predictions_job'
+        )
+        
+        logger.info(f"✅ Next run scheduled for: {next_run_date.strftime('%Y-%m-%d %H:%M:%S')}")
+        
+        # Send status to admin if it's the first scheduling or after errors
+        if ADMIN_ID and (not hasattr(schedule_next_run, 'last_status_sent') or 
+                        (now - getattr(schedule_next_run, 'last_status_sent', now - timedelta(hours=1))).total_seconds() > 3600):
+            await bot.send_message(ADMIN_ID, f"✅ Планировщик активен\nСледующий запуск: {next_run_date.strftime('%H:%M:%S')}")
+            schedule_next_run.last_status_sent = now
+            
+    except Exception as e:
+        logger.error(f"❌ Error in scheduler: {e}")
+        if ADMIN_ID:
+            await bot.send_message(ADMIN_ID, f"❌ Ошибка планировщика: {str(e)}")
+            
 async def restart_scheduler():
     scheduler.remove_all_jobs()
     await schedule_next_run()
@@ -711,7 +948,7 @@ async def manage_channel_bk_handler(callback: types.CallbackQuery):
         reply_markup=kb.channels_list_keyboard(channels, "select_channel_for_bk")
     )
     await callback.answer()
-
+    
 @dp.callback_query(F.data.startswith("select_channel_for_bk:"))
 async def select_channel_for_bk_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
@@ -725,8 +962,21 @@ async def select_channel_for_bk_handler(callback: types.CallbackQuery, state: FS
         await callback.answer("Канал не найден.", show_alert=True)
         return
     
-    bookmakers = database.get_channel_bookmakers(channel_id)
-    selected_ids = [bk['id'] for bk in bookmakers if bk['is_selected']]
+    # Get all bookmakers and channel-specific selection status
+    all_bookmakers = database.get_all_bookmakers()
+    channel_bookmakers = database.get_channel_bookmakers(channel_id)
+    
+    # Create a mapping of bookmaker IDs to their selection status
+    selection_map = {bk['id']: bk['is_selected'] for bk in channel_bookmakers}
+    
+    # Create bookmaker objects with is_selected property
+    bookmakers_with_selection = []
+    for bk in all_bookmakers:
+        bk_dict = dict(bk) if not isinstance(bk, dict) else bk
+        bk_dict['is_selected'] = selection_map.get(bk_dict['id'], False)
+        bookmakers_with_selection.append(bk_dict)
+    
+    selected_ids = [bk['id'] for bk in bookmakers_with_selection if bk['is_selected']]
     
     await state.update_data(
         channel_id=channel_id,
@@ -737,7 +987,7 @@ async def select_channel_for_bk_handler(callback: types.CallbackQuery, state: FS
     if not selected_ids:
         selected_text = "все БК"
     else:
-        selected_names = [bk['name'] for bk in bookmakers if bk['is_selected']]
+        selected_names = [bk['name'] for bk in bookmakers_with_selection if bk['is_selected']]
         selected_text = ", ".join(selected_names)
     
     message = (
@@ -746,7 +996,7 @@ async def select_channel_for_bk_handler(callback: types.CallbackQuery, state: FS
         f"Выберите БК для этого канала (можно выбрать несколько):"
     )
     
-    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, selected_ids)
+    keyboard = kb.channel_bookmakers_management_keyboard(bookmakers_with_selection, selected_ids)
     await callback.message.edit_text(message, reply_markup=keyboard)
     await callback.answer()
 
@@ -769,8 +1019,15 @@ async def channel_toggle_bk_handler(callback: types.CallbackQuery, state: FSMCon
     
     await state.update_data(selected_ids=new_selection)
     
-    bookmakers = database.get_all_bookmakers()
-    keyboard = kb.channel_bookmakers_management_keyboard(data['channel_id'], bookmakers, new_selection)
+    # Get all bookmakers and prepare them for the keyboard
+    all_bookmakers = database.get_all_bookmakers()
+    bookmakers_with_selection = []
+    for bk in all_bookmakers:
+        bk_dict = dict(bk) if not isinstance(bk, dict) else bk
+        bk_dict['is_selected'] = bk_dict['id'] in new_selection
+        bookmakers_with_selection.append(bk_dict)
+    
+    keyboard = kb.channel_bookmakers_management_keyboard(bookmakers_with_selection, new_selection)
     await callback.message.edit_reply_markup(reply_markup=keyboard)
     await callback.answer()
 
@@ -782,24 +1039,75 @@ async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FS
     
     data = await state.get_data()
     channel_id = data.get('channel_id')
-    bookmakers = database.get_all_bookmakers()
+    all_bookmakers = database.get_all_bookmakers()
     
-    all_selected = len(data.get('selected_ids', [])) == len([bk for bk in bookmakers if bk['is_active']])
+    all_selected = len(data.get('selected_ids', [])) == len([bk for bk in all_bookmakers if bk['is_active']])
     
     if all_selected:
         new_selection = []
     else:
-        new_selection = [bk['id'] for bk in bookmakers if bk['is_active']]
+        new_selection = [bk['id'] for bk in all_bookmakers if bk['is_active']]
     
     await state.update_data(selected_ids=new_selection)
     
-    keyboard = kb.channel_bookmakers_management_keyboard(channel_id, bookmakers, new_selection)
+    # Prepare bookmakers with selection status
+    bookmakers_with_selection = []
+    for bk in all_bookmakers:
+        bk_dict = dict(bk) if not isinstance(bk, dict) else bk
+        bk_dict['is_selected'] = bk_dict['id'] in new_selection
+        bookmakers_with_selection.append(bk_dict)
+    
+    keyboard = kb.channel_bookmakers_management_keyboard(bookmakers_with_selection, new_selection)
     await callback.message.edit_reply_markup(reply_markup=keyboard)
     
     action = "отключены" if all_selected else "включены"
     await callback.answer(f"Все БК {action} для канала")
 
-@dp.callback_query(BKManagementStates.managing_channel_bks, F.data.startswith("channel_save_bk:"))
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data == "channel_toggle_all_bk")
+async def channel_toggle_all_bk_handler(callback: types.CallbackQuery, state: FSMContext):
+    if not is_admin(callback.from_user.id):
+        await callback.answer("У вас нет прав администратора.", show_alert=True)
+        return
+    
+    data = await state.get_data()
+    bookmakers_for_keyboard = data.get('bookmakers_for_keyboard', [])
+    current_selection = data.get('selected_ids', [])
+    
+    # Get all active bookmaker IDs
+    all_active_bookmaker_ids = [bk.get('id') for bk in bookmakers_for_keyboard 
+                              if isinstance(bk, dict) and 'id' in bk and bk.get('is_active', True)]
+    
+    # Check if all active bookmakers are currently selected
+    all_selected = all(bk_id in current_selection for bk_id in all_active_bookmaker_ids)
+    
+    if all_selected:
+        # Deselect all - empty selection means "all bookmakers"
+        new_selection = []
+    else:
+        # Select all active bookmakers
+        new_selection = all_active_bookmaker_ids.copy()
+    
+    await state.update_data(selected_ids=new_selection)
+    
+    # Update the bookmakers_for_keyboard with new selection status
+    updated_bookmakers = []
+    for bk in bookmakers_for_keyboard:
+        if isinstance(bk, dict) and 'id' in bk:
+            bk_copy = bk.copy()
+            bk_copy['is_selected'] = bk_copy['id'] in new_selection
+            updated_bookmakers.append(bk_copy)
+        else:
+            updated_bookmakers.append(bk)
+    
+    await state.update_data(bookmakers_for_keyboard=updated_bookmakers)
+    
+    keyboard = kb.channel_bookmakers_management_keyboard(updated_bookmakers, new_selection)
+    await callback.message.edit_reply_markup(reply_markup=keyboard)
+    
+    action = "отключены" if all_selected else "включены"
+    await callback.answer(f"Все БК {action} для канала")
+
+@dp.callback_query(BKManagementStates.managing_channel_bks, F.data == "channel_save_bk")
 async def channel_save_bk_handler(callback: types.CallbackQuery, state: FSMContext):
     if not is_admin(callback.from_user.id):
         await callback.answer("У вас нет прав администратора.", show_alert=True)
@@ -1193,7 +1501,7 @@ async def bot_status_handler(callback: types.CallbackQuery):
 
     login = database.get_setting('sportschecker_login')
     password = database.get_setting('sportschecker_password')
-    interval = database.get_setting('parsing_interval', 10)
+    interval = database.get_setting('parsing_interval', 100)
     start_time = database.get_setting('working_start_time', '08:00')
     end_time = database.get_setting('working_end_time', '23:00')
     timezone = database.get_setting('timezone', 'Europe/Moscow')
@@ -1310,6 +1618,7 @@ async def on_startup():
     scheduler.add_job(database.check_and_resume_users, 'interval', minutes=30, id='check_paused_users_job')
     await restart_scheduler()
     scheduler.start()
+
 
 async def main():
     await on_startup()
