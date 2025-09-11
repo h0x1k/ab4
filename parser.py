@@ -190,8 +190,8 @@ class SportscheckerParser:
     
             user_data_dir = tempfile.mkdtemp(prefix='chrome_profile_')
     
-            options.add_argument(f'--user-data-dir={user_data_dir}')
             options = webdriver.ChromeOptions()
+            options.add_argument(f'--user-data-dir={user_data_dir}')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
