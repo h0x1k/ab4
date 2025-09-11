@@ -454,21 +454,6 @@ async def send_prediction_to_user_and_channel(prediction_data):
     else:
         logger.warning(f"⚠️ Prediction {prediction_key} not sent to any recipients")
 
-    # Send summary to admin
-    if ADMIN_ID and (channel_sent > 0 or user_sent > 0 or channel_errors > 0):
-        try:
-            summary_message = (
-                f"📊 Отчет по отправке прогноза:\n"
-                f"• Матч: {teams}\n"
-                f"• БК: {bookmaker_name}\n"
-                f"• Каналы: {channel_sent} отправлено, {channel_skipped} пропущено, {channel_errors} ошибок\n"
-                f"• Пользователи: {user_sent} отправлено, {user_skipped} пропущено, {user_errors} ошибок\n"
-                f"• Всего: {channel_sent + user_sent} успешных отправок"
-            )
-            await bot.send_message(ADMIN_ID, summary_message)
-        except Exception as e:
-            logger.error(f"❌ Failed to send summary to admin: {e}")
-
     await schedule_next_run()
 
 async def schedule_next_run():
