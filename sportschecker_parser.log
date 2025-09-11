@@ -15903,3 +15903,107 @@ AttributeError: 'SportscheckerParser' object has no attribute 'is_logged_in'
 2025-09-10 14:18:01,607 - aiogram.event - INFO - Update id=951930739 is handled. Duration 315 ms by bot id=8068867993
 2025-09-10 14:18:03,049 - apscheduler.scheduler - INFO - Removed job send_predictions_job
 2025-09-10 14:18:03,716 - aiogram.event - INFO - Update id=951930740 is handled. Duration 681 ms by bot id=8068867993
+2025-09-11 11:05:30,997 - WDM - INFO - ====== WebDriver manager ======
+2025-09-11 11:05:31,510 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-11 11:05:31,697 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-11 11:05:31,814 - WDM - INFO - Driver [/Users/h0x/.wdm/drivers/chromedriver/mac64/140.0.7339.82/chromedriver-mac-x64/chromedriver] found in cache
+2025-09-11 11:05:32,505 - parser - ERROR - Не удалось запустить драйвер: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connection.py", line 565, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/h0x/Documents/fl/ab4/parser.py", line 257, in _restore_session_with_cookies
+    self.driver = webdriver.Chrome(service=service, options=options)
+                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/chrome/webdriver.py", line 47, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        browser_name=DesiredCapabilities.CHROME["browserName"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        keep_alive=keep_alive,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/chromium/webdriver.py", line 69, in __init__
+    super().__init__(command_executor=executor, options=options)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 263, in __init__
+    self.start_session(capabilities)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 366, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/webdriver.py", line 455, in execute
+    response = cast(RemoteConnection, self.command_executor).execute(driver_command, params)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/remote_connection.py", line 406, in execute
+    return self._request(command_info[0], url, body=data)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/selenium/webdriver/remote/remote_connection.py", line 430, in _request
+    response = self._conn.request(method, url, body=body, headers=headers, timeout=self._client_config.timeout)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/_request_methods.py", line 143, in request
+    return self.request_encode_body(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        method, url, fields=fields, headers=headers, **urlopen_kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/_request_methods.py", line 278, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/poolmanager.py", line 459, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/util/retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/Users/h0x/Documents/fl/ab4/env/lib/python3.13/site-packages/urllib3/connection.py", line 565, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 1430, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.7/Frameworks/Python.framework/Versions/3.13/lib/python3.13/http/client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+                             " response")
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-09-11 11:05:32,529 - parser - WARNING - Не удалось восстановить сессию. Пытаемся выполнить полный вход...
+2025-09-11 11:05:32,529 - parser - INFO - Выполняется полный цикл входа...
+2025-09-11 11:05:32,529 - WDM - INFO - ====== WebDriver manager ======
+2025-09-11 11:05:32,706 - __main__ - INFO - Бот остановлен.
