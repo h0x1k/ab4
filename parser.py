@@ -181,12 +181,20 @@ class SportscheckerParser:
         
         # Создаем новый драйвер
         self.close() # Закрываем старый драйвер, если он был
+
+        import tempfile
+
         try:
+
+            user_data_dir = tempfile.mkdtemp(prefix='chrome_profile_')
+    
+            user_data_dir = tempfile.mkdtemp(prefix='chrome_profile_')
+    
+            options.add_argument(f'--user-data-dir={user_data_dir}')
             options = webdriver.ChromeOptions()
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
-            options.add_argument(f"user-agent={random.choice(self.user_agents)}")
             service = Service(ChromeDriverManager().install())
             self.driver = webdriver.Chrome(service=service, options=options)
         except Exception as e:
