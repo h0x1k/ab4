@@ -237,9 +237,6 @@ async def send_predictions_to_subscribed_users():
                     
             logger.info(f"🎯 Total sent: {sent_count} predictions")
             
-            if ADMIN_ID and sent_count > 0:
-                await bot.send_message(ADMIN_ID, f"✅ Отправлено {sent_count} новых прогнозов")
-        
         else:
             logger.info("ℹ️ No new predictions to send after filtering")
 
