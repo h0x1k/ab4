@@ -71,6 +71,11 @@ def map_bookmaker_name(parser_name):
         'Marathon': 'Marathon',
         'Olimp': 'Olimp',
         'Winline': 'Winline',
+        'Betboom (RU)': 'Betboom',
+        'Fonbet (RU)': 'Fonbet',
+        'Marathon (RU)': 'Marathon',
+        'Olimp (Bet)': 'Olimp',
+        'Winline (RU)': 'Winline',
     }
     if parser_name in mapping:
         return mapping[parser_name]
@@ -290,10 +295,13 @@ async def send_prediction_to_user_and_channel(prediction_data):
     )
 
     bookmaker_name = prediction_data.get('bookmaker', '').strip()
+    # CRITICAL FIX: Map the bookmaker name to match database format
+    mapped_bookmaker_name = map_bookmaker_name(bookmaker_name)
+    
     prediction_key = get_match_key(prediction_data)
     
     logger.info(f"🎯 Processing prediction for distribution: {teams}")
-    logger.info(f"📊 Bookmaker: {bookmaker_name}, Key: {prediction_key}")
+    logger.info(f"📊 Bookmaker: {bookmaker_name} -> Mapped: {mapped_bookmaker_name}, Key: {prediction_key}")
 
     if not bookmaker_name:
         logger.warning("⚠️ Prediction missing bookmaker name, skipping")
@@ -317,12 +325,12 @@ async def send_prediction_to_user_and_channel(prediction_data):
             channel_skipped += 1
             continue
             
-        # Check channel bookmaker preferences
+        # Check channel bookmaker preferences - USE MAPPED NAME
         channel_bookmakers = database.get_channel_bookmakers(channel_id)
         channel_bk_names = [bk['name'] for bk in channel_bookmakers if bk['is_selected']]
         
-        if channel_bk_names and bookmaker_name not in channel_bk_names:
-            logger.debug(f"⏭️ Channel {channel_name} doesn't accept {bookmaker_name}, skipping")
+        if channel_bk_names and mapped_bookmaker_name not in channel_bk_names:
+            logger.debug(f"⏭️ Channel {channel_name} doesn't accept {mapped_bookmaker_name} (original: {bookmaker_name}), skipping")
             channel_skipped += 1
             continue
         
@@ -412,12 +420,12 @@ async def send_prediction_to_user_and_channel(prediction_data):
             user_skipped += 1
             continue
         
-        # Check user's bookmaker preferences
+        # Check user's bookmaker preferences - USE MAPPED NAME
         user_bookmakers = database.get_user_bookmakers(user_id)
         if user_bookmakers:
             user_bk_names = [bk['name'] for bk in user_bookmakers]
-            if bookmaker_name not in user_bk_names:
-                logger.debug(f"🎯 User {user_id} doesn't accept {bookmaker_name}, skipping")
+            if mapped_bookmaker_name not in user_bk_names:
+                logger.debug(f"🎯 User {user_id} doesn't accept {mapped_bookmaker_name} (original: {bookmaker_name}), skipping")
                 user_skipped += 1
                 continue
         
